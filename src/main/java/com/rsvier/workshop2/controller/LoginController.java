@@ -45,7 +45,7 @@ public class LoginController {
 			return "adminMainMenu";
 
 		}
-		String message = "Het ingevoerde email adres of paswoord klopt niet, probeer het nogmaals.";
+		String message = "Het ingevoerde emailadres of wachtwoord klopt niet, probeer het nogmaals.";
 
 		model.addAttribute("message", message);
 
