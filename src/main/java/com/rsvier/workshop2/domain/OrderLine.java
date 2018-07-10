@@ -18,6 +18,6 @@ public class OrderLine {
 	private Order order;
 
 	public OrderLine() {
-
+		
 	}
 }
