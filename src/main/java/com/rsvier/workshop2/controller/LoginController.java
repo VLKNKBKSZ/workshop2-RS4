@@ -1,17 +1,25 @@
 package com.rsvier.workshop2.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rsvier.workshop2.domain.Account;
+import com.rsvier.workshop2.repository.AccountRepository;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
+	
+AccountRepository accountRepository;
+    
+    @Autowired
+    public LoginController(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 	
 	@GetMapping
 	public String login() {
@@ -22,11 +30,15 @@ public class LoginController {
 	@PostMapping
 	public String doLogin( Account account,Model model ) {
 		
-		
+		if(accountRepository.findByEmail(account.getEmail())!= null){
+            return "adminMainMenu";
+            
+        }
+        	
 	model.addAttribute("account", account);
-		System.out.println(account.getEmail() + account.getPassword());
 		
-		return "adminMainMenu";
+		
+		return "login";
 	}
 
 }
