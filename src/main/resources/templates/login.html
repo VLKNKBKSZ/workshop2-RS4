@@ -7,9 +7,10 @@
 </head>
 <body>
 
-	<div th:if="${error}">Inloggen mislukt. Voer gebruikersnaam en wachtwoord opnieuw in.</div>
+	
 
 	<h1>Inloggen</h1>
+	
 	<form method="POST" th:action="@{/login}" th:object="${account}">
 		
 		<label for="username">Email: </label> <input type="text" name="email" /><br /> 

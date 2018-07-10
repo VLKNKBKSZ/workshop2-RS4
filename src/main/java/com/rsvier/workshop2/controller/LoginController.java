@@ -20,11 +20,8 @@ public class LoginController {
 	}
 	
 	@PostMapping
-	public String doLogin(Errors errors , Account account ) {
+	public String doLogin( Account account ) {
 		
-		if (errors.hasErrors()) {
-			return "login";
-			}
 		
 		
 		System.out.println(account.getEmail() + account.getPassword());
