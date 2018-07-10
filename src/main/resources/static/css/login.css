@@ -1,3 +1,15 @@
-.validationError{
-	color:red;
+body {
+	background-color: Lightblue;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+		"Times New Roman", "serif";
+	font-variant-caps: small-caps;
+	clear: both;
+	text-align: center;
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.validationError {
+	color: white;
 }
