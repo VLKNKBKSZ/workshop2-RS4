@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: lightblue;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+		"Times New Roman", "serif";
+	font-variant-caps: small-caps;
+	clear: both;
+	text-align: center;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}
