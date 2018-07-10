@@ -7,22 +7,35 @@
 </head>
 <body>
 
-	
+
 
 	<h1>Inloggen</h1>
-	
-	<p><span th:text="${message}">Message</span>.</p>
-	
-	<form method="POST" th:action="@{/login}" th:object="${account}">
-		
-		<label for="username">Email: </label> <input type="text" name="email" /><br /> 
-			<label for="password">Password: </label> <input type="password" name="password" /><br /> 
-			<input type="submit" value="Login" />
-			
-	</form>
-	
+
+	<div th:if="${#fields.hasErrors()}">
+		<span class="validationError"> Please correct the problems below and resubmit. </span>
+	</div>
+
 	<p>
-		Heb je nog geen account voor de geweldige website nevvo meubels !? <a th:href="@{/register}">Klik dan hier:</a> 
+		<span th:text="${message}">Message</span>.
+	</p>
+
+	<form method="POST" th:action="@{/login}" th:object="${account}">
+
+		<label for="username">Email: </label> <input type="text" name="email" />
+			<span class="validationError" th:if="${#fields.hasErrors('email')}"
+			th:errors="*{email}">Email Error</span><br />
+			 
+		<label for="password">Password: </label> <input type="password" name="password" /> 
+			<span class="validationError" th:if="${#fields.hasErrors('password')}"
+			th:errors="*{password}">Password Error</span><br /> 
+			
+		<input type="submit" value="Login" />
+
+	</form>
+
+	<p>
+		Heb je nog geen account voor de geweldige website nevvo meubels !? <a
+			th:href="@{/register}">Klik dan hier:</a>
 	</p>
 
 </body>
