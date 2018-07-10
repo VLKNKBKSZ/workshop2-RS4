@@ -10,8 +10,6 @@ public class Workshop2Application extends WebMvcConfigurerAdapter{
 
 	public static void main(String[] args) {
 		SpringApplication.run(Workshop2Application.class, args);
-		
-	
 	}
 	
 	@Override
