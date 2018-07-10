@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Login page</title>
+
+</head>
+<body>
+
+	<div th:if="${error}">Inloggen mislukt. Voer gebruikersnaam en wachtwoord opnieuw in.</div>
+
+	<h1>Inloggen</h1>
+	<form method="POST" th:action="@{/login}" th:object="${account}">
+		
+		<label for="username">Email: </label> <input type="text" name="email" /><br /> 
+			<label for="password">Password: </label> <input type="password" name="password" /><br /> 
+			<input type="submit" value="Login" />
+			
+	</form>
+	
+	<p>
+		Heb je nog geen account voor de geweldige website nevvo meubels !? <a th:href="@{/register}">Klik dan hier:</a> 
+	</p>
+
+</body>
+</html>
