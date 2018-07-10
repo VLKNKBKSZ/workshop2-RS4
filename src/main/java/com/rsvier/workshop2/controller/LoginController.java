@@ -32,11 +32,18 @@ public class LoginController {
 
 	@PostMapping
 	public String doLogin(@Valid Account account, Model model,Errors errors) {
+		
+		if (errors.hasErrors()) {
+			return "login";
+			}
 
 		if (accountRepository.findByEmail(account.getEmail()) != null) {
 			return "adminMainMenu";
 
 		}
+		
+		
+		
 		String message = "Your informations are wrong. Please try to log in agian.";
 
 		model.addAttribute("message", message);

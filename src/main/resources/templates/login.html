@@ -11,21 +11,23 @@
 
 	<h1>Inloggen</h1>
 
-	<div th:if="${#fields.hasErrors()}">
-		<span class="validationError"> Please correct the problems below and resubmit. </span>
-	</div>
+	
 
 	<p>
 		<span th:text="${message}">Message</span>.
 	</p>
 
 	<form method="POST" th:action="@{/login}" th:object="${account}">
+	
+	<div th:if="${#fields.hasErrors()}">
+		<span class="validationError"> Please correct the problems below and resubmit. </span>
+	</div>
 
-		<label for="username">Email: </label> <input type="text" name="email" />
+		<label for="username">Email: </label> <input type="text" th:field="*{email}"/>
 			<span class="validationError" th:if="${#fields.hasErrors('email')}"
 			th:errors="*{email}">Email Error</span><br />
 			 
-		<label for="password">Password: </label> <input type="password" name="password" /> 
+		<label for="password">Password: </label> <input type="password" th:field="*{password} /> 
 			<span class="validationError" th:if="${#fields.hasErrors('password')}"
 			th:errors="*{password}">Password Error</span><br /> 
 			
