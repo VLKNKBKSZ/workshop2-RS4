@@ -20,10 +20,10 @@ public class LoginController {
 	}
 	
 	@PostMapping
-	public String doLogin( Account account ) {
+	public String doLogin( Account account,Model model ) {
 		
 		
-		
+	model.addAttribute("account", account);
 		System.out.println(account.getEmail() + account.getPassword());
 		
 		return "adminMainMenu";
