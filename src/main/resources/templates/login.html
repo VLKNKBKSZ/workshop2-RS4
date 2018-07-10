@@ -11,6 +11,8 @@
 
 	<h1>Inloggen</h1>
 	
+	<p><span th:text="${message}">Message</span>.</p>
+	
 	<form method="POST" th:action="@{/login}" th:object="${account}">
 		
 		<label for="username">Email: </label> <input type="text" name="email" /><br /> 
