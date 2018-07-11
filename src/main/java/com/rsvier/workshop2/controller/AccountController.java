@@ -31,9 +31,18 @@ public class AccountController {
 		return "register";
 
 	}
+	
+	
+	/* The @ModelAttribute is an annotation that binds a method parameter or method return value to a named model attribute
+	 *  and then exposes it to a web view.
+	 */
+	@ModelAttribute("account")
+    public Account getAccount() {
+        return new Account();
+    }
 
 	@PostMapping
-	public String doCreateAccount(@Valid @ModelAttribute Account account, Errors errors) {
+	public String doCreateAccount(@Valid Account account, Errors errors) {
 
 		if (errors.hasErrors()) {
 			return "account";
