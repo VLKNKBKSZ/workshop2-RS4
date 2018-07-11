@@ -19,36 +19,29 @@ import com.rsvier.workshop2.repository.PersonRepository;
 @RequestMapping("/person")
 public class PersonController {
 	
-	PersonRepository personRepository;
-	AddressRepository addressRepository;
-	AccountRepository accountRepository;
 	
 	@Autowired
-	public PersonController(PersonRepository personRepository,AddressRepository addressRepository,AccountRepository accountRepository) {
-		this.personRepository = personRepository;
-		this.addressRepository = addressRepository;
-		this.accountRepository = accountRepository;
+	public PersonController() {
+		
 	}
 	
 	@ModelAttribute("person")
 	public Person person() {
 		return new Person();
 	}
-	@ModelAttribute("address")
-	public Address address() {
-		return new Address();
-	}
+	
 	
 @GetMapping
 	public String showPersonProfileForm() {
 		
-		return "person";
+		return "personForm";
 	}
 
 
 @PostMapping
-public String doCreatePersonAndAddress(Account account, Person person, Address address) {
+public String doCreatePersonAndAddress(Account account, Person person) {
 	
+	/*
 	account.setAccountType(AccountType.CUSTOMER);
 	Account accountDB = accountRepository.save(account);
 	
@@ -59,7 +52,8 @@ public String doCreatePersonAndAddress(Account account, Person person, Address a
 	address.setPerson(personDB);
 	Address addressDB = addressRepository.save(address);
 	
-	return "";
+	*/
+	return "redirect:/address";
 }
 
 }

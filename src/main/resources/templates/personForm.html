@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Profile Form</title>
+<link rel="stylesheet" th:href="@{/css/accountForm.css}" />
+</head>
+<body>
+	<h1>Profile maken</h1>
+
+	<!--  											Profile Form											 -->
+	<form method="POST" th:action="@{/person}" th:object="${person}">
+
+		<label for="name">Name: </label> <input type="text" name="name" th:field="*{name}" />
+		<label for="lastName">Last name: </label> <input type="text" name="lastName" th:field="*{lastName}" /> 
+		<label for="middleName">Middle name: </label> <input type="text" name="middleName" th:field="*{middleName}" />
+		<label for="phoneNumber">Phone number: </label> <input type="text" name="phoneNumber" th:field="*{phoneNumber}" />
+		
+		<input type="submit" value="createProfile" />
+
+	</form>
+
+
+</body>
+</html>
