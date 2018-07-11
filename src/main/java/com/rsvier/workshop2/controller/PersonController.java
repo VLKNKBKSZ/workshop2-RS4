@@ -18,46 +18,34 @@ import com.rsvier.workshop2.repository.PersonRepository;
 
 @Controller
 @RequestMapping("/person")
-@SessionAttributes({"account","person"}) // Use @SessionAttributes to store the object in the session in between requests.
+@SessionAttributes({ "account", "person" }) // Use @SessionAttributes to store the object in the session in between
+											// requests.
 public class PersonController {
-	
-	
+
 	@Autowired
 	public PersonController() {
-		
+
 	}
-	
+
 	@ModelAttribute("person")
 	public Person person() {
 		return new Person();
 	}
-	
-	
-@GetMapping
+
+	@GetMapping
 	public String showPersonProfileForm() {
-		
+
 		return "personForm";
 	}
 
+	@PostMapping
+	public String doCreatePersonAndAddress(Account account, Person person) {
 
-@PostMapping
-public String doCreatePerson(Account account, Person person) {
-	
-	
-	/*
-	
-	account.setAccountType(AccountType.CUSTOMER);
-	Account accountDB = accountRepository.save(account);
-	
-	person.setAccount(accountDB);
-	
-	Person personDB = personRepository.save(person);
-	
-	address.setPerson(personDB);
-	Address addressDB = addressRepository.save(address);
-	
-	*/
-	return "redirect:/address";
-}
+
+		person.setAccount(account);
+
+		return "redirect:/address";
+	}
+
 
 }

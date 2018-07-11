@@ -2,20 +2,20 @@
 <html>
 <head>
 <title>Profile Form</title>
-<link rel="stylesheet" th:href="@{/css/accountForm.css}" />
+<link rel="stylesheet" th:href="@{/css/personForm.css}" />
 </head>
 <body>
-	<h1>Profile maken</h1>
+	<h1>Vul hier uw persoonlijke gegevens in, dit zal worden opgeslagen volgens AVG 2018</h1>
 
 	<!--  											Profile Form											 -->
 	<form method="POST" th:action="@{/person}" th:object="${person}">
 
-		<label for="name">Name: </label> <input type="text" name="name" th:field="*{name}" />
-		<label for="lastName">Last name: </label> <input type="text" name="lastName" th:field="*{lastName}" /> 
-		<label for="middleName">Middle name: </label> <input type="text" name="middleName" th:field="*{middleName}" />
-		<label for="phoneNumber">Phone number: </label> <input type="text" name="phoneNumber" th:field="*{phoneNumber}" />
+		<label class ="formDetails" for="name">Naam: </label> <input type="text" name="name" th:field="*{name}" /></br>
+		<label class ="formDetails" for="lastName">Achternaam: </label> <input type="text" name="lastName" th:field="*{lastName}" /> </br>
+		<label class ="formDetails" for="middleName">Tweede naam: </label> <input type="text" name="middleName" th:field="*{middleName}" /></br>
+		<label class ="formDetails" for="phoneNumber">Telefoonnummer: </label> <input type="text" name="phoneNumber" th:field="*{phoneNumber}" /></br>
 		
-		<input type="submit" value="Submit" />
+		<input class= "formSubmitBtn" type="submit" value="Verzend" />
 
 	</form>
 

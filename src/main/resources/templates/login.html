@@ -12,10 +12,10 @@
 	</p>
 	<form method="POST" th:action="@{/login}" th:object="${account}">
 
-		<label for="username">Email: </label> <input type="text" name="email" th:field="*{email}" /> 
+		<label class ="formDetails" for="username">Email: </label> <input type="text" name="email" th:field="*{email}" /> </br>
 			<span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Cannot be Empty</span> 
 			
-			<label for="password">Password: </label> <input type="password" name="password" /> 
+			<label class ="formDetails" for="password">Password: </label> <input type="password" name="password" /> </br>
 			<span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Cannot be Empty</span>
 			
 			<input type="submit" value="Login" />
