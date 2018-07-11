@@ -1,43 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <title>Login page</title>
-
+<link rel="stylesheet" th:href="@{/css/login.css}" />
 </head>
 <body>
-
-
-
 	<h1>Inloggen</h1>
 
-	
-
 	<p>
-		<span th:text="${message}">Message</span>.
+		<span class="validationError" th:text="${message}">Message</span>.
 	</p>
-
 	<form method="POST" th:action="@{/login}" th:object="${account}">
-	
-	<div th:if="${#fields.hasErrors()}">
-		<span class="validationError"> Please correct the problems below and resubmit. </span>
-	</div>
 
-		<label for="username">Email: </label> <input type="text" th:field="*{email}"/>
-			<span class="validationError" th:if="${#fields.hasErrors('email')}"
-			th:errors="*{email}">Email Error</span><br />
-			 
-		<label for="password">Password: </label> <input type="password" th:field="*{password} /> 
-			<span class="validationError" th:if="${#fields.hasErrors('password')}"
-			th:errors="*{password}">Password Error</span><br /> 
+		<label for="username">Email: </label> <input type="text" name="email" th:field="*{email}" /> 
+			<span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Cannot be Empty</span> 
 			
-		<input type="submit" value="Login" />
+			<label for="password">Password: </label> <input type="password" name="password" /> 
+			<span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Cannot be Empty</span>
+			
+			<input type="submit" value="Login" />
 
 	</form>
-
 	<p>
 		Heb je nog geen account voor de geweldige website nevvo meubels !? <a
-			th:href="@{/register}">Klik dan hier:</a>
+			th:href="@{/}">Klik dan hier:</a>
 	</p>
 
 </body>
