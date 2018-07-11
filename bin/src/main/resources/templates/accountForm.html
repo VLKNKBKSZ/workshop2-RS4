@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Account Form</title>
+<link rel="stylesheet" th:href="@{/css/register.css}" />
+</head>
+<body>
+	<h1>Maak nu een nieuw account aan om gebruik te maken van Nevvo Meubels</h1>
+
+	<!--  											Account Form													 -->
+	<form method="POST" th:action="@{/account}" th:object="${account}">
+
+		<label class ="formDetails" for="username">Email: </label> <input type="text" name="email" th:field="*{email}" /> </br>
+			<span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Cannot be Empty</span> 
+			
+			<label class ="formDetails" for="password">Wachtwoord: </label> <input type="password" name="password" /> </br>
+			<span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Cannot be Empty</span>
+			
+			<input type="submit" value="Verzend" />
+
+	</form>
+	
+
+</body>
+</html>

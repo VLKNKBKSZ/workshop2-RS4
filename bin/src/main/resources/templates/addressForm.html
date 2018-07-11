@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Address Form</title>
+<link rel="stylesheet" th:href="@{/css/addressForm.css}" />
+</head>
+<body>
+	<h1>Adres maken</h1>
+
+	<!--  											Address Form											 -->
+	<form method="POST" th:action="@{/address}" th:object="${address}">
+
+		<label class ="formDetails" for="streetName">Straatnaam: </label> <input type="text" name="streetName" th:field="*{streetName}" /></br>
+		<label class ="formDetails" for="houseNumber">Huisnummber: </label> <input type="number" name="houseNumber" th:field="*{houseNumber}" /></br>
+		<label class ="formDetails" for="additionalHouseNumber">Toevoeging huisnummer: </label> <input type="text" name="additionalHouseNumber" th:field="*{additionalHouseNumber}" /> </br>   
+		<label class ="formDetails" for="postalCode">Postcode: </label> <input type="text" name="postalCode" th:field="*{postalCode}" /> </br>
+		<label class ="formDetails" for="city">Stad: </label> <input type="text" name="city" th:field="*{city}" /> </br>
+		 <label class ="formDetails" for="country">Land: </label> <input type="text" name="country" th:field="*{country}" />    </br>
+		    
+		   
+		
+		<input type="submit" value="Verzend" />
+		
+
+	</form>
+
+
+</body>
+</html>

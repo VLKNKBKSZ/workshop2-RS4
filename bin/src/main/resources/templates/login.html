@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login page</title>
+<link rel="stylesheet" th:href="@{/css/login.css}" />
+</head>
+<body>
+	<h1>Inloggen</h1>
+
+	<p>
+		<span class="validationError" th:text="${message}">Message</span>.
+	</p>
+	<form method="POST" th:action="@{/login}" th:object="${account}">
+
+		<label class ="formDetails" for="username">Email: </label> <input type="text" name="email" th:field="*{email}" /> </br>
+			<span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Cannot be Empty</span> 
+			
+			<label class ="formDetails" for="password">Password: </label> <input type="password" name="password" /> </br>
+			<span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Cannot be Empty</span>
+			
+			<input type="submit" value="Login" />
+
+	</form>
+	<p>
+		Heb je nog geen account voor de geweldige website nevvo meubels !? <a
+			th:href="@{/account}"> Klik dan hier:</a>
+	</p>
+
+</body>
+</html>

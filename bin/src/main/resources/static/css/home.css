@@ -1,0 +1,38 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color: Lightblue;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+		"Times New Roman", "serif";
+	font-variant-caps: small-caps;
+	clear: both;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.main {
+	width: 900px;
+	margin: 0 auto;
+}
+.image {
+	width: 850px;
+	/* height: 350px; */
+}
+.header {
+	border-bottom: 5px solid white;
+	overflow: auto;
+	height: 80px;
+}
+.header .intro {
+	float: left;
+	padding: 0 20px;
+}
+
+.header .login {
+	float: right;
+	line-height: 80px;
+	padding: 0 20px;
+	font-size: 20px;
+}
+

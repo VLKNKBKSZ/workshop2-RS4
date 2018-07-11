@@ -1,0 +1,29 @@
+body {
+	background-color: Lightblue;
+	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+		"Times New Roman", "serif";
+	font-variant-caps: small-caps;
+	clear: both;
+	text-align: center;
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h1 {
+	border-bottom: 5px solid white;
+	border-left: 5px solid white;
+	border-right: 5px solid white;
+}
+
+.validationError {
+	color: red;
+}
+
+.formDetails {
+	display: inline-block; 
+	width: 210px; 
+	text-align: right;
+	text-align: left;
+	padding: 5px;
+}
