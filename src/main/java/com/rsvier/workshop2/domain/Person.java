@@ -1,6 +1,8 @@
 package com.rsvier.workshop2.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
 import lombok.*;
 
 @Data
@@ -20,9 +22,12 @@ public class Person {
 	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "account_id")
 	private Account account;
+	
 	private String name;
+	
 	private String lastName;
 	private String middleName;
+	
 	private String phoneNumber;
 
 	public Person() {

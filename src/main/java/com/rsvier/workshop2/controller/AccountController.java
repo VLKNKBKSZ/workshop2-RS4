@@ -49,9 +49,9 @@ public class AccountController {
 			return "account";
 		}
 
-		account.setAccountType(AccountType.CUSTOMER);
+	//	account.setAccountType(AccountType.CUSTOMER);
 
-		Account accountDB = accountRepository.save(account);
+	//	Account accountDB = accountRepository.save(account);
 
 		return "redirect:/person";
 	}
