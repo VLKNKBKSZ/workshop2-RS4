@@ -27,3 +27,10 @@ h1 {
 	text-align: left;
 	padding: 5px;
 }
+
+.formSubmitBtn {
+	display: inline-block; 
+	width: 75px; 
+	text-align: right;
+	text-align: left;
+}

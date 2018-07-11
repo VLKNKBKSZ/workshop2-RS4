@@ -13,11 +13,19 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.rsvier.workshop2.domain.Account;
+import com.rsvier.workshop2.domain.Account.AccountType;
 import com.rsvier.workshop2.repository.AccountRepository;
 
 @Controller
 @RequestMapping("/account")
-@SessionAttributes("account")  // Use @SessionAttributes to store the object in the session in between requests.
+
+/*
+ * The class-level @SessionAttributes annotation specifies any model objects
+ * that should be kept in session—such as the "order" attribute—and thus
+ * available across multiple requests
+ */
+
+@SessionAttributes("account")
 public class AccountController {
 
 	AccountRepository accountRepository;
@@ -33,16 +41,15 @@ public class AccountController {
 		return "register";
 
 	}
-	
-	
-	/* The @ModelAttribute is an annotation that binds a method parameter or method return value to a named model attribute
-	 *  and then exposes it to a web view.
+
+	/*
+	 * The @ModelAttribute is an annotation that binds a method parameter or method
+	 * return value to a named model attribute and then exposes it to a web view.
 	 */
 	@ModelAttribute("account")
-    public Account getAccount() {
-        return new Account();
-    }
-
+	public Account getAccount() {
+		return new Account();
+	}
 
 	@PostMapping
 	public String doCreateAccount(@Valid Account account, Errors errors) {
@@ -51,9 +58,7 @@ public class AccountController {
 			return "account";
 		}
 
-	//	account.setAccountType(AccountType.CUSTOMER);
-
-	//	Account accountDB = accountRepository.save(account);
+		account.setAccountType(AccountType.CUSTOMER);
 
 		return "redirect:/person";
 	}
