@@ -30,7 +30,7 @@ public class AccountController {
 	@GetMapping
 	public String showAccountForm() {
 
-		return "register";
+		return "accountForm";
 
 	}
 	
@@ -48,7 +48,7 @@ public class AccountController {
 	public String doCreateAccount(@Valid Account account, Errors errors) {
 
 		if (errors.hasErrors()) {
-			return "account";
+			return "accountForm";
 		}
 
 	//	account.setAccountType(AccountType.CUSTOMER);

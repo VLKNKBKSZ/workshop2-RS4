@@ -41,7 +41,7 @@ public class PersonController {
 
 
 @PostMapping
-public String doCreatePersonAndAddress(Account account, Person person) {
+public String doCreatePerson(Account account, Person person) {
 	
 	
 	/*
