@@ -47,7 +47,7 @@ public class PersonController {
 
 
 @PostMapping
-public String doCreatePersonAndAddress(Account account, Person person,Address address) {
+public String doCreatePersonAndAddress(Account account, Person person, Address address) {
 	
 	account.setAccountType(AccountType.CUSTOMER);
 	Account accountDB = accountRepository.save(account);
@@ -55,6 +55,8 @@ public String doCreatePersonAndAddress(Account account, Person person,Address ad
 	person.setAccount(accountDB);
 	
 	Person personDB = personRepository.save(person);
+	
+	address.setPerson(personDB);
 	Address addressDB = addressRepository.save(address);
 	
 	return "";
