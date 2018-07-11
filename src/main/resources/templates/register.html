@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login page</title>
-<link rel="stylesheet" th:href="@{/css/login.css}" />
+<title>Account Form</title>
+<link rel="stylesheet" th:href="@{/css/accountForm.css}" />
 </head>
 <body>
-	<h1>Inloggen</h1>
+	<h1>Account maken</h1>
 
-	<p>
-		<span class="validationError" th:text="${message}">Message</span>.
-	</p>
-	<form method="POST" th:action="@{/login}" th:object="${account}">
+	<!--  											Account Form													 -->
+	<form method="POST" th:action="@{/account}" th:object="${account}">
 
 		<label for="username">Email: </label> <input type="text" name="email" th:field="*{email}" /> 
 			<span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Cannot be Empty</span> 
@@ -18,13 +16,10 @@
 			<label for="password">Password: </label> <input type="password" name="password" /> 
 			<span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Cannot be Empty</span>
 			
-			<input type="submit" value="Login" />
+			<input type="submit" value="createAccount" />
 
 	</form>
-	<p>
-		Heb je nog geen account voor de geweldige website nevvo meubels !? <a
-			href="/account"> Klik dan hier:</a>
-	</p>
+	
 
 </body>
 </html>
