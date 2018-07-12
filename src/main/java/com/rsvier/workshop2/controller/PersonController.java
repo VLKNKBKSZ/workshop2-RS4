@@ -40,6 +40,7 @@ public class PersonController {
 	public String doCreatePersonAndAddress(Account account, @Valid Person person, Errors errors) {
 
 		if (errors.hasErrors()) {
+			
 			return "personForm";
 		}
 

@@ -31,18 +31,20 @@ public class Person {
 	@JoinColumn(name = "account_id")
 	private Account account;
 	
-	@NotBlank
-	@Pattern(regexp="[a-zA-Z ]", message = "Gebruik alleen letters")
+	
+	@Pattern(regexp="^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String name;
 	
-	@NotBlank
-	@Pattern(regexp="[a-zA-Z ]", message = "Gebruik alleen letters")
+	
+	@Pattern(regexp="^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String lastName;
 	
-	@NotBlank
-	@Pattern(regexp="[a-zA-Z ]", message = "Gebruik alleen letters")
+	
+	@Pattern(regexp="^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String middleName;
 	
+	
+	@Pattern(regexp="[0-9]", message = "Gebruik alleen cijfers")
 	private String phoneNumber;
 
 	public Person() {
