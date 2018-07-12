@@ -24,6 +24,7 @@ public class LoginController {
 	public Account getAccount() {
 		return new Account();
 	}
+
 	@Autowired
 	public LoginController(AccountRepository accountRepository) {
 		this.accountRepository = accountRepository;
@@ -36,25 +37,26 @@ public class LoginController {
 	}
 
 	@PostMapping
-	public String doLogin(@Valid Account account,Errors error, Model model) {
+	public String doLogin(@Valid Account account, Errors error, Model model) {
 
-		if(error.hasErrors()) {
+		if (error.hasErrors()) {
 			return "login";
 		}
-		
-		if (accountRepository.findByEmail(account.getEmail()) != null) {
-			return "adminMainMenu";
 
+		Account accountDB = accountRepository.findByEmail(account.getEmail());
+		if (account != null && accountDB.getEmail().equals(account.getEmail())
+				&& accountDB.getPassword().equals(account.getPassword())) {
+			return "adminMainMenu";
 		}
+		
 		String message = "Het ingevoerde emailadres of wachtwoord klopt niet, probeer het nogmaals.";
 
 		model.addAttribute("message", message);
 
 		model.addAttribute("account", account);
-		
+
 		return "login";
-	
+
 	}
 
 }
-

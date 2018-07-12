@@ -26,25 +26,20 @@ public class Person {
 	 * CascadeType.REMOVE means If delete person--> account will be deleted -
 	 * optional = false means account can't be null
 	 */
-	
+
 	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "account_id")
 	private Account account;
-	
-	
-	@Pattern(regexp="^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
+
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String name;
-	
-	
-	@Pattern(regexp="^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
+
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String lastName;
-	
-	
-	@Pattern(regexp="^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
+
 	private String middleName;
-	
-	
-	@Pattern(regexp="^[0-9]+$", message = "Gebruik alleen cijfers")
+
+	@Pattern(regexp = "^[0-9]+$", message = "Gebruik alleen cijfers")
 	private String phoneNumber;
 
 	public Person() {
