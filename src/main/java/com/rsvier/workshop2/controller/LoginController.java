@@ -50,22 +50,18 @@ public class LoginController {
 
 		Account accountDB = accountRepository.findByEmail(account.getEmail());
 
-		if (accountDB == null) {
-			return "login";
-		} else {
-			if (accountDB.getEmail().equals(account.getEmail())
-					&& accountDB.getPassword().equals(account.getPassword())) {
-				return "adminMainMenu";
-			}
-
-			String message = "Het ingevoerde emailadres of wachtwoord klopt niet, probeer het nogmaals.";
-
-			model.addAttribute("message", message);
-
-			model.addAttribute("account", account);
-
-			return "login";
-
+		if (accountDB != null && accountDB.getEmail().equals(account.getEmail())
+				&& accountDB.getPassword().equals(account.getPassword())) {
+			return "adminMainMenu";
 		}
+
+		String message = "Het ingevoerde emailadres of wachtwoord klopt niet, probeer het nogmaals.";
+
+		model.addAttribute("message", message);
+
+		model.addAttribute("account", account);
+
+		return "login";
+
 	}
 }
