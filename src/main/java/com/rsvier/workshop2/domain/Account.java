@@ -1,9 +1,16 @@
 package com.rsvier.workshop2.domain;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
-import lombok.*;
+import lombok.Data;
 
 @Data
 @Entity
@@ -15,9 +22,12 @@ public class Account {
 	@Enumerated(EnumType.STRING)
 	private AccountType accountType;
 	@Column(unique=true)
-	@NotBlank(message="Email is required")
+	@NotBlank(message="Geen geldige e-mail invoer.")
+	@Pattern(regexp=".+@.+\\.[a-z]+", message="Geen geldige e-mail invoer.")
 	private String email;
 	@NotBlank(message="Password is required")
+	@Pattern(regexp="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", 
+	message="Wachtwoord moet minimaal 8 karakters, een letter en een nummer")
 	private String password;
 
 	public enum AccountType {
