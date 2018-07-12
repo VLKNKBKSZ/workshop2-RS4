@@ -1,9 +1,7 @@
 package com.rsvier.workshop2.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
-
 import lombok.*;
 
 @Data
