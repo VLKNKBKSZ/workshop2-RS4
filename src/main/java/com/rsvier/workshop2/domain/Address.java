@@ -21,24 +21,12 @@ public class Address {
 	
 	@Enumerated(EnumType.STRING)
 	private AddressType addressType;
-	
-	
 	private String streetName;
-	
-	
 	private int houseNumber;
-	
 	private String additionalHouseNumber;
-	
-	
 	private String postalCode;
-	
-	
 	private String city;
-	
-	
 	private String country;
-
 	public Address() {
 
 	}

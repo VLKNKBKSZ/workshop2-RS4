@@ -42,26 +42,30 @@ public class LoginController {
 		if (error.hasErrors()) {
 			return "login";
 		}
-		
+
 		/*
 		 * This is performing the password and account validation from the input to the
 		 * database
 		 */
-		
+
 		Account accountDB = accountRepository.findByEmail(account.getEmail());
-		if (account != null && accountDB.getEmail().equals(account.getEmail())
-				&& accountDB.getPassword().equals(account.getPassword())) {
-			return "adminMainMenu";
+
+		if (accountDB == null) {
+			return "login";
+		} else {
+			if (accountDB.getEmail().equals(account.getEmail())
+					&& accountDB.getPassword().equals(account.getPassword())) {
+				return "adminMainMenu";
+			}
+
+			String message = "Het ingevoerde emailadres of wachtwoord klopt niet, probeer het nogmaals.";
+
+			model.addAttribute("message", message);
+
+			model.addAttribute("account", account);
+
+			return "login";
+
 		}
-
-		String message = "Het ingevoerde emailadres of wachtwoord klopt niet, probeer het nogmaals.";
-
-		model.addAttribute("message", message);
-
-		model.addAttribute("account", account);
-
-		return "login";
-
 	}
-
 }
