@@ -1,5 +1,7 @@
 package com.rsvier.workshop2.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -48,7 +50,7 @@ public class AddressController {
 	}
 
 	@PostMapping
-	public String doCreateAddress(Account account, Person person, Address address, Errors errors,SessionStatus sessionstatus) {
+	public String doCreateAddress(Account account, Person person, @Valid Address address, Errors errors,SessionStatus sessionstatus) {
 
 		if(errors.hasErrors()) {
 			return "addressForm";
