@@ -42,13 +42,18 @@ public class LoginController {
 		if (error.hasErrors()) {
 			return "login";
 		}
-
+		
+		/*
+		 * This is performing the password and account validation from the input to the
+		 * database
+		 */
+		
 		Account accountDB = accountRepository.findByEmail(account.getEmail());
 		if (account != null && accountDB.getEmail().equals(account.getEmail())
 				&& accountDB.getPassword().equals(account.getPassword())) {
 			return "adminMainMenu";
 		}
-		
+
 		String message = "Het ingevoerde emailadres of wachtwoord klopt niet, probeer het nogmaals.";
 
 		model.addAttribute("message", message);
