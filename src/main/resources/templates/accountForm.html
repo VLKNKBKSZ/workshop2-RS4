@@ -10,11 +10,11 @@
 	<!--  											Account Form													 -->
 	<form method="POST" th:action="@{/account}" th:object="${account}">
 
-		<label class ="formDetails" for="username">Email: </label> <input type="text" name="email" th:field="*{email}" /> </br>
-			<span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Cannot be Empty</span> 
+		<label class ="formDetails" for="username">Email: </label> <input type="text" name="email" th:field="*{email}" /> 
+			<span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Dit veld moet ingevuld worden</span> </br>
 			
-			<label class ="formDetails" for="password">Wachtwoord: </label> <input type="password" name="password" /> </br>
-			<span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Cannot be Empty</span>
+			<label class ="formDetails" for="password">Wachtwoord: </label> <input type="password" name="password" /> 
+			<span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Dit veld moet ingevuld worden</span> </br>
 			
 			<input type="submit" value="Verzend" />
 

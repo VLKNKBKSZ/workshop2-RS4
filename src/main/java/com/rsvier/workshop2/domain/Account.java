@@ -19,15 +19,18 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long accountId;
+
 	@Enumerated(EnumType.STRING)
 	private AccountType accountType;
+	
 	@Column(unique=true)
-	@NotBlank(message="Geen geldige e-mail invoer.")
-	@Pattern(regexp=".+@.+\\.[a-z]+", message="Geen geldige e-mail invoer.")
+	@NotBlank
+	//@Pattern(regexp=".+@.+\\.[a-z]+", message="Geen geldige e-mail invoer.")
 	private String email;
-	@NotBlank(message="Password is required")
-	@Pattern(regexp="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", 
-	message="Wachtwoord moet minimaal 8 karakters, een letter en een nummer")
+	
+	@NotBlank
+	//@Pattern(regexp="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", 
+	//	message="Wachtwoord moet minimaal 8 karakters, een letter en een nummer")
 	private String password;
 
 	public enum AccountType {
