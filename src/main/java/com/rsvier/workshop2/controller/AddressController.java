@@ -12,6 +12,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Account.AccountType;
 import com.rsvier.workshop2.domain.Address;
+import com.rsvier.workshop2.domain.Address.AddressType;
 import com.rsvier.workshop2.domain.Person;
 import com.rsvier.workshop2.repository.AccountRepository;
 import com.rsvier.workshop2.repository.AddressRepository;
@@ -56,6 +57,7 @@ public class AddressController {
 		Person personDB = personRepository.save(person);
 
 		address.setPerson(personDB);
+		address.setAddressType(AddressType.MAIL);
 		addressRepository.save(address);
 
 		/*

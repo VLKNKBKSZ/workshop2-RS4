@@ -2,6 +2,7 @@ package com.rsvier.workshop2.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import lombok.*;
 
@@ -21,11 +22,15 @@ public class Address {
 	
 	@Enumerated(EnumType.STRING)
 	private AddressType addressType;
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String streetName;
 	private int houseNumber;
 	private String additionalHouseNumber;
+	@Pattern(regexp="^[1-9][0-9]{3}\\s?[a-zA-Z]{2}$")
 	private String postalCode;
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String city;
+	@Pattern(regexp = "^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String country;
 	public Address() {
 
