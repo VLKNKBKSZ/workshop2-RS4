@@ -44,7 +44,7 @@ public class Person {
 	private String middleName;
 	
 	
-	@Pattern(regexp="[0-9]", message = "Gebruik alleen cijfers")
+	@Pattern(regexp="^[0-9]+$", message = "Gebruik alleen cijfers")
 	private String phoneNumber;
 
 	public Person() {
