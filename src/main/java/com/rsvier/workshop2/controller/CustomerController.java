@@ -3,12 +3,11 @@ package com.rsvier.workshop2.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Address;
 import com.rsvier.workshop2.domain.Person;
 import com.rsvier.workshop2.repository.AccountRepository;
@@ -46,20 +45,14 @@ public class CustomerController {
 		
 		return "personDetails";
 	}
-	@DeleteMapping("/deleteProfile")
-	public String deleteProfile(Person person,Account account) {
+	@PostMapping("/deleteProfile")
+	public String deleteProfile(Person person) {
 		
 		Address addressDB = addressRepository.findByPerson(person);
-		accountRepository.delete(account);
+		accountRepository.delete(person.getAccount());
 		addressRepository.delete(addressDB);
 		personRepository.delete(person);
 		
-		
-		
-		
-		
-		
-
 		return "home";
 	}
 
