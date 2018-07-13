@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Person;
+import com.rsvier.workshop2.repository.PersonRepository;
 
 @Controller
 @RequestMapping("/person")
@@ -20,9 +21,11 @@ import com.rsvier.workshop2.domain.Person;
 											// requests.
 public class PersonController {
 
+	PersonRepository personRepository;
+	
 	@Autowired
-	public PersonController() {
-
+	public PersonController(PersonRepository personRepository) {
+		this.personRepository = personRepository;
 	}
 
 	@ModelAttribute("person")
@@ -49,5 +52,13 @@ public class PersonController {
 		return "redirect:/address";
 	}
 
+	@PostMapping("/editPerson")
+	public String editPerson(Person person) {
+		
+		personRepository.save(person);
+		
+		return "customerMainMenu";
+	}
+	
 
 }

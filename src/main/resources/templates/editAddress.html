@@ -5,7 +5,7 @@
 <link rel="stylesheet" th:href="@{/css/addressForm.css}" />
 </head>
 <body>
-	<h1>Pas adresgegevens aan</h1>
+	<h1>Pas adresgegevens aan...</h1>
 
 	<!--  											Address Form											 -->
 	<form method="POST" th:action="@{/address/editAddress}" th:object="${address}">
@@ -28,7 +28,7 @@
 	<label class="formDetails" for="country">Land: </label> <input type="text" name="country" th:field="*{country}" /> </br> 
 	<span class="validationError" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></span> </br> 
 
-	<input type="submit" value="Sla wijzigingen op" />
+	<input type="submit" value="Pas gegevens aan" />
 
 
 	</form>

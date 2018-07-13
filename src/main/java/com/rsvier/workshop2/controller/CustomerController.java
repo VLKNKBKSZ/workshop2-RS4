@@ -72,7 +72,7 @@ public class CustomerController {
 	@PostMapping("/changePersonDetails")
 	public String changePersonDetails(Person person) {
 		
-		return "personForm";
+		return "editPersonForm";
 	}
 	
 	@PostMapping("/changePassword")

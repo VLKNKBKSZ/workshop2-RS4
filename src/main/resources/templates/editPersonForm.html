@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Profile Form</title>
+<link rel="stylesheet" th:href="@{/css/personForm.css}" />
+</head>
+<body>
+	<h1>Pas persoonlijke gegevens aan...</h1>
+
+	<!--  											Profile Form											 -->
+	<form method="POST" th:action="@{/person/editPerson}" th:object="${person}">
+
+		<label class ="formDetails" for="name">Naam: </label> <input type="text" name="name" th:field="*{name}" />
+		<span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> </br>
+		
+		<label class ="formDetails" for="lastName">Achternaam: </label> <input type="text" name="lastName" th:field="*{lastName}" />
+		<span class="validationError" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span> </br>
+		
+		<label class ="formDetails" for="middleName">Tussenvoegsel: </label> <input type="text" name="middleName" th:field="*{middleName}" />
+		<span class="validationError" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"></span> </br>
+		
+		<label class ="formDetails" for="phoneNumber">Telefoonnummer: </label> <input type="text" name="phoneNumber" th:field="*{phoneNumber}" />
+		<span class="validationError" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span> </br>
+		
+		
+		<input class= "formSubmitBtn" type="submit" value="Pas gegevens aan" />
+
+	</form>
+
+
+</body>
+</html>
