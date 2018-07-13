@@ -26,7 +26,7 @@
         <input type="submit" value="Profiel aanpassen" />
 	</form>
 	
-	<form method="POST" th:action="@{/customer/deleteProfile}" th:object="${person}">
+	<form method="DELETE" th:action="@{/customer/deleteProfile}" th:object="${person}">
     
         <input type="submit" value="Verwijder Account" />
 	</form>

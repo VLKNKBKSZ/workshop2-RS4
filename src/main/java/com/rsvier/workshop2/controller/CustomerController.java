@@ -3,8 +3,8 @@ package com.rsvier.workshop2.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -46,13 +46,15 @@ public class CustomerController {
 		
 		return "personDetails";
 	}
-	@PostMapping("/deleteProfile")
-	public String deleteProfile(Person person, Address address,Account account) {
+	@DeleteMapping("/deleteProfile")
+	public String deleteProfile(Person person,Account account) {
 		
+		Address addressDB = addressRepository.findByPerson(person);
 		accountRepository.delete(account);
+		addressRepository.delete(addressDB);
 		personRepository.delete(person);
 		
-		addressRepository.delete(address);
+		
 		
 		
 		
