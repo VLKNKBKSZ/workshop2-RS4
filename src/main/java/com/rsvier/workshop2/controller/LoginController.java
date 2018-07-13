@@ -20,14 +20,19 @@ import com.rsvier.workshop2.repository.PersonRepository;
 
 @Controller
 @RequestMapping("/login")
-@SessionAttributes("person")
+@SessionAttributes({"account","person"})
 public class LoginController {
 
 	AccountRepository accountRepository;
 	PersonRepository personRepository;
+	
+	@ModelAttribute("account")
+	public Account getAccount() {
+		return new Account();
+	}
 
 	@ModelAttribute("person")
-	public Person getAccount() {
+	public Person getPerson() {
 		return new Person();
 	}
 
@@ -60,7 +65,7 @@ public class LoginController {
 		if (accountDB != null && accountDB.getEmail().equals(account.getEmail())
 				&& accountDB.getPassword().equals(account.getPassword())) {
 			
-			Person personDB = personRepository.findPersonByAccountId(accountDB.getAccountId());
+			Person person = personRepository.findByAccount(accountDB.getAccountId());
 			return "customerMainMenu";
 		}
 
