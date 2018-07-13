@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Address Form</title>
+<link rel="stylesheet" th:href="@{/css/addressForm.css}" />
+</head>
+<body>
+<div class="header">
+		<div class="changeDetails">
+			<h1> Kies de gegevens om aan te passen  <span th:text="${person.name}">Name</span> <span th:text="${person.lastName}">Last name</span></h1>
+		</div>
+</div>
+
+	<form method="POST" th:action="@{/customer/changeAddress}" th:object="${address}">
+        <input type="submit" value="Adres aanpassen" />
+	</form>
+	
+	<form method="POST" th:action="@{/customer/changePersonDetails}" th:object="${person}">
+        <input type="submit" value="Persoonlijke gegevens aanpassen" />
+	</form>
+	
+	<form method="POST" th:action="@{/customer/changePassword}" th:object="${account}">
+        <input type="submit" value="Wachtwoord aanpassen" />
+	</form>
+	
+	
+</body>
+</html>

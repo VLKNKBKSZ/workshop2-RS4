@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Address;
 import com.rsvier.workshop2.domain.Person;
 import com.rsvier.workshop2.repository.AccountRepository;
@@ -54,5 +55,30 @@ public class CustomerController {
 		personRepository.delete(person);
 		return "home";
 	}
-
+	
+	@PostMapping("/changeDetails")
+	public String editProfile(Person person) {
+		
+		return "changeDetails";
+	}
+	
+	
+	@PostMapping("/changeAddress")
+	public String changeAddress(Address address) {
+		
+		return "editAddress";
+	}
+	
+	@PostMapping("/changePersonDetails")
+	public String changePersonDetails(Person person) {
+		
+		return "personForm";
+	}
+	
+	@PostMapping("/changePassword")
+	public String changePassword(Account account) {
+		
+		return "accountForm";
+	}
+	
 }

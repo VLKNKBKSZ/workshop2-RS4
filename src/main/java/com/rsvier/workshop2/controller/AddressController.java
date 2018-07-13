@@ -74,8 +74,17 @@ public class AddressController {
 		 * parameter and calls its setComplete() to reset the session.
 		 */
 
-		sessionstatus.setComplete();
+	//	sessionstatus.setComplete();
 
-		return "home";
+		return "customerMainMenu";
+	}
+	
+	@PostMapping("/editAddress")
+	public String editAddress(Address address) {
+		
+		
+		addressRepository.save(address);
+		
+		return "customerMainMenu";
 	}
 }
