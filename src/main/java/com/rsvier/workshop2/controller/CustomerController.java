@@ -32,7 +32,7 @@ public class CustomerController {
 	}
 	
 	
-	@RequestMapping("/personDetails")
+	@GetMapping("/personDetails")
 	public String showPersondetails(Person person,Model model) {
 		
 		Address addressDB = addressRepository.findByPerson(person);
