@@ -14,23 +14,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.rsvier.workshop2.domain.Account;
+import com.rsvier.workshop2.domain.Person;
 import com.rsvier.workshop2.repository.AccountRepository;
+import com.rsvier.workshop2.repository.PersonRepository;
 
 @Controller
 @RequestMapping("/login")
-@SessionAttributes("account")
+@SessionAttributes("person")
 public class LoginController {
 
 	AccountRepository accountRepository;
+	PersonRepository personRepository;
 
-	@ModelAttribute("account")
-	public Account getAccount() {
-		return new Account();
+	@ModelAttribute("person")
+	public Person getAccount() {
+		return new Person();
 	}
 
 	@Autowired
-	public LoginController(AccountRepository accountRepository) {
+	public LoginController(AccountRepository accountRepository,PersonRepository personRepository) {
 		this.accountRepository = accountRepository;
+		this.personRepository = personRepository;
 	}
 
 	@GetMapping
@@ -55,6 +59,8 @@ public class LoginController {
 
 		if (accountDB != null && accountDB.getEmail().equals(account.getEmail())
 				&& accountDB.getPassword().equals(account.getPassword())) {
+			
+			Person personDB = personRepository.findPersonByAccountId(accountDB.getAccountId());
 			return "customerMainMenu";
 		}
 
