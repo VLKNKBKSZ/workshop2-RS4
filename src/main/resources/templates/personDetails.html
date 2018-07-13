@@ -21,6 +21,14 @@
 	<p>Stad: <span th:text="${address.city}">Data</span>.</p>
 	<p>Land: <span th:text="${address.Country}">Data</span>.</p>
 	
+	<form method="POST" th:action="@{/customer}" th:object="${person}">
+    
+        <input type="submit" value="Profiel aanpassen" />
+	
+	
+	<form method="POST" th:action="@{/customer/deleteProfile}" th:object="${person}">
+    
+        <input type="submit" value="Verwijder Account" />
 	
 
 </body>

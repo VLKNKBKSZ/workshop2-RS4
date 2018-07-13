@@ -1,0 +1,11 @@
+.link.intro {
+	float: left;
+	padding: 0 20px;
+}
+
+.header .myAccount {
+	float: right;
+	line-height: 80px;
+	padding: 0 20px;
+	font-size: 20px;
+}
