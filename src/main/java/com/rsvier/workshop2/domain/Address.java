@@ -24,7 +24,7 @@ public class Address {
 	private String streetName;
 	private int houseNumber;
 	private String additionalHouseNumber;
-	@Pattern(regexp="^[1-9][0-9]{3}\\s?[a-zA-Z]{2}$")
+	@Pattern(regexp="^[1-9][0-9]{3}\\s?[a-zA-Z]{2}$", message = "Voer a.u.b 4 cijfers en 2 letters in.")
 	private String postalCode;
 	@Pattern(regexp = "^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String city;

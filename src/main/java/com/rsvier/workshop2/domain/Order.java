@@ -21,6 +21,12 @@ public class Order {
 	private Person person;
 	private BigDecimal totalPrice;;
 	private LocalDateTime orderDateTime;
+	@Enumerated(EnumType.STRING)
+	private OrderStatus orderStatus;
+	
+	public enum OrderStatus{
+		OPEN,CLOSED,SEND
+	}
 	
 	public Order() {
 		
