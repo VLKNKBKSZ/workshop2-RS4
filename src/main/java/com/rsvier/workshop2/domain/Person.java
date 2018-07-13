@@ -27,7 +27,7 @@ public class Person {
 	 * optional = false means account can't be null
 	 */
 
-	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
+	@OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
 	@JoinColumn(name = "account_id")
 	private Account account;
 

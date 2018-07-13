@@ -13,7 +13,7 @@ public class Address {
 	private Long addressId;
 	
 	// Optional means that the person cannot be null @runtime
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=false, cascade = CascadeType.REMOVE)
 	@JoinColumn(name="person_id")
 	private Person person;
 	

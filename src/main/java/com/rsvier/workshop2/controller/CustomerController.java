@@ -45,14 +45,13 @@ public class CustomerController {
 		
 		return "personDetails";
 	}
+	
 	@PostMapping("/deleteProfile")
 	public String deleteProfile(Person person) {
 		
 		Address addressDB = addressRepository.findByPerson(person);
-		accountRepository.delete(person.getAccount());
 		addressRepository.delete(addressDB);
 		personRepository.delete(person);
-		
 		return "home";
 	}
 
