@@ -67,7 +67,7 @@ public class LoginController {
 			
 			Person person = personRepository.findByAccount(accountDB);
 			model.addAttribute("person", person);
-			return "customerMainMenu";
+			return "redirect:/customer";
 		}
 
 		String message = "Het ingevoerde emailadres of wachtwoord klopt niet, probeer het nogmaals.";
