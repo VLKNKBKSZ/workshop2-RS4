@@ -65,7 +65,8 @@ public class LoginController {
 		if (accountDB != null && accountDB.getEmail().equals(account.getEmail())
 				&& accountDB.getPassword().equals(account.getPassword())) {
 			
-			Person person = personRepository.findByAccount(accountDB.getAccountId());
+			Person person = personRepository.findByAccount(accountDB);
+			model.addAttribute("person", person);
 			return "customerMainMenu";
 		}
 
