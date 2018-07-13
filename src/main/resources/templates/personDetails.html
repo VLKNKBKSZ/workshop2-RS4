@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Persoonsgegevens</title>
+<link rel="stylesheet" th:href="@{/css/login.css}" />
+</head>
+<body>
+
+	<h1>Persoonsgegevens</h1>
+	
+	<p>Naam: <span th:text="${person.name}">Data</span>.</p>
+	<p>Tussenvoegse: <span th:text="${person.middleName}">Data</span>.</p>
+	<p>Achternaam: <span th:text="${person.lastName}">Data</span>.</p>
+	<p>Telefoon nummer: <span th:text="${person.telephoneNumber}">Data</span>.</p>
+	</br>
+	<h1>Adresgegevens</h1>
+	<p>Straat: <span th:text="${address.streetName}">Data</span>.</p>
+	<p>Huisnummer: <span th:text="${address.houseNumber}">Data</span>.</p>
+	<p>Post Code: <span th:text="${address.postalCode}">Data</span>.</p>
+	<p>Stad: <span th:text="${address.city}">Data</span>.</p>
+	<p>Land: <span th:text="${address.Country}">Data</span>.</p>
+	
+	
+
+</body>
+</html>
