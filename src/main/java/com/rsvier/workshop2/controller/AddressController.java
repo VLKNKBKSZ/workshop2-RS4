@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -80,9 +81,12 @@ public class AddressController {
 	}
 	
 	@PostMapping("/editAddress")
-	public String editAddress(Address address) {
+	public String editAddress(Address address, Model model) {
 		
 		addressRepository.save(address);
+		
+		String addressEditSuccessful = "Het adres is aangepast.";
+		model.addAttribute("editMessage", addressEditSuccessful);
 		
 		return "customerMainMenu";
 	}

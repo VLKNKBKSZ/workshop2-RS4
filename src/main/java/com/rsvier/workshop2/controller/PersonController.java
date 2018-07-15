@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,10 +53,14 @@ public class PersonController {
 		return "redirect:/address";
 	}
 
+	
 	@PostMapping("/editPerson")
-	public String editPerson(Person person) {
-		
+	public String editPerson(Person person, Model model) {
+			
 		personRepository.save(person);
+		
+		String personEditSuccessful = "De persoonlijke gegevens zijn aangepast.";
+		model.addAttribute("editMessage", personEditSuccessful);
 		
 		return "customerMainMenu";
 	}
