@@ -10,13 +10,13 @@
 			<h1> Je bent ingelogd als  <span th:text="${person.name}">Name</span> <span th:text="${person.lastName}">Last name</span></h1>
 		</div>
 </div>
-
-	<form method="POST" th:action="@{/customer/changeAddress}" th:object="${address}">
-        <input type="submit" value="Adres aanpassen" />
-	</form>
 	
 	<form method="POST" th:action="@{/customer/changePersonDetails}" th:object="${person}">
         <input type="submit" value="Persoonlijke gegevens aanpassen" />
+	</form>
+	
+	<form method="POST" th:action="@{/customer/changeAddress}" th:object="${address}">
+        <input type="submit" value="Adres aanpassen" />
 	</form>
 	
 	<form method="POST" th:action="@{/customer/changePassword}" th:object="${account}">

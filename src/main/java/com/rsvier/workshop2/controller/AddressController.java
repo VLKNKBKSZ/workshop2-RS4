@@ -46,14 +46,14 @@ public class AddressController {
 
 	@GetMapping
 	public String showAddressForm() {
-		return "addressForm";
+		return "createNewAddress";
 	}
 
 	@PostMapping
 	public String doCreateAddress(Account account, Person person, @Valid Address address, Errors errors,SessionStatus sessionstatus) {
 
 		if(errors.hasErrors()) {
-			return "addressForm";
+			return "createNewAddress";
 		}
 		account.setAccountType(AccountType.CUSTOMER);
 		Account accountDB = accountRepository.save(account);

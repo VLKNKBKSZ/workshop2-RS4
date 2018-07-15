@@ -36,7 +36,7 @@ public class PersonController {
 	@GetMapping
 	public String showPersonProfileForm() {
 
-		return "personForm";
+		return "createNewPerson";
 	}
 
 	@PostMapping
@@ -44,7 +44,7 @@ public class PersonController {
 
 		if (errors.hasErrors()) {
 			
-			return "personForm";
+			return "createNewPerson";
 		}
 
 		person.setAccount(account);

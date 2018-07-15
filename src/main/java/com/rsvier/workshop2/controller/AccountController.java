@@ -38,7 +38,7 @@ public class AccountController {
 	@GetMapping
 	public String showAccountForm() {
 
-		return "accountForm";
+		return "createNewAccount";
 
 	}
 

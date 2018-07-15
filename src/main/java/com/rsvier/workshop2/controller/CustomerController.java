@@ -44,7 +44,7 @@ public class CustomerController {
 		Address addressDB = addressRepository.findByPerson(person);
 		model.addAttribute("address", addressDB);
 		
-		return "personDetails";
+		return "showPersonDetails";
 	}
 	
 	@PostMapping("/deleteProfile")
