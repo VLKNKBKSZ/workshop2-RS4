@@ -3,10 +3,10 @@ package com.rsvier.workshop2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-public class Workshop2Application extends WebMvcConfigurerAdapter{
+public class Workshop2Application implements WebMvcConfigurer{
 
 	public static void main(String[] args) {
 		SpringApplication.run(Workshop2Application.class, args);
