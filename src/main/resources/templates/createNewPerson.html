@@ -10,16 +10,16 @@
 	<!--  											Profile Form											 -->
 	<form method="POST" th:action="@{/person}" th:object="${person}">
 
-		<label class ="formDetails" for="name">Naam: </label> <input type="text" name="name" th:field="*{name}" />
+		<label class ="formDetails" for="name">Naam: </label> <input type="text" name="name" placeholder= "verplicht veld" th:field="*{name}" />
 		<span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> </br>
 		
-		<label class ="formDetails" for="lastName">Achternaam: </label> <input type="text" name="lastName" th:field="*{lastName}" />
+		<label class ="formDetails" for="lastName">Achternaam: </label> <input type="text" name="lastName" placeholder= "verplicht veld" th:field="*{lastName}" />
 		<span class="validationError" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span> </br>
 		
 		<label class ="formDetails" for="middleName">Tussenvoegsel: </label> <input type="text" name="middleName" th:field="*{middleName}" />
 		<span class="validationError" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"></span> </br>
 		
-		<label class ="formDetails" for="phoneNumber">Telefoonnummer: </label> <input type="text" name="phoneNumber" th:field="*{phoneNumber}" />
+		<label class ="formDetails" for="phoneNumber">Telefoonnummer: </label> <input type="text" name="phoneNumber" placeholder= "verplicht veld" th:field="*{phoneNumber}" />
 		<span class="validationError" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span> </br>
 		
 		
