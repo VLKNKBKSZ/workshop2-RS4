@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Account.AccountType;
+import com.rsvier.workshop2.domain.Person;
 import com.rsvier.workshop2.repository.AccountRepository;
 
 @Controller
@@ -25,7 +26,7 @@ import com.rsvier.workshop2.repository.AccountRepository;
  * available across multiple requests
  */
 
-@SessionAttributes("account")
+@SessionAttributes({"account", "person"})
 public class AccountController {
 
 	AccountRepository accountRepository;
@@ -50,6 +51,13 @@ public class AccountController {
 	public Account getAccount() {
 		return new Account();
 	}
+	
+	@ModelAttribute("person")
+	public Person getPerson() {
+		return new Person();
+	}
+	
+	
 
 	@PostMapping
 	public String doCreateAccount(@Valid Account account, Errors errors) {
@@ -64,8 +72,12 @@ public class AccountController {
 	}
 
 	@PostMapping("/editPassword")
-	public String editPassword(Account account, Model model) {
+	public String editPassword(@Valid Account account, Errors error, Model model) {
 	
+		if(error.hasErrors()) {
+			return "editAccount";
+		}
+		
 		accountRepository.save(account);
 		
 		String accountEditSuccessful = "Het account is aangepast.";
