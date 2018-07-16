@@ -39,8 +39,8 @@ public class ProductController {
 	}
 
 	@PostMapping("/createNewProduct")
-	public String addProduct(@Valid Product product, Errors erros, Model model) {
-		if(erros.hasErrors()) {
+	public String addProduct(@Valid Product product, Errors errors, Model model) {
+		if(errors.hasErrors()) {
 			return "createNewProductForm";
 		}
 		

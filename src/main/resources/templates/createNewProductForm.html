@@ -8,7 +8,7 @@
 	<h1>Vul hier je persoonlijke gegevens in. Deze zullen worden opgeslagen volgens AVG 2018.</h1>
 
 	<!--  											Profile Form											 -->
-	<form method="POST" th:action="@{/product}" th:object="${product}">
+	<form method="POST" th:action="@{/product/createNewProduct}" th:object="${product}">
 
 		<label class ="formDetails" for="name">Naam: </label> <input type="text" name="name" placeholder= "verplicht veld" th:field="*{name}" />
 		<span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> </br>

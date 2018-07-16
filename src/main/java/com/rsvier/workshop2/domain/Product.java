@@ -17,10 +17,8 @@ public class Product {
 	@Pattern(regexp = "^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String name;
 	
-	@Pattern(regexp = "^[0-9]+$", message = "Gebruik alleen cijfers")
 	private BigDecimal price;
 	
-	@Pattern(regexp = "^[0-9]+$", message = "Gebruik alleen cijfers")
 	private int stock;
 
 	
