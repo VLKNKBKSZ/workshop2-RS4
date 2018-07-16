@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Product Page</title>
+<link rel="stylesheet" th:href="@{/css/addressForm.css}" />
+</head>
+<body>
+
+	
+	<form method="POST" th:action="@{/product/createNewProduct}" th:object="${product}">
+        <input type="submit" value="Voeg product toe" />
+	</form>
+	
+	
+	
+	
+</body>
+</html>

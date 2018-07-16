@@ -34,7 +34,10 @@ public class EmployeeController {
 		return"employeeMainMenu";
 	}
 	
-	
+	@PostMapping
+	public String showProductMenu() {
+		return "productPage";
+	}
 	
 	@PostMapping("/changePassword")
 	public String changePassword(Account account) {
