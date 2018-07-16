@@ -51,9 +51,10 @@ public class AddressController {
 	}
 
 	@PostMapping
-	public String doCreateAddress(Account account, Person person, @Valid Address address, Errors errors,SessionStatus sessionstatus) {
+	public String doCreateAddress(Account account, Person person, @Valid Address address, Errors errors,
+			SessionStatus sessionstatus) {
 
-		if(errors.hasErrors()) {
+		if (errors.hasErrors()) {
 			return "createNewAddress";
 		}
 		account.setAccountType(AccountType.CUSTOMER);
@@ -75,19 +76,19 @@ public class AddressController {
 		 * parameter and calls its setComplete() to reset the session.
 		 */
 
-	//	sessionstatus.setComplete();
+		sessionstatus.setComplete();
 
 		return "customerMainMenu";
 	}
-	
+
 	@PostMapping("/editAddress")
 	public String editAddress(Address address, Model model) {
-		
+
 		addressRepository.save(address);
-		
+
 		String addressEditSuccessful = "Het adres is aangepast.";
 		model.addAttribute("editMessage", addressEditSuccessful);
-		
+
 		return "customerMainMenu";
 	}
 }

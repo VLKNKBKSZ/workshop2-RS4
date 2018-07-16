@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
+import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Product;
 import com.rsvier.workshop2.repository.ProductRepository;
 
@@ -39,7 +41,7 @@ public class ProductController {
 	}
 
 	@PostMapping("/createNewProduct")
-	public String addProduct(@Valid Product product, Errors errors, Model model) {
+	public String addProduct(@Valid Product product, Errors errors, Model model, SessionStatus sessionStatus) {
 		if(errors.hasErrors()) {
 			return "createNewProductForm";
 		}
@@ -47,7 +49,7 @@ public class ProductController {
 		productRepository.save(product);
 		String productAdded = "Het product is aangemaakt";
 		model.addAttribute("editMessage", productAdded);
-
+		sessionStatus.setComplete();
 		return "employeeMainMenu";
 	}
 
