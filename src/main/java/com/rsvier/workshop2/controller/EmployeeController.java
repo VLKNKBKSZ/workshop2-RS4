@@ -34,7 +34,7 @@ public class EmployeeController {
 		return"employeeMainMenu";
 	}
 	
-	@PostMapping
+	@GetMapping("/productPage")
 	public String showProductMenu() {
 		return "productPage";
 	}

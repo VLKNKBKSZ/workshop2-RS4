@@ -5,12 +5,20 @@
 <link rel="stylesheet" th:href="@{/css/addressForm.css}" />
 </head>
 <body>
-
-	
-	<form method="POST" th:action="@{/product/createNewProduct}" th:object="${product}">
-        <input type="submit" value="Voeg product toe" />
+	<h1>Dit is de productenbeheer menu</h1>
+	<form method="GET" th:href="@{/product/createNewProduct}"></a> 
+    
+        <input type="submit" value="Product Aanmaken" />
+	</form>
+		<form method="POST" th:action="@{/product/editProduct}" th:object="${product}">
+    
+        <input type="submit" value="Product Aanpassen" />
 	</form>
 	
+	<form method="POST" th:action="@{/product/deleteProduct}" th:object="${product}">
+    
+        <input type="submit" value="Product Verwijderen" />
+	</form>
 	
 	
 	
