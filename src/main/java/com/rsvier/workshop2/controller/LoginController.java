@@ -69,12 +69,12 @@ public class LoginController {
 			Person person = personRepository.findByAccount(accountDB);
 			model.addAttribute("person", person);
 			
-			if (account.getAccountType() == AccountType.CUSTOMER) {
+			if (accountDB.getAccountType() == AccountType.CUSTOMER) {
 			
 				return "redirect:/customer";
 				}
 			
-			else if (account.getAccountType() == AccountType.EMPLOYEE) {
+			else if (accountDB.getAccountType() == AccountType.EMPLOYEE) {
 				
 				return "redirect:/employee";
 			}
