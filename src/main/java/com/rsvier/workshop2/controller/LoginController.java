@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.rsvier.workshop2.domain.Account;
+import com.rsvier.workshop2.domain.Account.AccountType;
 import com.rsvier.workshop2.domain.Person;
 import com.rsvier.workshop2.repository.AccountRepository;
 import com.rsvier.workshop2.repository.PersonRepository;
@@ -67,7 +68,16 @@ public class LoginController {
 			
 			Person person = personRepository.findByAccount(accountDB);
 			model.addAttribute("person", person);
-			return "redirect:/customer";
+			
+			if (account.getAccountType() == AccountType.CUSTOMER) {
+			
+				return "redirect:/customer";
+				}
+			
+			else if (account.getAccountType() == AccountType.EMPLOYEE) {
+				
+				return "redirect:/employee";
+			}
 		}
 
 		String message = "Het ingevoerde emailadres of wachtwoord klopt niet, probeer het nogmaals.";

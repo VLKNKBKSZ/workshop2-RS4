@@ -10,7 +10,6 @@
 	<!--  											Account Form													 -->
 	<form method="POST" th:action="@{/account/editPassword}" th:object="${account}">
 
-
 	
 		<label class ="formDetails" for="password">Wachtwoord: </label> <input type="password" name="password" placeholder="vul wachtwoord in" th:field="*{password}" /> 
 		<span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span> </br>
