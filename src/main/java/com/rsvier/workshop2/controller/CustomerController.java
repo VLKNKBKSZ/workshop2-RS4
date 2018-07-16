@@ -78,7 +78,7 @@ public class CustomerController {
 	@PostMapping("/changePassword")
 	public String changePassword(Account account) {
 		
-		return "accountForm";
+		return "editAccount";
 	}
 	
 }
