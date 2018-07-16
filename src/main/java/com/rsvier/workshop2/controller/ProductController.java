@@ -1,8 +1,11 @@
 package com.rsvier.workshop2.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,8 +39,12 @@ public class ProductController {
 	}
 
 	@PostMapping("/createNewProduct")
-	public String addProduct(Product product, Model model) {
-
+	public String addProduct(@Valid Product product, Errors erros, Model model) {
+		if(erros.hasErrors()) {
+			return "createNewProductForm";
+		}
+		
+		productRepository.save(product);
 		String productAdded = "Het product is aangemaakt";
 		model.addAttribute("editMessage", productAdded);
 
