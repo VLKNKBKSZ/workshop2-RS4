@@ -50,7 +50,7 @@ public class ProductController {
 		String productAdded = "Het product is aangemaakt";
 		model.addAttribute("editMessage", productAdded);
 		sessionStatus.setComplete();
-		return "employeeMainMenu";
+		return "redirect:/employee";
 	}
 
 }
