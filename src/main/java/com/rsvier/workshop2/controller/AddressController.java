@@ -32,6 +32,7 @@ public class AddressController {
 	AddressRepository addressRepository;
 	AccountRepository accountRepository;
 
+	
 	@Autowired
 	public AddressController(PersonRepository personRepository, AddressRepository addressRepository,
 			AccountRepository accountRepository) {
@@ -40,16 +41,19 @@ public class AddressController {
 		this.accountRepository = accountRepository;
 	}
 
+	
 	@ModelAttribute("address")
 	public Address address() {
 		return new Address();
 	}
+	
 
 	@GetMapping
 	public String showAddressForm() {
 		return "createNewAddress";
 	}
 
+	
 	@PostMapping
 	public String doCreateAddress(Account account, Person person, @Valid Address address, Errors errors,
 			SessionStatus sessionstatus) {
@@ -57,6 +61,7 @@ public class AddressController {
 		if (errors.hasErrors()) {
 			return "createNewAddress";
 		}
+		
 		account.setAccountType(AccountType.CUSTOMER);
 		Account accountDB = accountRepository.save(account);
 
@@ -68,19 +73,13 @@ public class AddressController {
 		address.setAddressType(AddressType.MAIL);
 		addressRepository.save(address);
 
-		/*
-		 * Once the Address has been saved, we don’t need it around in session anymore.
-		 * In fact, if we don’t clean it out, then it will remain in session, including
-		 * its associated person and account details, and the next account, person,
-		 * address Therefore, the doCreateAddresss() method asks for a SessionStatus
-		 * parameter and calls its setComplete() to reset the session.
-		 */
-
 		sessionstatus.setComplete();
 
 		return "redirect/customer";
 	}
 
+	
+	
 	@PostMapping("/editAddress")
 	public String editAddress(Address address, Model model) {
 

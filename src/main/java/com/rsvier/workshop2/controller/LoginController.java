@@ -27,22 +27,25 @@ public class LoginController {
 	AccountRepository accountRepository;
 	PersonRepository personRepository;
 	
+	@Autowired
+	public LoginController(AccountRepository accountRepository, PersonRepository personRepository) {
+		this.accountRepository = accountRepository;
+		this.personRepository = personRepository;
+	}
+
+
 	@ModelAttribute("account")
 	public Account getAccount() {
 		return new Account();
 	}
 
+	
 	@ModelAttribute("person")
 	public Person getPerson() {
 		return new Person();
 	}
-
-	@Autowired
-	public LoginController(AccountRepository accountRepository,PersonRepository personRepository) {
-		this.accountRepository = accountRepository;
-		this.personRepository = personRepository;
-	}
-
+	
+	
 	@GetMapping
 	public String login() {
 
@@ -55,11 +58,6 @@ public class LoginController {
 		if (error.hasErrors()) {
 			return "login";
 		}
-
-		/*
-		 * This is performing the password and account validation from the input to the
-		 * database
-		 */
 
 		Account accountDB = accountRepository.findByEmail(account.getEmail());
 
@@ -80,7 +78,7 @@ public class LoginController {
 			}
 		}
 
-		String message = "Het ingevoerde emailadres of wachtwoord klopt niet, probeer het nogmaals.";
+		String message = "Het ingevoerde e-mailadres of wachtwoord klopt niet, probeer het nogmaals.";
 
 		model.addAttribute("message", message);
 

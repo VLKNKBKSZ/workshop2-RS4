@@ -30,11 +30,13 @@ public class PersonController {
 		this.personRepository = personRepository;
 	}
 
+	
 	@ModelAttribute("person")
 	public Person person() {
 		return new Person();
 	}
 
+	
 	@GetMapping
 	public String showPersonProfileForm() {
 
@@ -56,7 +58,7 @@ public class PersonController {
 
 	
 	@PostMapping("/editPerson")
-	public String editPerson(Person person,RedirectAttributes redirectAttributes ,Model model) {
+	public String editPerson(Person person, RedirectAttributes redirectAttributes, Model model) {
 			
 		personRepository.save(person);
 		String message = "Persoon is aangepast.";

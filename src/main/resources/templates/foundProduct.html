@@ -7,7 +7,7 @@
 <link rel="stylesheet" th:href="@{/css/personForm.css}" />
 </head>
 <body>
-	<h1>Product Informatie.</h1>
+	<h1>Product Informatie</h1>
 	
 	<p>
 		<span class="formDetails" th:text="${editProductMessage}">Message</span>
@@ -34,7 +34,7 @@
 	
 	<form method="POST" th:action="@{/product/deleteProduct}" th:object="${product}" >
     
-        <input class= "formSubmitBtnProduct" type="submit" value="Product verwijden" />
+        <input class= "formSubmitBtnProduct" type="submit" value="Product verwijderen" />
 	</form>
 	
 
