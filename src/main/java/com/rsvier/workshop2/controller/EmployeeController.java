@@ -8,49 +8,41 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.rsvier.workshop2.domain.Account;
-import com.rsvier.workshop2.domain.Address;
-import com.rsvier.workshop2.domain.Person;
 import com.rsvier.workshop2.repository.AccountRepository;
-import com.rsvier.workshop2.repository.AddressRepository;
-import com.rsvier.workshop2.repository.PersonRepository;
 
 @Controller
 @RequestMapping("/employee")
-@SessionAttributes({"account"})
+@SessionAttributes({ "account", "model" })
 public class EmployeeController {
-	
+
 	AccountRepository accountRepository;
 
-	
 	@Autowired
 	public EmployeeController(AccountRepository accountRepository) {
-		
+
 		this.accountRepository = accountRepository;
 	}
-	
+
 	@GetMapping
-	public String showEmplyeeMainMenu(@ModelAttribute("productMesage")String message,Model model) {
+
+	public String showEmplyeeMainMenu(@ModelAttribute("productMesage") String message, Model model) {
 		model.addAttribute("tranferedMessage", message);
-		return"employeeMainMenu";
-	}
-	
-	@GetMapping("/productStatus")
-	public String productStatus(@ModelAttribute("deletedProductMesage")String message,Model model) {
-		model.addAttribute("tranferedMessage", message);
-		return "forward:/employee";
+		return "employeeMainMenu";
+
 	}
 
 	@GetMapping("/productPage")
 	public String showProductMenu() {
 		return "productPage";
 	}
-	
+
 	@PostMapping("/changePassword")
 	public String changePassword(Account account) {
-		
+
 		return "editAccount";
 	}
-	
+
 }
