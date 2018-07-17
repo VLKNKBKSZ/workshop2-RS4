@@ -30,7 +30,17 @@ public class EmployeeController {
 	}
 	
 	@GetMapping
-	public String showCustomerMainMenu() {
+	public String showEmplyeeMainMenu(Model model) {
+		
+	String productAdded = "Het product is aangemaakt";
+	model.addAttribute("editMessage", productAdded);
+	
+	String deleteProductMessage = "Product is verwijderd.";
+	model.addAttribute("deleteProductMessage", deleteProductMessage);
+	
+	String editProductMessage = "Het product is aangepast.";
+	model.addAttribute("editProductMessage", editProductMessage);
+	
 		return"employeeMainMenu";
 	}
 	

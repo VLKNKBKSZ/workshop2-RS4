@@ -19,7 +19,7 @@ import com.rsvier.workshop2.repository.ProductRepository;
 
 @Controller
 @RequestMapping("/product")
-@SessionAttributes("product")
+@SessionAttributes({"product","model"})
 public class ProductController {
 	
 
@@ -53,10 +53,9 @@ public class ProductController {
 		}
 		
 		productRepository.save(product);
-		String productAdded = "Het product is aangemaakt";
-		model.addAttribute("editMessage", productAdded);
+
 		sessionStatus.setComplete();
-		return "redirect:/employee";
+		return "redirect:/employee/createdProduct";
 	}
 	
 	@PostMapping("/foundProduct")
@@ -72,23 +71,23 @@ public class ProductController {
 	public String deleteProduct(Product product,Model model,SessionStatus sessionstatus) {
 		
 		productRepository.delete(product);
-		String deleteProductMessage = "Product is verwijderd.";
-		model.addAttribute("deleteProductMessage", deleteProductMessage);
+	//	String deleteProductMessage = "Product is verwijderd.";
+	//	model.addAttribute("deleteProductMessage", deleteProductMessage);
 		
 		sessionstatus.setComplete();
 		
-		return "redirect:/employee";
+		return "redirect:/employee/createdProduct";
 	}
 	
 	@PostMapping("/editProduct")
 	public String editProduct(Product product,Model model) {
 		
 		productRepository.save(product);
-		String editProductMessage = "Het product is aangepast.";
-		model.addAttribute("editProductMessage", editProductMessage);
+		// String editProductMessage = "Het product is aangepast.";
+		// model.addAttribute("editProductMessage", editProductMessage);
 		
 		
-		return "foundProduct";
+		return "redirect:/employee/createdProduct";
 	}
 
 }
