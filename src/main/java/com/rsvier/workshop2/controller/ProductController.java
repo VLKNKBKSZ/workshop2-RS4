@@ -19,7 +19,7 @@ import com.rsvier.workshop2.repository.ProductRepository;
 
 @Controller
 @RequestMapping("/product")
-@SessionAttributes({"product","model"})
+@SessionAttributes({"product"})
 public class ProductController {
 	
 
@@ -35,7 +35,7 @@ public class ProductController {
 	public Product product() {
 		return new Product();
 	}
-
+	
 	@GetMapping("/createNewProduct")
 	public String showCreateProductPage() {
 		return "createNewProductForm";
@@ -53,9 +53,12 @@ public class ProductController {
 		}
 		
 		productRepository.save(product);
+		
+		String productAdded = "Het product is aangemaakt";
+		model.addAttribute("editMessage", productAdded);
 
 		sessionStatus.setComplete();
-		return "redirect:/employee/createdProduct";
+		return "redirect:/employee";
 	}
 	
 	@PostMapping("/foundProduct")
@@ -68,7 +71,7 @@ public class ProductController {
 		return "foundProduct";
 	}
 	@PostMapping("/deleteProduct")
-	public String deleteProduct(Product product,Model model,SessionStatus sessionstatus) {
+	public String deleteProduct(Product product,SessionStatus sessionstatus) {
 		
 		productRepository.delete(product);
 	//	String deleteProductMessage = "Product is verwijderd.";
@@ -76,18 +79,18 @@ public class ProductController {
 		
 		sessionstatus.setComplete();
 		
-		return "redirect:/employee/createdProduct";
+		return "redirect:/employee/productDeleted";
 	}
 	
 	@PostMapping("/editProduct")
 	public String editProduct(Product product,Model model) {
 		
 		productRepository.save(product);
-		// String editProductMessage = "Het product is aangepast.";
-		// model.addAttribute("editProductMessage", editProductMessage);
+	//	 String editProductMessage = "Het product is aangepast.";
+	//	 model.addAttribute("editProductMessage", editProductMessage);
 		
 		
-		return "redirect:/employee/createdProduct";
+		return "redirect:/employee/productEdited";
 	}
 
 }
