@@ -1,38 +1,57 @@
 @charset "ISO-8859-1";
 
 body {
-	background-color: Lightblue;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
 		"Times New Roman", "serif";
 	font-variant-caps: small-caps;
-	clear: both;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.main {
-	width: 900px;
-	margin: 0 auto;
+header {
+	margin-bottom: 20px;
+	font-size: 40px;
 }
+
+}
+nav {
+	clear:both;
+}
+
+ul {
+	margin: 0px;
+	list-style-type: none;
+}
+
+ul li {
+	display:inline;
+	width: 150px;
+	height: 40px;
+	background-color: darkgrey;
+	opacity: .9;
+	text-align: center;
+	line-height: 60px;
+	margin-right: 10px;
+	font-size: 30px;
+	padding:5px;
+}
+
+ul li a {
+	text-decoration: none;
+	display: inline;
+	color: white;
+}
+
+ul li a:hover {
+	background-color: white;
+	color: black;
+	border-bottom: 2px solid black;
+}
+
+main {
+}
+
 .image {
-	width: 850px;
-	/* height: 350px; */
+	width: 900px;
 }
-.header {
-	border-bottom: 5px solid white;
-	overflow: auto;
-	height: 80px;
-}
-.header .intro {
-	float: left;
-	padding: 0 20px;
-}
-
-.header .login {
-	float: right;
-	line-height: 80px;
-	padding: 0 20px;
-	font-size: 20px;
-}
-

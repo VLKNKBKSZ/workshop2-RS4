@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Account.AccountType;
@@ -32,7 +33,6 @@ public class AddressController {
 	AddressRepository addressRepository;
 	AccountRepository accountRepository;
 
-	
 	@Autowired
 	public AddressController(PersonRepository personRepository, AddressRepository addressRepository,
 			AccountRepository accountRepository) {
@@ -41,27 +41,24 @@ public class AddressController {
 		this.accountRepository = accountRepository;
 	}
 
-	
 	@ModelAttribute("address")
 	public Address address() {
 		return new Address();
 	}
-	
 
 	@GetMapping
 	public String showAddressForm() {
 		return "createNewAddress";
 	}
 
-	
 	@PostMapping
 	public String doCreateAddress(Account account, Person person, @Valid Address address, Errors errors,
-			SessionStatus sessionstatus) {
+			SessionStatus sessionstatus, RedirectAttributes redirectAttributes, Model model) {
 
 		if (errors.hasErrors()) {
 			return "createNewAddress";
 		}
-		
+
 		account.setAccountType(AccountType.CUSTOMER);
 		Account accountDB = accountRepository.save(account);
 
@@ -74,20 +71,32 @@ public class AddressController {
 		addressRepository.save(address);
 
 		sessionstatus.setComplete();
-
-		return "redirect/customer";
+		
+		/*
+		 * I've added person and account also to the model and redirecting it. Because
+		 * after you go back to the customerMainmenu and you want to edit person details
+		 * or account details that was given a null pointer.
+		 */
+		
+		String message = "Uw nieuwe account is succesvol aangemaakt.";
+		model.addAttribute("editMessage", message);
+		model.addAttribute("person", person);
+		model.addAttribute("account", account);
+		redirectAttributes.addFlashAttribute("editMessage", message);
+		redirectAttributes.addFlashAttribute("person", person);
+		redirectAttributes.addFlashAttribute("account", account);
+		return "redirect:/customer";
 	}
 
-	
-	
 	@PostMapping("/editAddress")
-	public String editAddress(Address address, Model model) {
+	public String editAddress(Address address, RedirectAttributes redirectAttributes, Model model) {
 
 		addressRepository.save(address);
 
-		String addressEditSuccessful = "Het adres is aangepast.";
-		model.addAttribute("editMessage", addressEditSuccessful);
+		String message = "Uw adres is succesvol aangepast.";
+		model.addAttribute("editMessage", message);
+		redirectAttributes.addFlashAttribute("editMessage", message);
 
-		return "customerMainMenu";
+		return "redirect:/customer";
 	}
 }
