@@ -17,6 +17,8 @@ import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Product;
 import com.rsvier.workshop2.repository.ProductRepository;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 @Controller
 @RequestMapping("/product")
 @SessionAttributes({"product","model"})
@@ -71,11 +73,12 @@ public class ProductController {
 	}
 
 	@PostMapping("/deleteProduct")
-	public String deleteProduct(Product product, Model model, SessionStatus sessionstatus) {
+	public String deleteProduct(Product product, Model model) {
 
 		productRepository.delete(product);
-		sessionstatus.setComplete();
-		
+		String message = "" + product.toString() + " is verwijderd";
+		model.addAttribute("message", model);
+
 		return "redirect:/employee/productStatus";
 	}
 

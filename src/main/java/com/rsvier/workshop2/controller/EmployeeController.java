@@ -17,7 +17,7 @@ import com.rsvier.workshop2.repository.PersonRepository;
 
 @Controller
 @RequestMapping("/employee")
-@SessionAttributes({"account"})
+@SessionAttributes({"account", "model"})
 public class EmployeeController {
 	
 	AccountRepository accountRepository;
@@ -37,8 +37,7 @@ public class EmployeeController {
 	
 	@GetMapping("/productStatus")
 	public String productStatus(Model model) {
-		model.addAttribute("message", model);
-		return "employeeMainMenu";
+		return "redirect:/employee";
 	}
 
 	@GetMapping("/productPage")
