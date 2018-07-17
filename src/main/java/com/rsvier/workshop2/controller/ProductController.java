@@ -19,7 +19,7 @@ import com.rsvier.workshop2.repository.ProductRepository;
 
 @Controller
 @RequestMapping("/product")
-@SessionAttributes({"product, model" })
+@SessionAttributes({"product","model"})
 public class ProductController {
 
 	private ProductRepository productRepository;
