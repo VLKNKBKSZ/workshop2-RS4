@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Product;
 import com.rsvier.workshop2.repository.ProductRepository;
 
@@ -71,20 +71,28 @@ public class ProductController {
 	}
 
 	@PostMapping("/deleteProduct")
-	public String deleteProduct(Product product, Model model, SessionStatus sessionstatus) {
+	public String deleteProduct(Product product, Model model, SessionStatus sessionstatus,RedirectAttributes redirectAttributes) {
 
 		productRepository.delete(product);
+		
+		String deletedProductMesage = "Product is verwijderd";
+		model.addAttribute("deletedProductMesage", deletedProductMesage);
+		redirectAttributes.addFlashAttribute("productMesage", deletedProductMesage);
 		sessionstatus.setComplete();
 		
-		return "redirect:/employee/productStatus";
+		return "redirect:/employee";
 	}
 
 	@PostMapping("/editProduct")
-	public String editProduct(Product product) {
+	public String editProduct(Product product,RedirectAttributes redirectAttributes ,Model model) {
 
 		productRepository.save(product);
 		
-		return "redirect:/employee/productStatus";
+		String editProductMesage = "Product is aangepast.";
+		model.addAttribute("editProductMesage", editProductMesage);
+		redirectAttributes.addFlashAttribute("productMesage", editProductMesage);
+		
+		return "redirect:/employee";
 	}
 
 }

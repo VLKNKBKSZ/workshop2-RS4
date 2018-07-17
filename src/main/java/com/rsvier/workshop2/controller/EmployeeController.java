@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -30,15 +31,15 @@ public class EmployeeController {
 	}
 	
 	@GetMapping
-	public String showEmplyeeMainMenu() {
-		
+	public String showEmplyeeMainMenu(@ModelAttribute("productMesage")String message,Model model) {
+		model.addAttribute("tranferedMessage", message);
 		return"employeeMainMenu";
 	}
 	
 	@GetMapping("/productStatus")
-	public String productStatus(Model model) {
-		model.addAttribute("message", model);
-		return "employeeMainMenu";
+	public String productStatus(@ModelAttribute("deletedProductMesage")String message,Model model) {
+		model.addAttribute("tranferedMessage", message);
+		return "forward:/employee";
 	}
 
 	@GetMapping("/productPage")
