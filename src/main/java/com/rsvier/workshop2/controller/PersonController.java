@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Person;
@@ -55,14 +56,14 @@ public class PersonController {
 
 	
 	@PostMapping("/editPerson")
-	public String editPerson(Person person, Model model) {
+	public String editPerson(Person person,RedirectAttributes redirectAttributes ,Model model) {
 			
 		personRepository.save(person);
+		String message = "Persoon is aangepast.";
+        model.addAttribute("editMessage", message);
+        redirectAttributes.addFlashAttribute("editMessage", message);
 		
-		String personEditSuccessful = "De persoonlijke gegevens zijn aangepast.";
-		model.addAttribute("editMessage", personEditSuccessful);
-		
-		return "customerMainMenu";
+		return "redirect:/customer";
 	}
 	
 

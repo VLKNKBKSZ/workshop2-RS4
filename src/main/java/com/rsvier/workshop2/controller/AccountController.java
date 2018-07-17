@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Account.AccountType;
@@ -72,7 +73,7 @@ public class AccountController {
 	}
 
 	@PostMapping("/editPassword")
-	public String editPassword(@Valid Account account, Errors error, Model model) {
+	public String editPassword(@Valid Account account, Errors error, RedirectAttributes redirectAttributes ,Model model) {
 	
 		if(error.hasErrors()) {
 			return "editAccount";
@@ -80,9 +81,11 @@ public class AccountController {
 		
 		accountRepository.save(account);
 		
-		String accountEditSuccessful = "Het account is aangepast.";
-		model.addAttribute("editMessage", accountEditSuccessful);
-		
-		return "customerMainMenu";
+		String message = "Account is aangepast.";
+        model.addAttribute("editMessage", message);
+        redirectAttributes.addFlashAttribute("editMessage", message);
+        
+        return "redirect:/customer";
+	
 	}
 }

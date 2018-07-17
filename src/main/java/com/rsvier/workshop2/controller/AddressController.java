@@ -78,7 +78,7 @@ public class AddressController {
 
 		sessionstatus.setComplete();
 
-		return "customerMainMenu";
+		return "redirect/customer";
 	}
 
 	@PostMapping("/editAddress")
