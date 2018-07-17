@@ -19,9 +19,8 @@ import com.rsvier.workshop2.repository.ProductRepository;
 
 @Controller
 @RequestMapping("/product")
-@SessionAttributes({"product"})
+@SessionAttributes({"product, model" })
 public class ProductController {
-	
 
 	private ProductRepository productRepository;
 
@@ -35,12 +34,12 @@ public class ProductController {
 	public Product product() {
 		return new Product();
 	}
-	
+
 	@GetMapping("/createNewProduct")
 	public String showCreateProductPage() {
 		return "createNewProductForm";
 	}
-	
+
 	@GetMapping("/searchProduct")
 	public String searchProductForm() {
 		return "searchProduct";
@@ -48,49 +47,44 @@ public class ProductController {
 
 	@PostMapping("/createNewProduct")
 	public String addProduct(@Valid Product product, Errors errors, Model model, SessionStatus sessionStatus) {
-		if(errors.hasErrors()) {
+		if (errors.hasErrors()) {
 			return "createNewProductForm";
 		}
-		
+
 		productRepository.save(product);
-		
+
 		String productAdded = "Het product is aangemaakt";
 		model.addAttribute("editMessage", productAdded);
 
 		sessionStatus.setComplete();
 		return "redirect:/employee";
 	}
-	
+
 	@PostMapping("/foundProduct")
-	public String FoundProduct(Product product,Model model) {
-		
+	public String FoundProduct(Product product, Model model) {
+
 		Product productDB = productRepository.findByName(product.getName());
-		
+
 		model.addAttribute("product", productDB);
-		
+
 		return "foundProduct";
 	}
+
 	@PostMapping("/deleteProduct")
-	public String deleteProduct(Product product,SessionStatus sessionstatus) {
-		
+	public String deleteProduct(Product product, Model model, SessionStatus sessionstatus) {
+
 		productRepository.delete(product);
-	//	String deleteProductMessage = "Product is verwijderd.";
-	//	model.addAttribute("deleteProductMessage", deleteProductMessage);
-		
 		sessionstatus.setComplete();
 		
-		return "redirect:/employee/productDeleted";
+		return "redirect:/employee/productStatus";
 	}
-	
+
 	@PostMapping("/editProduct")
-	public String editProduct(Product product,Model model) {
-		
+	public String editProduct(Product product) {
+
 		productRepository.save(product);
-	//	 String editProductMessage = "Het product is aangepast.";
-	//	 model.addAttribute("editProductMessage", editProductMessage);
 		
-		
-		return "redirect:/employee/productEdited";
+		return "redirect:/employee/productStatus";
 	}
 
 }

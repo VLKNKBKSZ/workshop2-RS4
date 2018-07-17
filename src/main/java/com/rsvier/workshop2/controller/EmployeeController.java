@@ -30,29 +30,17 @@ public class EmployeeController {
 	}
 	
 	@GetMapping
-	public String showEmplyeeMainMenu(Model model) {
+	public String showEmplyeeMainMenu() {
 		
 		return"employeeMainMenu";
 	}
 	
-	@GetMapping("/productDeleted")
-	public String showEmployMainMenuWithDeleteProductMessage(Model model) {
-		String deleteProductMessage = "Product is verwijderd.";
-			model.addAttribute("deleteProductMessage", deleteProductMessage);
-			
-		return"employeeMainMenu";
-		
+	@GetMapping("/productStatus")
+	public String productStatus(Model model) {
+		model.addAttribute("message", model);
+		return "employeeMainMenu";
 	}
-	
-	@GetMapping("/productEdited")
-	public String showEmployMainMenuWithEditedProductMessage(Model model) {
-		 String editProductMessage = "Het product is aangepast.";
-		 model.addAttribute("editProductMessage", editProductMessage);
-			
-		return"employeeMainMenu";
-		
-	}
-	
+
 	@GetMapping("/productPage")
 	public String showProductMenu() {
 		return "productPage";
