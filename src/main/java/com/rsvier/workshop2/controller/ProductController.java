@@ -46,18 +46,18 @@ public class ProductController {
 	}
 
 	@PostMapping("/createNewProduct")
-	public String addProduct(@Valid Product product, Errors errors, Model model, SessionStatus sessionStatus) {
+	public String addProduct(@Valid Product product, Errors errors,Model model, SessionStatus sessionStatus,RedirectAttributes redirectAttributes) {
 		if (errors.hasErrors()) {
 			return "createNewProductForm";
 		}
 
 		productRepository.save(product);
 
-		String productAdded = "Het product is aangemaakt";
-		model.addAttribute("editMessage", productAdded);
-
-		sessionStatus.setComplete();
-		return "redirect:/employee";
+		 String editProductMesage = "Product is aangemaakt.";
+	        model.addAttribute("editProductMesage", editProductMesage);
+	        redirectAttributes.addFlashAttribute("productMesage", editProductMesage);
+	        
+	        return "redirect:/employee";
 	}
 
 	@PostMapping("/foundProduct")
