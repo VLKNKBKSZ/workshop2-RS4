@@ -1,7 +1,6 @@
 package com.rsvier.workshop2.controller;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,16 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-
-import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Product;
 import com.rsvier.workshop2.repository.ProductRepository;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 
 @Controller
 @RequestMapping("/product")
-@SessionAttributes({"product","model"})
+@SessionAttributes({"product"})
 public class ProductController {
 
 	private ProductRepository productRepository;
@@ -78,7 +74,6 @@ public class ProductController {
 		productRepository.delete(product);
 		String message = "" + product.toString() + " is verwijderd";
 		model.addAttribute("message", model);
-
 		return "redirect:/employee/productStatus";
 	}
 
