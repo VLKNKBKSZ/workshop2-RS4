@@ -7,4 +7,5 @@ import com.rsvier.workshop2.domain.Product;
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Long>{
 
+	public Product findByName(String name);
 }

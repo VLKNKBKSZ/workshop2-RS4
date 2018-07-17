@@ -21,6 +21,7 @@ import com.rsvier.workshop2.repository.ProductRepository;
 @RequestMapping("/product")
 @SessionAttributes("product")
 public class ProductController {
+	
 
 	private ProductRepository productRepository;
 
@@ -39,6 +40,11 @@ public class ProductController {
 	public String showCreateProductPage() {
 		return "createNewProductForm";
 	}
+	
+	@GetMapping("/searchProduct")
+	public String searchProductForm() {
+		return "searchProduct";
+	}
 
 	@PostMapping("/createNewProduct")
 	public String addProduct(@Valid Product product, Errors errors, Model model, SessionStatus sessionStatus) {
@@ -51,6 +57,16 @@ public class ProductController {
 		model.addAttribute("editMessage", productAdded);
 		sessionStatus.setComplete();
 		return "redirect:/employee";
+	}
+	
+	@PostMapping("/foundProduct")
+	public String FoundProduct(Product product,Model model) {
+		
+		Product productDB = productRepository.findByName(product.getName());
+		
+		model.addAttribute("product", productDB);
+		
+		return "foundProduct";
 	}
 
 }

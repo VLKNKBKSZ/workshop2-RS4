@@ -6,19 +6,16 @@
 </head>
 <body>
 	<h1>Dit is de productenbeheer menu</h1>
+	
 	<form method="GET" th:action="@{/product/createNewProduct}"></a> 
     
         <input type="submit" value="Product Aanmaken" />
 	</form>
-		<form method="POST" th:action="@{/product/editProduct}" th:object="${product}">
+		<form method="GET" th:action="@{/product/searchProduct}" >
     
-        <input type="submit" value="Product Aanpassen" />
+        <input type="submit" value="Product Zoeken" />
 	</form>
 	
-	<form method="POST" th:action="@{/product/deleteProduct}" th:object="${product}">
-    
-        <input type="submit" value="Product Verwijderen" />
-	</form>
 	
 	
 	

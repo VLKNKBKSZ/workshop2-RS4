@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Product Details</title>
+<link rel="stylesheet" th:href="@{/css/personForm.css}" />
+</head>
+<body>
+	<h1>Product Informatie.</h1>
+
+	<!--  											Profile Form											 -->
+	<form method="POST" th:action="@{/product}" th:object="${product}">
+
+		<label class ="formDetails" for="name">Naam: </label> <input type="text" name="name" th:field="*{name}" />
+		<span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> </br>
+		
+		
+		<label class ="formDetails" for="price">Prijs: </label> <input type="text" name="price"  th:field="*{price}" />
+		<span class="validationError" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span> </br>
+		
+		
+		<label class ="formDetails" for="stock">Voorraad: </label> <input type="text" name="stock"  th:field="*{stock}" />
+		<span class="validationError" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span> </br>
+		
+			
+		
+		<input class= "formSubmitBtn" type="submit" value="Product aanpassen" />
+		<input class= "formSubmitBtn" type="submit" value="Product verwijden" />
+
+	</form>
+
+
+</body>
+</html>
