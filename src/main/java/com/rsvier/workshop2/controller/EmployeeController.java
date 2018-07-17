@@ -26,17 +26,21 @@ public class EmployeeController {
 		this.accountRepository = accountRepository;
 	}
 
+	
 	@GetMapping
 	public String showEmplyeeMainMenu(@ModelAttribute("productMesage") String message, Model model) {
-		model.addAttribute("tranferedMessage", message);
+										model.addAttribute("tranferedMessage", message);
 		return "employeeMainMenu";
 	}
 
+	
 	@GetMapping("/productPage")
 	public String showProductMenu() {
+		
 		return "productPage";
 	}
 
+	
 	@PostMapping("/changePassword")
 	public String changePassword(Account account) {
 

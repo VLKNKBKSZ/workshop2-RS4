@@ -46,20 +46,24 @@ public class ProductController {
 	}
 
 	@PostMapping("/createNewProduct")
-	public String addProduct(@Valid Product product, Errors errors,Model model, SessionStatus sessionStatus,RedirectAttributes redirectAttributes) {
+	public String addProduct(@Valid Product product, Errors errors, Model model, SessionStatus sessionStatus, 
+			RedirectAttributes redirectAttributes) {
+		
 		if (errors.hasErrors()) {
+
 			return "createNewProductForm";
 		}
 
 		productRepository.save(product);
 
-		 String editProductMesage = "Product is aangemaakt.";
-	        model.addAttribute("editProductMesage", editProductMesage);
-	        redirectAttributes.addFlashAttribute("productMesage", editProductMesage);
-	        
-	        return "redirect:/employee";
+		String editProductMesage = "Product is aangemaakt.";
+		model.addAttribute("editProductMesage", editProductMesage);
+		redirectAttributes.addFlashAttribute("productMesage", editProductMesage);
+
+		return "redirect:/employee";
 	}
 
+	
 	@PostMapping("/foundProduct")
 	public String FoundProduct(Product product, Model model) {
 
@@ -70,8 +74,9 @@ public class ProductController {
 		return "foundProduct";
 	}
 
+	
 	@PostMapping("/deleteProduct")
-    public String deleteProduct(Product product, Model model, SessionStatus sessionstatus,RedirectAttributes redirectAttributes) {
+    public String deleteProduct(Product product, Model model, SessionStatus sessionstatus, RedirectAttributes redirectAttributes) {
 
         productRepository.delete(product);
         
@@ -83,8 +88,9 @@ public class ProductController {
         return "redirect:/employee";
     }
 
+	
     @PostMapping("/editProduct")
-    public String editProduct(Product product,RedirectAttributes redirectAttributes ,Model model) {
+    public String editProduct(Product product, RedirectAttributes redirectAttributes, Model model) {
 
         productRepository.save(product);
         
