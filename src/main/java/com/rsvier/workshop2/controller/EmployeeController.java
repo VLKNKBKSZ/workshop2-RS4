@@ -32,9 +32,10 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/productStatus")
-	public String productStatus(Model model) {
-		model.addAttribute("message", model);
-		return "redirect:/employee";
+	 public String productStatus(@ModelAttribute("message")String message,Model model) {
+        model.addAttribute("message", message);
+        
+        return "redirect:/employee";
 	}
 
 	@GetMapping("/productPage")
