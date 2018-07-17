@@ -67,6 +67,11 @@ public class ProductController {
 	@PostMapping("/foundProduct")
 	public String FoundProduct(Product product, Model model) {
 
+		if (productRepository.findByName(product.getName()) == null) {
+			
+			return "searchProduct";
+		}
+		
 		Product productDB = productRepository.findByName(product.getName());
 
 		model.addAttribute("product", productDB);
