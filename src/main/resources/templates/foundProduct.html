@@ -8,9 +8,13 @@
 </head>
 <body>
 	<h1>Product Informatie.</h1>
+	
+	<p>
+		<span class="formDetails" th:text="${editProductMessage}">Message</span>
+	</p>
 
 	<!--  											Profile Form											 -->
-	<form method="POST" th:action="@{/product}" th:object="${product}">
+	<form method="POST" th:action="@{/product/editProduct}" th:object="${product}">
 
 		<label class ="formDetails" for="name">Naam: </label> <input type="text" name="name" th:field="*{name}" />
 		<span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> </br>
@@ -23,12 +27,16 @@
 		<label class ="formDetails" for="stock">Voorraad: </label> <input type="text" name="stock"  th:field="*{stock}" />
 		<span class="validationError" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span> </br>
 		
-			
-		
 		<input class= "formSubmitBtnProduct" type="submit" value="Product aanpassen" />
-		<input class= "formSubmitBtnProduct" type="submit" value="Product verwijden" />
-
+		
 	</form>
+	
+	
+	<form method="POST" th:action="@{/product/deleteProduct}" th:object="${product}" >
+    
+        <input class= "formSubmitBtnProduct" type="submit" value="Product verwijden" />
+	</form>
+	
 
 
 </body>

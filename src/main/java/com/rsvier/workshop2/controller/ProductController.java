@@ -68,5 +68,27 @@ public class ProductController {
 		
 		return "foundProduct";
 	}
+	@PostMapping("/deleteProduct")
+	public String deleteProduct(Product product,Model model,SessionStatus sessionstatus) {
+		
+		productRepository.delete(product);
+		String deleteProductMessage = "Product is verwijderd.";
+		model.addAttribute("deleteProductMessage", deleteProductMessage);
+		
+		sessionstatus.setComplete();
+		
+		return "redirect:/employee";
+	}
+	
+	@PostMapping("/editProduct")
+	public String editProduct(Product product,Model model) {
+		
+		productRepository.save(product);
+		String editProductMessage = "Het product is aangepast.";
+		model.addAttribute("editProductMessage", editProductMessage);
+		
+		
+		return "foundProduct";
+	}
 
 }
