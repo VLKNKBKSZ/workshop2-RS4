@@ -19,5 +19,25 @@
 	</tr>
 </table>
 
+	<form method="POST" th:action="@{/orderline/createNewOrderLine}"
+		th:object="${orderLine}">
+
+		<label class="formDetails" for="orderLine.product.name">Naam: </label> 
+		<input type="text" name="orderLine.product.name" placeholder="verplicht veld" th:field="*{orderLine.product.name}" /> 
+		<span class="validationError" th:if="${#fields.hasErrors('orderLine.product.name')}" th:errors="*{orderLine.product.name}"></span> </br> 
+	
+	
+		<label class="formDetails" for="numberOfProducts">Aantal: </label> 
+		<input type="text" name="numberOfProducts" placeholder="verplicht veld" th:field="*{numberOfProducts}" /> 
+		<span class="validationError" th:if="${#fields.hasErrors('numberOfProducts')}" th:errors="*{numberOfProducts}"></span>
+		
+		 </br> 
+		 
+		 <input class="formSubmitBtn" type="submit" value="Verzend" />
+
+	</form>
+
+
+
 </body>
 </html>
