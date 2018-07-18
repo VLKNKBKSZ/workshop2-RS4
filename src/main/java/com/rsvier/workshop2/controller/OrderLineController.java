@@ -1,5 +1,6 @@
 package com.rsvier.workshop2.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.rsvier.workshop2.domain.Order;
 import com.rsvier.workshop2.domain.Order.OrderStatus;
 import com.rsvier.workshop2.domain.OrderLine;
+import com.rsvier.workshop2.domain.Person;
 import com.rsvier.workshop2.domain.Product;
 import com.rsvier.workshop2.repository.OrderLineRepository;
 import com.rsvier.workshop2.repository.OrderRepository;
@@ -25,7 +27,7 @@ import com.rsvier.workshop2.repository.ProductRepository;
 
 @Controller
 @RequestMapping("/orderLine")
-@SessionAttributes("order")
+@SessionAttributes({"order", "person"})
 public class OrderLineController {
 
 	private ProductRepository productRepository;
@@ -65,26 +67,27 @@ public class OrderLineController {
 	}
 	
 	@PostMapping("/createNewOrderLine")
-	public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors) {
+	public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors, Person person) {
 		
 		if(errors.hasErrors()) {
 			return "createNewOrderLine";
 		}
-
+		
 		Product productDB = productRepository.findByName(orderLine.getProduct().getName());
-		System.out.println(productDB.toString());
+	
 		if(orderLine.getNumberOfProducts() > productDB.getStock() ) {
 			return "createNewOrderLine";
 		}
 		
 		Order order = new Order();
-		System.out.println(orderLine.toString());
-		System.out.println(order.toString());
+		order.setPerson(person);
 		order.getListOfTotalOrderLines().add(orderLine);
+		orderLine.setProduct(productDB);
+		orderLine.setOrder(order);
 		order.setOrderStatus(OrderStatus.OPEN);
+		order.setOrderDateTime(LocalDateTime.now());
 	
 		//just for testing:
-		orderLineRepository.save(orderLine);
 		orderRepository.save(order);
 		
 		return "redirect:/";
