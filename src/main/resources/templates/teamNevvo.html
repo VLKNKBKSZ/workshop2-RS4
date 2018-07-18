@@ -3,18 +3,32 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Team Nevvo</title>
+<link rel="stylesheet" th:href="@{/css/home.css}" />
 </head>
 <body>
-<header> Team Nevvo</header>
-<main>
+	<header> Team Nevvo</header>
 
-<ol>
-<li>Niels</li>
-<li>Evy</li>
-<li>Eva</li>
-<li>Volkan</li>
-</ol>
-</main>
+	<nav>
+		<ul>
+			<li><a th:href="@{/}">Home</a></li>
+			<li><a th:href="@{/login}">Inloggen</a></li>
+			<li><a th:href="@{/teamNevvo}">Team Nevvo</a></li>
+			<li><a th:href="@{/projects}">Projecten</a></li>
+			<li><a th:href="@{/contact}">Contact</a></li>
+			<li><a th:href="@{/links}">Links</a></li>
+		</ul>
+
+	</nav>
+	</br>
+	<main>
+
+	<ol>
+		<li>Niels: Smart Genius</li>
+		<li>Evy: Smart Genius Smart</li>
+		<li>Eva: Genius Smart</li>
+		<li>Volkan: No Comment :D</li>
+	</ol>
+	</main>
 
 </body>
 </html>

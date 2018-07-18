@@ -15,5 +15,9 @@ public class Workshop2Application implements WebMvcConfigurer{
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/").setViewName("home");
+		registry.addViewController("/teamNevvo").setViewName("teamNevvo");
+		registry.addViewController("/projects").setViewName("projects");
+		registry.addViewController("/contact").setViewName("contact");
+		registry.addViewController("/links").setViewName("links");
 		}
 }
