@@ -1,5 +1,7 @@
 package com.rsvier.workshop2.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +43,9 @@ public class ProductController {
 	}
 
 	@GetMapping("/searchProduct")
-	public String searchProductForm() {
+	public String searchProductForm(Model model) {
+		Iterable<Product> productList = productRepository.findAll();
+		model.addAttribute("productList", productList);
 		return "searchProduct";
 	}
 
