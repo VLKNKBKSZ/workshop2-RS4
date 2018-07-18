@@ -1,5 +1,6 @@
 package com.rsvier.workshop2.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ import com.rsvier.workshop2.repository.ProductRepository;
 
 @Controller
 @RequestMapping("/orderLine")
-@SessionAttributes({"order", "person"})
+@SessionAttributes({"order", "person", "orderLine"})
 public class OrderLineController {
 
 	private ProductRepository productRepository;
@@ -41,6 +42,7 @@ public class OrderLineController {
 		this.orderLineRepository = orderLineRepository;
 		this.orderRepository = orderRepository;
 	}
+	
 	
 	
 	@ModelAttribute("orderLine")
@@ -82,6 +84,14 @@ public class OrderLineController {
 		List<OrderLine> orderLineList = new ArrayList<OrderLine>();
 		orderLineList.add(orderLine);
 		model.addAttribute(orderLineList);
+		
+		
+		BigDecimal a = orderLine.getProduct().getPrice();
+		BigDecimal b = BigDecimal.valueOf(orderLine.getNumberOfProducts());
+		
+		BigDecimal totalPricePerProduct = a.multiply(b);
+		model.addAttribute(totalPricePerProduct);
+		
 		
 		return "currentOrder";
 	}
