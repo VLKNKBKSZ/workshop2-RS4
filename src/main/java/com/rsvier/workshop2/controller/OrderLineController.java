@@ -80,7 +80,7 @@ public class OrderLineController {
 		}
 		orderLine.setProduct(productDB);
 		
-		return "redirect:/order";
+		return "redirect:/order/currentOrder";
 	}
 
 }
