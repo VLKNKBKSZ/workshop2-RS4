@@ -33,7 +33,12 @@ public class OrderLineController {
 	}
 
 	@GetMapping
-	public String showNewOrderLine() {
+	public String showNewOrderLine(Model model) {
+		
+		List<Product> productList = (List<Product>) productRepository.findAll();
+		
+		model.addAttribute(productList);
+
 		return "createNewOrderLine";
 	}
 	
