@@ -35,7 +35,7 @@ public class OrderLineController {
 
 	@Autowired
 	public OrderLineController(ProductRepository productRepository, OrderLineRepository orderLineRepository, 
-			OrderRepository orderlineRepository) {
+			OrderRepository orderRepository) {
 		
 		this.productRepository = productRepository;
 		this.orderLineRepository = orderLineRepository;
@@ -65,16 +65,21 @@ public class OrderLineController {
 	}
 	
 	@PostMapping("/createNewOrderLine")
-	public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors, 
-			SessionStatus sessionStatus, Model model) {
+	public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors) {
+		
+		if(errors.hasErrors()) {
+			return "createNewOrderLine";
+		}
 
 		Product productDB = productRepository.findByName(orderLine.getProduct().getName());
-		
-		if(productDB.getStock() != orderLine.getNumberOfProducts()) {
+		System.out.println(productDB.toString());
+		if(orderLine.getNumberOfProducts() > productDB.getStock() ) {
 			return "createNewOrderLine";
 		}
 		
 		Order order = new Order();
+		System.out.println(orderLine.toString());
+		System.out.println(order.toString());
 		order.getListOfTotalOrderLines().add(orderLine);
 		order.setOrderStatus(OrderStatus.OPEN);
 	
@@ -82,9 +87,7 @@ public class OrderLineController {
 		orderLineRepository.save(orderLine);
 		orderRepository.save(order);
 		
-		sessionStatus.isComplete();
-		
-		return "home";
+		return "redirect:/";
 	}
 
 }
