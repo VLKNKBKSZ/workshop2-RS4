@@ -22,9 +22,9 @@
 	<form method="POST" th:action="@{/orderline/createNewOrderLine}"
 		th:object="${orderLine}">
 
-		<label class="formDetails" for="orderLine.product.name">Naam: </label> 
-		<input type="text" name="orderLine.product.name" placeholder="verplicht veld" th:field="*{orderLine.product.name}" /> 
-		<span class="validationError" th:if="${#fields.hasErrors('orderLine.product.name')}" th:errors="*{orderLine.product.name}"></span> </br> 
+		<label class="formDetails" for="product.name">Naam: </label> 
+		<input type="text" name="product.name" placeholder="verplicht veld" th:field="*{product.name}" /> 
+		<span class="validationError" th:if="${#fields.hasErrors('product.name')}" th:errors="*{product.name}"></span> </br> 
 	
 	
 		<label class="formDetails" for="numberOfProducts">Aantal: </label> 
