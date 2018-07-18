@@ -29,8 +29,8 @@ public class EmployeeController {
 	
 	@GetMapping
 
-	public String showEmplyeeMainMenu(@ModelAttribute("productMesage") String message, Model model) {
-		model.addAttribute("tranferedMessage", message);
+	public String showEmplyeeMainMenu(@ModelAttribute("productMessage") String message, Model model) {
+		model.addAttribute("transferedMessage", message);
 		return "employeeMainMenu";
 
 	}

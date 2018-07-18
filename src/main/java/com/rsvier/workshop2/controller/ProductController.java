@@ -62,9 +62,9 @@ public class ProductController {
 
 		productRepository.save(product);
 
-		String editProductMesage = "Product is aangemaakt.";
-		model.addAttribute("editProductMesage", editProductMesage);
-		redirectAttributes.addFlashAttribute("productMesage", editProductMesage);
+		String editProductMessage = "Product is aangemaakt.";
+		model.addAttribute("editProductMessage", editProductMessage);
+		redirectAttributes.addFlashAttribute("productMessage", editProductMessage);
 
 		return "redirect:/employee";
 	}
