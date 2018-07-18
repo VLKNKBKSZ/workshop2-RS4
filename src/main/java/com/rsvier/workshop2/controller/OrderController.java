@@ -41,7 +41,8 @@ public class OrderController {
 
 	@GetMapping("/currentOrder")
 	public String placeCurrentOrder(OrderLine orderLine, Person person, Model model) {
-		return "home";
+		model.addAttribute("orderLine", orderLine)
+		return "currentOrder";
 	}
 
 }
