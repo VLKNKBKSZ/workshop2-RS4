@@ -62,6 +62,7 @@ public class ProductController {
 
 		productRepository.save(product);
 
+		sessionStatus.setComplete();
 		String editProductMessage = "Product is aangemaakt.";
 		model.addAttribute("editProductMessage", editProductMessage);
 		redirectAttributes.addFlashAttribute("productMessage", editProductMessage);
