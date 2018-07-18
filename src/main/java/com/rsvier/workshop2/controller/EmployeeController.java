@@ -30,7 +30,7 @@ public class EmployeeController {
 	@GetMapping
 
 	public String showEmplyeeMainMenu(@ModelAttribute("productMesage") String message, Model model) {
-										model.addAttribute("tranferedMessage", message);
+		model.addAttribute("tranferedMessage", message);
 		return "employeeMainMenu";
 
 	}
