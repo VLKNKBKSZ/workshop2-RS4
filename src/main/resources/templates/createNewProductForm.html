@@ -5,21 +5,21 @@
 <link rel="stylesheet" th:href="@{/css/personForm.css}" />
 </head>
 <body>
-	<h1>Maak een nieuwe product aan:</h1>
 
+
+	<h1>Voeg product toe aan winkelmandje</h1>
+	<h2> temp: lijst producten</h2>
+	
 	<!--  											Profile Form											 -->
-	<form method="POST" th:action="@{/product/createNewProduct}" th:object="${product}">
+	<form method="POST" th:action="@{/orderline/createNewOrderLine}" th:object="${product}">
 
 		<label class ="formDetails" for="name">Naam: </label> <input type="text" name="name" placeholder= "verplicht veld" th:field="*{name}" />
 		<span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> </br>
 		
 		
-		<label class ="formDetails" for="price">Prijs: </label> <input type="text" name="price" placeholder= "verplicht veld" th:field="*{price}" />
-		<span class="validationError" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span> </br>
 		
-		
-		<label class ="formDetails" for="stock">Voorraad: </label> <input type="text" name="stock" placeholder= "verplicht veld" th:field="*{stock}" />
-		<span class="validationError" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span> </br>
+		<label class ="formDetails" for="stock">Aantal: </label> <input type="text" name="amount" placeholder= "verplicht veld" th:field="*{stock}" />
+		<span class="validationError" th:if="${#fields.hasErrors('amount')}" th:errors="*{stock}"></span> </br>
 		
 			
 		
