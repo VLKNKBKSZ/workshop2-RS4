@@ -78,19 +78,9 @@ public class OrderLineController {
 		if(orderLine.getNumberOfProducts() > productDB.getStock() ) {
 			return "createNewOrderLine";
 		}
-		
-		Order order = new Order();
-		order.setPerson(person);
-		order.getListOfTotalOrderLines().add(orderLine);
 		orderLine.setProduct(productDB);
-		orderLine.setOrder(order);
-		order.setOrderStatus(OrderStatus.OPEN);
-		order.setOrderDateTime(LocalDateTime.now());
-	
-		//just for testing:
-		orderRepository.save(order);
 		
-		return "redirect:/";
+		return "redirect:/order";
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.rsvier.workshop2.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,15 +8,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.rsvier.workshop2.domain.Account;
 import com.rsvier.workshop2.domain.Order;
+import com.rsvier.workshop2.domain.OrderLine;
+import com.rsvier.workshop2.domain.Person;
 import com.rsvier.workshop2.domain.Product;
 import com.rsvier.workshop2.repository.OrderRepository;
 import com.rsvier.workshop2.repository.ProductRepository;
 
 @Controller
 @RequestMapping("/order")
-@SessionAttributes({ "order", "product" })
+@SessionAttributes({ "person", "order", "orderLine" })
 public class OrderController {
 
 	private OrderRepository orderRepository;
@@ -40,8 +39,8 @@ public class OrderController {
 		this.productRepository = productRepository;
 	}
 
-	@GetMapping
-	public String createNewOrder() {
+	@GetMapping("/currentOrder")
+	public String placeCurrentOrder(OrderLine orderLine, Person person, Model model) {
 		return "home";
 	}
 
