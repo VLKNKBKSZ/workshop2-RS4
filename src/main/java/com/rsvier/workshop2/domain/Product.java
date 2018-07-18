@@ -25,7 +25,6 @@ public class Product {
 	private BigDecimal price;
 	@Min(value = 0L, message = "The value must be positive")
 	private int stock;
-
 	
 	public Product() {
 
