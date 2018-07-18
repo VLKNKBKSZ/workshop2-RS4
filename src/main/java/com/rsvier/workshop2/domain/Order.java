@@ -14,13 +14,18 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long orderId;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="order")
 	private List<OrderLine> listOfTotalOrderLines = new ArrayList<>();
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="person_id")
 	private Person person;
+	
 	private BigDecimal totalPrice;;
+	
 	private LocalDateTime orderDateTime;
+	
 	@Enumerated(EnumType.STRING)
 	private OrderStatus orderStatus;
 	

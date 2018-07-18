@@ -12,26 +12,46 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.rsvier.workshop2.domain.Order;
+import com.rsvier.workshop2.domain.Order.OrderStatus;
 import com.rsvier.workshop2.domain.OrderLine;
 import com.rsvier.workshop2.domain.Product;
+import com.rsvier.workshop2.repository.OrderLineRepository;
+import com.rsvier.workshop2.repository.OrderRepository;
 import com.rsvier.workshop2.repository.ProductRepository;
 
 @Controller
 @RequestMapping("/orderLine")
+@SessionAttributes("order")
 public class OrderLineController {
 
 	private ProductRepository productRepository;
+	private OrderLineRepository orderLineRepository;
+	private OrderRepository orderRepository;
+	
 
+	@Autowired
+	public OrderLineController(ProductRepository productRepository, OrderLineRepository orderLineRepository, 
+			OrderRepository orderlineRepository) {
+		
+		this.productRepository = productRepository;
+		this.orderLineRepository = orderLineRepository;
+		this.orderRepository = orderRepository;
+	}
+	
+	
 	@ModelAttribute("orderLine")
 	public OrderLine getOrderLine() {
 		return new OrderLine();
 	}
-
-	@Autowired
-	public OrderLineController(ProductRepository productRepository) {
-		this.productRepository = productRepository;
+	
+	
+	@ModelAttribute("order")
+	public Order order() {
+		return new Order();
 	}
 
 	@GetMapping
@@ -47,8 +67,20 @@ public class OrderLineController {
 	@PostMapping("/createNewOrderLine")
 	public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors, 
 			SessionStatus sessionStatus, Model model) {
+
+		Product productDB = productRepository.findByName(orderLine.getProduct().getName());
 		
+		if(productDB.getStock() != orderLine.getNumberOfProducts()) {
+			return "createNewOrderLine";
+		}
 		
+		Order order = new Order();
+		order.getListOfTotalOrderLines().add(orderLine);
+		order.setOrderStatus(OrderStatus.OPEN);
+	
+		//just for testing:
+		orderLineRepository.save(orderLine);
+		orderRepository.save(order);
 		
 		sessionStatus.isComplete();
 		
