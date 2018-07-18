@@ -1,6 +1,6 @@
 package com.rsvier.workshop2.controller;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 
 import com.rsvier.workshop2.domain.Order;
-import com.rsvier.workshop2.domain.Order.OrderStatus;
 import com.rsvier.workshop2.domain.OrderLine;
 import com.rsvier.workshop2.domain.Person;
 import com.rsvier.workshop2.domain.Product;
@@ -67,20 +65,25 @@ public class OrderLineController {
 	}
 	
 	@PostMapping("/createNewOrderLine")
-	public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors, Person person) {
-		
+	public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors, Person person, Model model) {
+				
 		if(errors.hasErrors()) {
 			return "createNewOrderLine";
 		}
 		
 		Product productDB = productRepository.findByName(orderLine.getProduct().getName());
-	
+
 		if(orderLine.getNumberOfProducts() > productDB.getStock() ) {
 			return "createNewOrderLine";
 		}
+		
 		orderLine.setProduct(productDB);
 		
-		return "redirect:/order/currentOrder";
+		List<OrderLine> orderLineList = new ArrayList<OrderLine>();
+		orderLineList.add(orderLine);
+		model.addAttribute(orderLineList);
+		
+		return "currentOrder";
 	}
 
 }

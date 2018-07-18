@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Profile Form</title>
-    <link rel="stylesheet" th:href="@{/css/personForm.css}" />
+<title>Profile Form</title>
+<link rel="stylesheet" th:href="@{/css/personForm.css}" />
 </head>
 <body>
-<h1>Huidige bestelling</h1>
-
-<table>
+	<h1>Huidige bestellingen</h1>
+	
+	<table>
     <tr>
+    	<th>Aantal</th>
         <th>Naam</th>
-        <th>Prijs</th>
-        <th>Voorraad</th></tr></br>
-    <tr th:message="${orderLine}">
-        <td th:text="${product.name}"></td>
-        <td th:text="${product.price}"></td>
+        <th>Prijs p.st.</th>
+     </tr></br>
+       
+        <tr th:each="orderLine: ${orderLineList}">
         <td th:text="${orderLine.numberOfProducts}"></td>
+        <td th:text="${orderLine.product.name}"></td>
+        <td th:text="${orderLine.product.price}"></td>
     </tr>
 </table>
 
