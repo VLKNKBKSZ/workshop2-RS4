@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Profile Form</title>
-<link rel="stylesheet" th:href="@{/css/personForm.css}" />
+    <title>Profile Form</title>
+    <link rel="stylesheet" th:href="@{/css/personForm.css}"/>
 </head>
 <body>
-	<h1>Huidige bestellingen</h1>
-	
-	<table>
+<h1>Huidige bestellingen</h1>
+
+<table>
     <tr>
-    	<th>Aantal</th>
+        <th>Aantal</th>
         <th>Naam</th>
         <th>Prijs p.st.</th>
-        <th>Totale prijs</th>
-     </tr></br>
+        <th>Totaal per product</th>
+    </tr>
+    </br>
 
-        <tr th:each="orderLine: ${orderLines}">
+    <tr th:each="orderLine: ${orderLineList}">
         <td th:text="${orderLine.numberOfProducts}"></td>
         <td th:text="${orderLine.product.name}"></td>
         <td th:text="${orderLine.product.price}"></td>
+        <td th:text="${totalPricePerProduct}"></td>
     </tr>
 </table>
 
-    <form method="GET" th:action="@{/order/addOrderLineToOrder}">
+<form method="GET" th:action="@{/orderLine}"></a>
 
-        <input type="submit" value="Bestel nog een product"/>
-    </form>
+    <input type="submit" value="Terug naar Producten Lijst"/>
 
 </body>
 </html>

@@ -23,7 +23,6 @@ import com.rsvier.workshop2.domain.Product;
 import com.rsvier.workshop2.repository.OrderLineRepository;
 import com.rsvier.workshop2.repository.OrderRepository;
 import com.rsvier.workshop2.repository.ProductRepository;
-import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("/orderLine")
@@ -45,29 +44,26 @@ public class OrderLineController {
     }
 
 
+
     @ModelAttribute("orderLine")
     public OrderLine getOrderLine() {
         return new OrderLine();
     }
 
 
+    @ModelAttribute("order")
+    public Order order() {
+        return new Order();
+    }
+
     @GetMapping
     public String showNewOrderLine(Model model) {
 
         List<Product> productList = (List<Product>) productRepository.findAll();
 
-        model.addAttribute("productList", productList);
+        model.addAttribute(productList);
 
         return "createNewOrderLine";
-    }
-
-    @GetMapping("/showOrderLineForExistingOrder")
-    public String showOrderLineForExistingOrder(SessionStatus sessionStatus, Model model) {
-
-        List<Product> productList = (List<Product>) productRepository.findAll();
-
-        model.addAttribute("productList", productList);
-        return "createOrderLineForExistingOrder";
     }
 
     @PostMapping("/createNewOrderLine")
@@ -85,27 +81,19 @@ public class OrderLineController {
 
         orderLine.setProduct(productDB);
 
-
-        return "redirect:/order/newOrder";
-    }
-
-    @PostMapping("/addOrderLineToExistingOrder")
-    public String addOrderLineToExistingOrder(@Valid OrderLine orderLine, Errors errors, Person person, Model model) {
-
-        if (errors.hasErrors()) {
-            return "createNewOrderLine";
-        }
-
-        Product productDB = productRepository.findByName(orderLine.getProduct().getName());
-
-        if (orderLine.getNumberOfProducts() > productDB.getStock()) {
-            return "createNewOrderLine";
-        }
-
-        orderLine.setProduct(productDB);
+        List<OrderLine> orderLineList = new ArrayList<OrderLine>();
+        orderLineList.add(orderLine);
+        model.addAttribute(orderLineList);
 
 
-        return "redirect:/order/currentOrder";
+        BigDecimal a = orderLine.getProduct().getPrice();
+        BigDecimal b = BigDecimal.valueOf(orderLine.getNumberOfProducts());
+
+        BigDecimal totalPricePerProduct = a.multiply(b);
+        model.addAttribute(totalPricePerProduct);
+
+
+        return "currentOrder";
     }
 
 }
