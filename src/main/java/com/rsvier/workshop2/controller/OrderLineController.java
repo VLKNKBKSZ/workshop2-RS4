@@ -85,6 +85,8 @@ public class OrderLineController {
         Product productDB = productRepository.findByName(orderLine.getProduct().getName());
 
         if (orderLine.getNumberOfProducts() > productDB.getStock()) {
+        	
+        	
             return "createNewOrderLine";
         }
 
@@ -123,6 +125,23 @@ public class OrderLineController {
 
         return "currentOrder";
     }
+    
+    public BigDecimal getTotalPriceOfOrder(List<OrderLine> orderLineList) {
+
+		BigDecimal totalPriceOfOrder = new BigDecimal(0);
+
+		for (OrderLine orderLine : orderLineList) {
+
+			BigDecimal totalPriceOfOrderLine = new BigDecimal(0);
+			BigDecimal numberOfProductsInBigDecimal = (BigDecimal.valueOf(orderLine.getNumberOfProducts()));
+			totalPriceOfOrderLine = (totalPriceOfOrderLine.add((orderLine.getProduct().getPrice()))
+					.multiply(numberOfProductsInBigDecimal));
+			totalPriceOfOrder = totalPriceOfOrder.add(totalPriceOfOrderLine);
+		}
+
+		return totalPriceOfOrder;
+	}
+
     
    
 
