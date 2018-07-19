@@ -30,11 +30,11 @@ header {
 
 .newAccountLink {
     color: red;
+	text-decoration: none;
 }
 
 .newAccountLink:hover {
-    background-color: grey;
-    color: black;
+	text-decoration: none;
     border-bottom: 2px solid black;
 }
 
