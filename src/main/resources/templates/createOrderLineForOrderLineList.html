@@ -21,6 +21,10 @@
     </tr>
 </table>
 
+<p>
+        <span class="formDetails" th:text="${warningMessage}">Message</span>
+</p>
+
 <form method="POST" th:action="@{/orderLine/addOrderLineToOrderLineList}"
       th:object="${orderLine}">
 

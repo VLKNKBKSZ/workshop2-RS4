@@ -81,9 +81,13 @@ public class OrderLineController {
 		}
 
 		Product productDB = productRepository.findByName(orderLine.getProduct().getName());
-
+		
 		if (orderLine.getNumberOfProducts() > productDB.getStock()) {
 
+			List<Product> productList = (List<Product>) productRepository.findAll();
+			model.addAttribute(productList);
+			String warningMessage = "mongool voer niet een te hoog aantal in , kan je niet lezen?";
+			model.addAttribute("warningMessage", warningMessage);
 
 			return "createNewOrderLine";
 		}
@@ -104,15 +108,21 @@ public class OrderLineController {
 			Person person, Model model) {
 
 		if (errors.hasErrors()) {
-			return "createNewOrderLine";
+			return "createOrderLineForOrderLineList";
 		}
 
 		Product productDB = productRepository.findByName(orderLine.getProduct().getName());
+		
 
 		if (orderLine.getNumberOfProducts() > productDB.getStock()) {
 
+			List<Product> productList = (List<Product>) productRepository.findAll();
+			model.addAttribute(productList);
+			
+			String warningMessage = "mongool voer niet een te hoog aantal in , kan je niet lezen?";
+			model.addAttribute("warningMessage", warningMessage);
 
-			return "redirect:/orderLine";
+			return "createOrderLineForOrderLineList";
 		}
 		orderLine.setProduct(productDB);
 		orderLineList.add(orderLine);
