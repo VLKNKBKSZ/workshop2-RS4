@@ -5,7 +5,7 @@
 <link rel="stylesheet" th:href="@{/css/login.css}" />
 </head>
 <body>
-	<h1>Inloggen</h1>
+<header>Inloggen</header>
 
 	<p>
 		<span class="validationError" th:text="${message}">Message</span>
@@ -23,9 +23,10 @@
 
 	</form>
 	<p>
-		Heb je nog geen account voor de geweldige website nevvo meubels !? <a
-			th:href="@{/account}"> Klik dan hier:</a>
+		Heb je nog geen account voor de geweldige website nevvo meubels !? <a class="newAccountLink"
+																			  th:href="@{/account}"> Klik dan hier</a>
 	</p>
-
+<img th:src="@{/images/nevvoMeubel2.jpg}" alt="nevvoMeubels"
+	 class="image"/>
 </body>
 </html>

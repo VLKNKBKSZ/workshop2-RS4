@@ -1,0 +1,68 @@
+@charset "ISO-8859-1";
+
+body {
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+    "Times New Roman", "serif";
+    font-variant-caps: small-caps;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+}
+
+header {
+    margin-bottom: 10px;
+    font-size: 40px;
+    border-bottom: 5px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+nav {
+    clear: both;
+}
+
+ul {
+    margin: 0px;
+    list-style-type: none;
+}
+
+ul li {
+    display: inline;
+    width: 150px;
+    text-align: center;
+    font-size: 22px;
+    margin-right: 10px;
+    padding: 5px;
+}
+
+ul li a {
+    text-decoration: none;
+    display: inline;
+    color: white;
+    background-color: darkgrey;
+    opacity: .9;
+}
+
+ul li a:hover {
+    background-color: white;
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+.newAccountLink {
+    color: black;
+    text-decoration: none;
+    border-bottom: grey solid 2px;
+}
+
+.newAccountLink:hover {
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border-bottom: red solid 2px;
+}
+
+.image {
+    width: 900px;
+}

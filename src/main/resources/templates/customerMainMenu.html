@@ -6,24 +6,25 @@
 <link rel="stylesheet" th:href="@{/css/customerMainMenu.css}" />
 </head>
 <body>
-	
-	
-	<div class="header">
+
+
+<div class="header">
 		<div class="intro">
-			<h1>Welkom op Nevvo Meubels:  <span th:text="${person.name}">Name</span> <span th:text="${person.lastName}">Last name</span></h1>
+            <h2 class="customerName">klant: <span th:text="${person.name}">Name</span> <span
+                    th:text="${person.lastName}">Last name</span> is ingelogd.</h2>
 		</div>
-		<div class="myAccount">
-			<a th:href="@{/customer/personDetails}"> Mijn account</a>
+    <div class="listItem">
+        <a class="hyperLinks" th:href="@{/customer/personDetails}"> Mijn account</a>
 		</div>
-		<div class="myOrder">
-			<a th:href="@{/orderLine}"> Mijn Bestellingen</a>
+    <div class="listItem">
+        <a class="hyperLinks" th:href="@{/orderLine}"> Mijn Bestellingen</a>
 		</div>
-		<div class="myProduct">
-			<a th:href="@{/orderLine}"> Producten Bestellen</a>
+    <div class="listItem">
+        <a class="hyperLinks" th:href="@{/orderLine}"> Producten Bestellen</a>
 		</div>
-		
-		<div class="logout">
-			<a th:href="@{/}"> Uitloggen</a>
+
+    <div class="listItem">
+        <a class="hyperLinks" th:href="@{/}"> Uitloggen</a>
 		</div>
 	</div>
 	

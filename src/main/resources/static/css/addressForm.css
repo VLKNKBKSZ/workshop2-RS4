@@ -1,5 +1,4 @@
 body {
-	background-color: Lightblue;
 	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
 		"Times New Roman", "serif";
 	font-variant-caps: small-caps;
@@ -11,9 +10,9 @@ body {
 }
 
 h1 {
-	border-bottom: 5px solid white;
-	border-left: 5px solid white;
-	border-right: 5px solid white;
+    border-bottom: 5px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
 }
 
 .validationError {

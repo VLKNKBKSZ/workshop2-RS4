@@ -7,11 +7,15 @@ body {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+    width: 900px;
 }
 
 header {
-	margin-bottom: 20px;
+    margin-bottom: 10px;
 	font-size: 40px;
+    border-bottom: 5px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
 }
 
 nav {
@@ -26,13 +30,9 @@ ul {
 ul li {
 	display:inline;
 	width: 150px;
-	height: 40px;
-	background-color: darkgrey;
-	opacity: .9;
 	text-align: center;
-	line-height: 60px;
+    font-size: 22px;
 	margin-right: 10px;
-	font-size: 30px;
 	padding:5px;
 }
 
@@ -40,6 +40,8 @@ ul li a {
 	text-decoration: none;
 	display: inline;
 	color: white;
+    background-color: darkgrey;
+    opacity: .9;
 }
 
 ul li a:hover {

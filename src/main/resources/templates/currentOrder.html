@@ -2,12 +2,12 @@
 <html>
 <head>
     <title>Profile Form</title>
-    <link rel="stylesheet" th:href="@{/css/personForm.css}"/>
+    <link rel="stylesheet" th:href="@{/css/currentOrder.css}"/>
 </head>
 <body>
 <h1>Huidige bestellingen</h1>
 
-<table>
+<table class="databaseProductList">
     <tr>
         <th>Aantal</th>
         <th>Naam</th>
@@ -23,7 +23,7 @@
         <td th:text="${orderLine.numberOfProducts * orderLine.product.price}"></td>
     </tr>
 </table>
-	 <table>
+<table class="databaseProductList">
     <tr>
         <th>Totale prijs van de bestelling</th>
     </tr>

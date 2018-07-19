@@ -1,0 +1,28 @@
+body {
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+    "Times New Roman", "serif";
+    font-variant-caps: small-caps;
+    clear: both;
+    text-align: center;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.databaseProductList {
+
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+h1 {
+    border-bottom: 5px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+
+.validationError {
+    color: white;
+}

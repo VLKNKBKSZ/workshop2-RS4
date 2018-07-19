@@ -111,8 +111,8 @@ public class OrderLineController {
 
 		if (orderLine.getNumberOfProducts() > productDB.getStock()) {
 
-			
-			return "createNewOrderLine";
+
+			return "redirect:/orderLine";
 		}
 		orderLine.setProduct(productDB);
 		orderLineList.add(orderLine);

@@ -5,12 +5,15 @@ body {
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+    width: 900px;
 }
 
-h1 {
-	border-bottom: 5px solid black;
-	border-left: 5px solid black;
-	border-right: 5px solid black;
+header {
+    margin-bottom: 20px;
+    font-size: 40px;
+    border-bottom: 5px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
 }
 
 .validationError {
@@ -23,4 +26,18 @@ h1 {
 	text-align: right;
 	text-align: left;
 	padding: 5px;
+}
+
+.newAccountLink {
+    color: red;
+}
+
+.newAccountLink:hover {
+    background-color: grey;
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+.image {
+    width: 900px;
 }
