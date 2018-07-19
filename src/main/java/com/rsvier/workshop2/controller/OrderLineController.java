@@ -92,12 +92,11 @@ public class OrderLineController {
         List<OrderLine> orderLineList = new ArrayList<>();
         orderLineList.add(orderLine);
         model.addAttribute(orderLineList);
-<<<<<<< HEAD
-=======
+
         
         BigDecimal totalPrice = getTotalPriceOfOrder(orderLineList);
         model.addAttribute("totalPrice", totalPrice);
->>>>>>> 86e7e7c490dd45ed23b26c913c3ad7ae96e856c2
+
 
         return "currentOrder";
     }
@@ -116,12 +115,11 @@ public class OrderLineController {
         orderLine.setProduct(productDB);
         orderLineList.add(orderLine);
         model.addAttribute(orderLineList);
-<<<<<<< HEAD
-=======
+
         
         BigDecimal totalPrice = getTotalPriceOfOrder(orderLineList);
         model.addAttribute("totalPrice", totalPrice);
->>>>>>> 86e7e7c490dd45ed23b26c913c3ad7ae96e856c2
+
 
         return "currentOrder";
     }
