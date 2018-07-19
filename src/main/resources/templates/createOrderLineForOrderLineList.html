@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile Form</title>
+    <link rel="stylesheet" th:href="@{/css/personForm.css}"/>
+</head>
+<body>
+<h1>Bestel uw product</h1>
+
+<table>
+    <tr>
+        <th>Naam</th>
+        <th>Prijs</th>
+        <th>Voorraad</th>
+    </tr>
+    </br>
+    <tr th:each="product: ${productList}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.stock}"></td>
+    </tr>
+</table>
+
+<form method="POST" th:action="@{/orderLine/addOrderLineToOrderLineList}"
+      th:object="${orderLine}">
+
+    <label class="formDetails" for="product.name">Naam: </label>
+    <input type="text" name="product.name" placeholder="verplicht veld" th:field="*{product.name}"/>
+    <span class="validationError" th:if="${#fields.hasErrors('product.name')}" th:errors="*{product.name}"></span> </br>
+
+
+    <label class="formDetails" for="numberOfProducts">Aantal: </label>
+    <input type="text" name="numberOfProducts" placeholder="verplicht veld" th:field="*{numberOfProducts}"/>
+    <span class="validationError" th:if="${#fields.hasErrors('numberOfProducts')}"
+          th:errors="*{numberOfProducts}"></span>
+
+    </br>
+
+    <input class="formSubmitBtn" type="submit" value="Verzend"/>
+
+</form>
+
+
+</body>
+</html>

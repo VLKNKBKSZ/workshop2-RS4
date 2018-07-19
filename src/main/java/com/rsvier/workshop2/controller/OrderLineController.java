@@ -65,6 +65,16 @@ public class OrderLineController {
         return "createNewOrderLine";
     }
 
+    @GetMapping("/showNewOrderLineForOrderLineList")
+    public String showNewOrderLineForOrderLineList(Model model) {
+
+        List<Product> productList = (List<Product>) productRepository.findAll();
+
+        model.addAttribute(productList);
+
+        return "createOrderLineForOrderLineList";
+    }
+
     @PostMapping("/createNewOrderLine")
     public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors, Person person, Model model) {
 
@@ -83,12 +93,11 @@ public class OrderLineController {
         orderLineList.add(orderLine);
         model.addAttribute(orderLineList);
 
-        return "redirect:/currentOrder";
+        return "currentOrder";
     }
 
-    // not working
     @PostMapping("/addOrderLineToOrderLineList")
-    public String addOrderLineToOrderLineList(List<OrderLine> orderLineList, @Valid Orderline orderLine, Errors errors, Person person, Model model) {
+    public String addOrderLineToOrderLineList(List<OrderLine> orderLineList, @Valid OrderLine orderLine, Errors errors, Person person, Model model) {
 
         if (errors.hasErrors()) {
             return "createNewOrderLine";
@@ -102,7 +111,7 @@ public class OrderLineController {
         orderLineList.add(orderLine);
         model.addAttribute(orderLineList);
 
-        return "";
+        return "currentOrder";
     }
 
 }
