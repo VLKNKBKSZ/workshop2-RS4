@@ -8,16 +8,17 @@
 	<h1>Bestel uw product</h1>
 	
 	<table>
-	<tr>
-		<th>Naam</th>
-		<th>Prijs</th>
-		<th>Voorraad</th></tr></br>
-	<tr th:each="product: ${productList}">
-		<td th:text="${product.name}"></td>
-		<td th:text="${product.price}"></td>
-		<td th:text="${product.stock}"></td>
-	</tr>
-</table>
+		<tr>
+			<th>Naam</th>
+			<th>Prijs</th>
+			<th>Voorraad</th>
+		</tr>
+		<tr th:each="product: ${productList}">
+			<td th:text="${product.name}"></td>
+			<td th:text="${product.price}"></td>
+			<td th:text="${product.stock}"></td>
+		</tr>
+	</table>
 
 	<form method="POST" th:action="@{/orderLine/createNewOrderLine}"
 		th:object="${orderLine}">

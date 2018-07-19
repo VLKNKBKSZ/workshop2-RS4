@@ -88,7 +88,7 @@ public class OrderLineController {
 
     // not working
     @PostMapping("/addOrderLineToOrderLineList")
-    public String addOrderLineToOrderLineList(List<OrderLine> orderLineList, @Valid Orderline orderLine, Errors errors, Person person, Model model) {
+    public String addOrderLineToOrderLineList(List<OrderLine> orderLineList, @Valid OrderLine orderLine, Errors errors, Person person, Model model) {
 
         if (errors.hasErrors()) {
             return "createNewOrderLine";
