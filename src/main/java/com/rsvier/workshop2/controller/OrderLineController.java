@@ -84,10 +84,6 @@ public class OrderLineController {
 
 		if (orderLine.getNumberOfProducts() > productDB.getStock()) {
 
-			String warningMessage = "mongool voer niet een te hoog aantal in , kan je niet lezen";
-			model.addAttribute("warningMessage", warningMessage);
-			List<Product> productList = (List<Product>) productRepository.findAll();
-			model.addAttribute(productList);
 
 			return "createNewOrderLine";
 		}
@@ -115,10 +111,6 @@ public class OrderLineController {
 
 		if (orderLine.getNumberOfProducts() > productDB.getStock()) {
 
-			String warningMessage = "mongool voer niet een te hoog aantal in , kan je niet lezen";
-			model.addAttribute("warningMessage", warningMessage);
-			List<Product> productList = (List<Product>) productRepository.findAll();
-			model.addAttribute(productList);
 			
 			return "createNewOrderLine";
 		}
