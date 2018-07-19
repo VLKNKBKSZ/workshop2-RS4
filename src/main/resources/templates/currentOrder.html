@@ -23,7 +23,8 @@
         <td th:text="${orderLine.numberOfProducts * orderLine.product.price}"></td>
     </tr>
 </table>
-
+ <p th:text="${totalPrice}"></p>
+	
 <form method="GET" th:action="@{/orderLine/showNewOrderLineForOrderLineList}"></a>
 
     <input type="submit" value="Bestel nog een product"/>
