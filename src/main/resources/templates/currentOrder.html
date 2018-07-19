@@ -24,9 +24,15 @@
     </tr>
 </table>
 
-<form method="GET" th:action="@{/orderLine}"></a>
+<form method="GET" th:action="@{/orderLine/addOrderLineToOrderLineList}"></a>
 
-    <input type="submit" value="Terug naar Producten Lijst"/>
+    <input type="submit" value="Bestel nog een product"/>
 
 </body>
+<form method="GET" th:action="@{/order/currentOrder}"></a>
+
+    <input type="submit" value="Plaats bestelling"/>
+
+    </body>
+
 </html>

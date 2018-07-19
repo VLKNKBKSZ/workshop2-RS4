@@ -23,10 +23,11 @@ import com.rsvier.workshop2.domain.Product;
 import com.rsvier.workshop2.repository.OrderLineRepository;
 import com.rsvier.workshop2.repository.OrderRepository;
 import com.rsvier.workshop2.repository.ProductRepository;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("/orderLine")
-@SessionAttributes({"order", "person", "orderLine"})
+@SessionAttributes({"person", "orderLineList"})
 public class OrderLineController {
 
     private ProductRepository productRepository;
@@ -43,17 +44,15 @@ public class OrderLineController {
         this.orderRepository = orderRepository;
     }
 
-
-
     @ModelAttribute("orderLine")
-    public OrderLine getOrderLine() {
+    public OrderLine orderLine() {
         return new OrderLine();
     }
 
 
-    @ModelAttribute("order")
-    public Order order() {
-        return new Order();
+    @ModelAttribute("orderLineList")
+    public List<OrderLine> orderLineList() {
+        return new ArrayList<>();
     }
 
     @GetMapping
@@ -80,20 +79,29 @@ public class OrderLineController {
         }
 
         orderLine.setProduct(productDB);
-
-        List<OrderLine> orderLineList = new ArrayList<OrderLine>();
+        List<OrderLine> orderLineList = new ArrayList<>();
         orderLineList.add(orderLine);
         model.addAttribute(orderLineList);
 
+        return "redirect:/currentOrder";
+    }
 
-        BigDecimal a = orderLine.getProduct().getPrice();
-        BigDecimal b = BigDecimal.valueOf(orderLine.getNumberOfProducts());
+    @PostMapping("/addOrderLineToOrderLineList")
+    public String addOrderLineToOrderLineList(List<OrderLine> orderLineList, @Valid Orderline orderLine, Errors errors, Person person, Model model) {
 
-        BigDecimal totalPricePerProduct = a.multiply(b);
-        model.addAttribute(totalPricePerProduct);
+        if (errors.hasErrors()) {
+            return "createNewOrderLine";
+        }
 
+        Product productDB = productRepository.findByName(orderLine.getProduct().getName());
 
-        return "currentOrder";
+        if (orderLine.getNumberOfProducts() > productDB.getStock()) return "createNewOrderLine";
+
+        orderLine.setProduct(productDB);
+        orderLineList.add(orderLine);
+        model.addAttribute(orderLineList);
+
+        return "";
     }
 
 }
