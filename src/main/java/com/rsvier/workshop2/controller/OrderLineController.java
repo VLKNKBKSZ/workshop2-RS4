@@ -95,7 +95,7 @@ public class OrderLineController {
         model.addAttribute(orderLineList);
         
         BigDecimal totalPrice = getTotalPriceOfOrder(orderLineList);
-        model.addAttribute(totalPrice);
+        model.addAttribute("totalPrice", totalPrice);
 
         return "currentOrder";
     }
@@ -134,7 +134,7 @@ public class OrderLineController {
         model.addAttribute(orderLineList);
         
         BigDecimal totalPrice = getTotalPriceOfOrder(orderLineList);
-        model.addAttribute(totalPrice);
+        model.addAttribute("totalPrice", totalPrice);
 
         return "currentOrder";
     }
