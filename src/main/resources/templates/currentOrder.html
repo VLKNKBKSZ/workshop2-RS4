@@ -20,7 +20,7 @@
         <td th:text="${orderLine.numberOfProducts}"></td>
         <td th:text="${orderLine.product.name}"></td>
         <td th:text="${orderLine.product.price}"></td>
-        <td th:text="${totalPricePerProduct}"></td>
+        <td th:text="${orderLine.numberOfProducts * orderLine.product.price}"></td>
     </tr>
 </table>
 
