@@ -19,6 +19,10 @@
 			<td th:text="${product.stock}"></td>
 		</tr>
 	</table>
+	
+	<p>
+        <span class="formDetails" th:text="${warningMessage}">Message</span>
+    </p>
 
 	<form method="POST" th:action="@{/orderLine/createNewOrderLine}"
 		th:object="${orderLine}">

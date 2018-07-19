@@ -27,106 +27,112 @@ import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("/orderLine")
-@SessionAttributes({"person", "orderLineList"})
+@SessionAttributes({ "person", "orderLineList" })
 public class OrderLineController {
 
-    private ProductRepository productRepository;
-    private OrderLineRepository orderLineRepository;
-    private OrderRepository orderRepository;
+	private ProductRepository productRepository;
+	private OrderLineRepository orderLineRepository;
+	private OrderRepository orderRepository;
 
+	@Autowired
+	public OrderLineController(ProductRepository productRepository, OrderLineRepository orderLineRepository,
+			OrderRepository orderRepository) {
 
-    @Autowired
-    public OrderLineController(ProductRepository productRepository, OrderLineRepository orderLineRepository,
-                               OrderRepository orderRepository) {
+		this.productRepository = productRepository;
+		this.orderLineRepository = orderLineRepository;
+		this.orderRepository = orderRepository;
+	}
 
-        this.productRepository = productRepository;
-        this.orderLineRepository = orderLineRepository;
-        this.orderRepository = orderRepository;
-    }
+	@ModelAttribute("orderLine")
+	public OrderLine orderLine() {
+		return new OrderLine();
+	}
 
-    @ModelAttribute("orderLine")
-    public OrderLine orderLine() {
-        return new OrderLine();
-    }
+	@ModelAttribute("orderLineList")
+	public List<OrderLine> orderLineList() {
+		return new ArrayList<>();
+	}
 
+	@GetMapping
+	public String showNewOrderLine(Model model) {
 
-    @ModelAttribute("orderLineList")
-    public List<OrderLine> orderLineList() {
-        return new ArrayList<>();
-    }
+		List<Product> productList = (List<Product>) productRepository.findAll();
 
-    @GetMapping
-    public String showNewOrderLine(Model model) {
+		model.addAttribute(productList);
 
-        List<Product> productList = (List<Product>) productRepository.findAll();
+		return "createNewOrderLine";
+	}
 
-        model.addAttribute(productList);
+	@GetMapping("/showNewOrderLineForOrderLineList")
+	public String showNewOrderLineForOrderLineList(Model model) {
 
-        return "createNewOrderLine";
-    }
+		List<Product> productList = (List<Product>) productRepository.findAll();
 
-    @GetMapping("/showNewOrderLineForOrderLineList")
-    public String showNewOrderLineForOrderLineList(Model model) {
+		model.addAttribute(productList);
 
-        List<Product> productList = (List<Product>) productRepository.findAll();
+		return "createOrderLineForOrderLineList";
+	}
 
-        model.addAttribute(productList);
+	@PostMapping("/createNewOrderLine")
+	public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors, Person person, Model model) {
 
-        return "createOrderLineForOrderLineList";
-    }
+		if (errors.hasErrors()) {
+			return "createNewOrderLine";
+		}
 
-    @PostMapping("/createNewOrderLine")
-    public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors, Person person, Model model) {
+		Product productDB = productRepository.findByName(orderLine.getProduct().getName());
 
-        if (errors.hasErrors()) {
-            return "createNewOrderLine";
-        }
+		if (orderLine.getNumberOfProducts() > productDB.getStock()) {
 
-        Product productDB = productRepository.findByName(orderLine.getProduct().getName());
+			String warningMessage = "mongool voer niet een te hoog aantal in , kan je niet lezen";
+			model.addAttribute("warningMessage", warningMessage);
+			List<Product> productList = (List<Product>) productRepository.findAll();
+			model.addAttribute(productList);
 
-        if (orderLine.getNumberOfProducts() > productDB.getStock()) {
-        	
-        	
-            return "createNewOrderLine";
-        }
+			return "createNewOrderLine";
+		}
 
-        orderLine.setProduct(productDB);
-        List<OrderLine> orderLineList = new ArrayList<>();
-        orderLineList.add(orderLine);
-        model.addAttribute(orderLineList);
+		orderLine.setProduct(productDB);
+		List<OrderLine> orderLineList = new ArrayList<>();
+		orderLineList.add(orderLine);
+		model.addAttribute(orderLineList);
 
-        
-        BigDecimal totalPrice = getTotalPriceOfOrder(orderLineList);
-        model.addAttribute("totalPrice", totalPrice);
+		BigDecimal totalPrice = getTotalPriceOfOrder(orderLineList);
+		model.addAttribute("totalPrice", totalPrice);
 
+		return "currentOrder";
+	}
 
-        return "currentOrder";
-    }
+	@PostMapping("/addOrderLineToOrderLineList")
+	public String addOrderLineToOrderLineList(List<OrderLine> orderLineList, @Valid OrderLine orderLine, Errors errors,
+			Person person, Model model) {
 
-    @PostMapping("/addOrderLineToOrderLineList")
-    public String addOrderLineToOrderLineList(List<OrderLine> orderLineList, @Valid OrderLine orderLine, Errors errors, Person person, Model model) {
+		if (errors.hasErrors()) {
+			return "createNewOrderLine";
+		}
 
-        if (errors.hasErrors()) {
-            return "createNewOrderLine";
-        }
+		Product productDB = productRepository.findByName(orderLine.getProduct().getName());
 
-        Product productDB = productRepository.findByName(orderLine.getProduct().getName());
+		if (orderLine.getNumberOfProducts() > productDB.getStock()) {
 
-        if (orderLine.getNumberOfProducts() > productDB.getStock()) return "createNewOrderLine";
+			String warningMessage = "mongool voer niet een te hoog aantal in , kan je niet lezen";
+			model.addAttribute("warningMessage", warningMessage);
+			List<Product> productList = (List<Product>) productRepository.findAll();
+			model.addAttribute(productList);
+			
+			return "createNewOrderLine";
+		}
+		orderLine.setProduct(productDB);
+		orderLineList.add(orderLine);
+		model.addAttribute(orderLineList);
 
-        orderLine.setProduct(productDB);
-        orderLineList.add(orderLine);
-        model.addAttribute(orderLineList);
+		BigDecimal totalPrice = getTotalPriceOfOrder(orderLineList);
+		model.addAttribute("totalPrice", totalPrice);
 
-        
-        BigDecimal totalPrice = getTotalPriceOfOrder(orderLineList);
-        model.addAttribute("totalPrice", totalPrice);
+		return "currentOrder";
+	}
 
-
-        return "currentOrder";
-    }
-    
-    public BigDecimal getTotalPriceOfOrder(List<OrderLine> orderLineList) {
+	public BigDecimal getTotalPriceOfOrder(List<OrderLine> orderLineList) {
 
 		BigDecimal totalPriceOfOrder = new BigDecimal(0);
 
@@ -141,8 +147,5 @@ public class OrderLineController {
 
 		return totalPriceOfOrder;
 	}
-
-    
-   
 
 }
