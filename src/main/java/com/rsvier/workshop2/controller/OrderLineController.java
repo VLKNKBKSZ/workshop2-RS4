@@ -75,6 +75,7 @@ public class OrderLineController {
         return "createOrderLineForOrderLineList";
     }
 
+    
     @PostMapping("/createNewOrderLine")
     public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors, Person person, Model model) {
 
@@ -92,10 +93,31 @@ public class OrderLineController {
         List<OrderLine> orderLineList = new ArrayList<>();
         orderLineList.add(orderLine);
         model.addAttribute(orderLineList);
+        
+        BigDecimal totalPrice = getTotalPriceOfOrder(orderLineList);
+        model.addAttribute(totalPrice);
 
         return "currentOrder";
     }
 
+    
+    public BigDecimal getTotalPriceOfOrder(List<OrderLine> orderLineList) {
+
+		BigDecimal totalPriceOfOrder = new BigDecimal(0);
+
+		for (OrderLine orderLine : orderLineList) {
+
+			BigDecimal totalPriceOfOrderLine = new BigDecimal(0);
+			BigDecimal numberOfProductsInBigDecimal = (BigDecimal.valueOf(orderLine.getNumberOfProducts()));
+			totalPriceOfOrderLine = (totalPriceOfOrderLine.add((orderLine.getProduct().getPrice()))
+					.multiply(numberOfProductsInBigDecimal));
+			totalPriceOfOrder = totalPriceOfOrder.add(totalPriceOfOrderLine);
+		}
+
+		return totalPriceOfOrder;
+	}
+
+    
     @PostMapping("/addOrderLineToOrderLineList")
     public String addOrderLineToOrderLineList(List<OrderLine> orderLineList, @Valid OrderLine orderLine, Errors errors, Person person, Model model) {
 
@@ -110,6 +132,9 @@ public class OrderLineController {
         orderLine.setProduct(productDB);
         orderLineList.add(orderLine);
         model.addAttribute(orderLineList);
+        
+        BigDecimal totalPrice = getTotalPriceOfOrder(orderLineList);
+        model.addAttribute(totalPrice);
 
         return "currentOrder";
     }
