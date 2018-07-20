@@ -1,45 +1,45 @@
 @charset "ISO-8859-1";
 
 body {
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
-		"Times New Roman", "serif";
-	font-variant-caps: small-caps;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+    "Times New Roman", "serif";
+    font-variant-caps: small-caps;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     width: 900px;
 }
 
 header {
     margin-bottom: 10px;
-	font-size: 40px;
+    font-size: 40px;
     border-bottom: 5px solid black;
     border-left: 2px solid black;
     border-right: 2px solid black;
 }
 
 nav {
-	clear:both;
+    clear: both;
 }
 
 ul {
-	margin: 0px;
-	list-style-type: none;
+    margin: 0px;
+    list-style-type: none;
 }
 
 ul li {
-	display:inline;
+    display: inline;
     width: 175px;
-	text-align: center;
+    text-align: center;
     font-size: 22px;
-	margin-right: 10px;
-	padding:5px;
+    margin-right: 10px;
+    padding: 5px;
 }
 
 ul li a {
-	text-decoration: none;
-	display: inline;
-	color: white;
+    text-decoration: none;
+    display: inline;
+    color: white;
     border-radius: 3px;
     padding: 3px;
     background-color: darkgrey;
@@ -47,14 +47,23 @@ ul li a {
 }
 
 ul li a:hover {
-	background-color: white;
-	color: black;
-	border-bottom: 2px solid black;
+    background-color: white;
+    color: black;
+    border-bottom: 2px solid black;
 }
 
-main {
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: black;
+    opacity: .9;
+    height: 25px;
 }
 
 .image {
-	width: 900px;
+    width: 900px;
 }

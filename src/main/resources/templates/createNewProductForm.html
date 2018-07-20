@@ -37,9 +37,9 @@
 		
 		<label class="formDetails" for="stock">Aantal: </label> 
 		<input type="text" name="stock" placeholder="verplicht veld" th:field="*{stock}" /> 
-		<span class="validationError" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span> </br> 
-		
-		<input class="formSubmitBtn" type="submit" value="Verzend" />
+		<span class="validationError" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span> </br>
+        <p></p>
+        <input class="buttonLogin" type="submit" value="Verzend"/>
 
 	</form>
 

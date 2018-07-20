@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Search Product Form</title>
-<link rel="stylesheet" th:href="@{/css/personForm.css}" />
+    <title>Search Product Form</title>
+    <link rel="stylesheet" th:href="@{/css/personForm.css}"/>
 </head>
 <body>
-	<h1>Zoek product ...</h1>
-	
-	<tr>
-		<th>Naam</th>
-		<th>Prijs</th>
-		<th>Voorraad</th></tr></br>
-	<tr th:each:"product: ${productList}">
-		<td th:text="${product.name}"></td>
-		<td th:text="${product.price}"></td>
-		<td th:text="${product.stock}"></td>
-	</tr>
-	
-	<!--  											Profile Form											 -->
-	<form method="POST" th:action="@{/product/foundProduct}"
-		th:object="${product}">
+<h1>Zoek product ...</h1>
+<table>
+    <tr>
+        <th>Naam</th>
+        <th>Prijs</th>
+        <th>Voorraad</th>
+    </tr>
+    </br>
+    <tr th:each="product: ${productList}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.stock}"></td>
+    </tr>
+</table>
+<!--  											Profile Form											 -->
+<form method="POST" th:action="@{/product/foundProduct}"
+      th:object="${product}">
 
-		<label class="formDetails" for="name">Naam: </label> <input
-			type="text" name="name" th:field="*{name}" /> <input type="submit"
-			value="Zoeken" />
+    <label class="formDetails" for="name">Naam: </label> <input
+        type="text" name="name" th:field="*{name}"/> <input class="buttonLogin" type="submit"
+                                                            value="Zoeken"/>
 
-	</form>
+</form>
 
 
 </body>

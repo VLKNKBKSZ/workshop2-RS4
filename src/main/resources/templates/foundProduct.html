@@ -26,15 +26,15 @@
 		
 		<label class ="formDetails" for="stock">Voorraad: </label> <input type="text" name="stock"  th:field="*{stock}" />
 		<span class="validationError" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span> </br>
-		
-		<input class= "formSubmitBtnProduct" type="submit" value="Product aanpassen" />
+        <p></p>
+        <input class="buttonLogin" type="submit" value="Product aanpassen"/>
 		
 	</form>
-	
-	
+
+    </br>
 	<form method="POST" th:action="@{/product/deleteProduct}" th:object="${product}" >
-    
-        <input class= "formSubmitBtnProduct" type="submit" value="Product verwijderen" />
+
+        <input class="buttonLogin" type="submit" value="Product verwijderen"/>
 	</form>
 	
 

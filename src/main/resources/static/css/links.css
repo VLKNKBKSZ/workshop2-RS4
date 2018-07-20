@@ -68,3 +68,15 @@ ul li a:hover {
 .image {
     width: 900px;
 }
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: black;
+    opacity: .9;
+    height: 25px;
+}
