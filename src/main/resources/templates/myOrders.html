@@ -7,7 +7,7 @@
 <body>
 <h1>Huidige bestellingen</h1>
 
-: <table class="databaseProductList">
+<table class="databaseProductList">
     <tr>
         <th>Bestellingnummer</th>
         <th>Bestellingsdatum</th>
@@ -31,7 +31,7 @@
     <td th:text="${totalPrice}"></td>
 </table>
 
-<form method="POST" th:action="@{/order/showOrderDetails}" th:object="${}">
+<form method="POST" th:action="@{/order/showOrderDetails}" th:object="${orderId}">
 
     <label class ="formDetails" for="orderId">orderId: </label> <input type="text" name="orderId" placeholder="vul het bestelnummer in van de bestelling die u wilt bekijken." />
     <input type="submit" value="Bekijk"/>
