@@ -58,12 +58,17 @@ public class OrderController {
     	
     	
     	Order order = new Order();
+    	// This loop is added so the orderlinetable can acces and save the order_id
+        for (OrderLine orderLine:orderLineList
+             ) {
+            orderLine.setOrder(order);
+
+        }
     	order.setListOfTotalOrderLines(orderLineList);
     	order.setPerson(person);
     	
     	order.setOrderStatus(Order.OrderStatus.OPEN);
     	order.setOrderDateTime(LocalDateTime.now());
-    	
     	orderRepository.save(order);
     	session.isComplete();
     	
