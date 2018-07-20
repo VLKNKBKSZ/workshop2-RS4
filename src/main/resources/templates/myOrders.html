@@ -5,7 +5,7 @@
     <link rel="stylesheet" th:href="@{/css/currentOrder.css}"/>
 </head>
 <body>
-<h1>Huidige bestellingen</h1>
+<h1>Mijn bestellingen</h1>
 
 <table class="databaseProductList">
     <tr>
@@ -23,18 +23,16 @@
         <td th:text="${order.orderStatus}"></td>
     </tr>
 </table>
-<table class="databaseProductList">
-    <tr>
-        <th>Totale prijs van de bestelling</th>
-    </tr>
 </br>
-    <td th:text="${totalPrice}"></td>
-</table>
-
+<h4 class="headerForSearchOrder">Vul het bestelnummer in van de bestelling die u wilt bekijken</h4>
+<p>
+    <span class="formDetails" th:text="${message}">Message</span>
+</p>
 <form method="POST" th:action="@{/order/showOrderDetails}" th:object="${orderId}">
 
-    <label class ="formDetails" for="orderId">orderId: </label> <input type="text" name="orderId" placeholder="vul het bestelnummer in van de bestelling die u wilt bekijken." />
-    <input type="submit" value="Bekijk"/>
+    <label class="formDetails" for="orderId">orderId: </label> <input type="text" name="orderId"
+                                                                      placeholder="bestelnummer"/>
+    <input class="button" type="submit" value="Bekijk"/>
 
 </form>
 

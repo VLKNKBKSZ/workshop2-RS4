@@ -1,48 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Profile Form</title>
+    <title>Profile Form</title>
     <link rel="stylesheet" th:href="@{/css/orderLineForm.css}"/>
 </head>
 <body>
-	<h1>Bestel uw product</h1>
+<h1>Bestel uw product</h1>
 
-    <h4>Dit is de huidige producten lijst waaruit u kunt kiezen</h4>
-    <table class="databaseProductList">
-		<tr>
-			<th>Naam</th>
-			<th>Prijs</th>
-			<th>Voorraad</th>
-		</tr>
-		<tr th:each="product: ${productList}">
-			<td th:text="${product.name}"></td>
-			<td th:text="${product.price}"></td>
-			<td th:text="${product.stock}"></td>
-		</tr>
-	</table>
-	
-	<p>
-        <span class="formDetails" th:text="${warningMessage}">Message</span>
-    </p>
+<h4>Dit is de huidige producten lijst waaruit u kunt kiezen</h4>
+<table class="databaseProductList">
+    <tr>
+        <th>Naam</th>
+        <th>Prijs</th>
+        <th>Voorraad</th>
+    </tr>
+    <tr th:each="product: ${productList}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.stock}"></td>
+    </tr>
+</table>
+<span class="validationError" th:text="${warningMessage}">Message</span>
+<form method="POST" th:action="@{/orderLine/createNewOrderLine}"
+      th:object="${orderLine}">
 
-	<form method="POST" th:action="@{/orderLine/createNewOrderLine}"
-		th:object="${orderLine}">
+    <label class="formDetails" for="product.name">Naam: </label>
+    <input type="text" name="product.name" placeholder="verplicht veld" th:field="*{product.name}"/></br>
+    <span class="validationError" th:if="${#fields.hasErrors('product.name')}" th:errors="*{product.name}"></span>
 
-		<label class="formDetails" for="product.name">Naam: </label> 
-		<input type="text" name="product.name" placeholder="verplicht veld" th:field="*{product.name}" /> 
-		<span class="validationError" th:if="${#fields.hasErrors('product.name')}" th:errors="*{product.name}"></span> </br> 
-	
-	
-		<label class="formDetails" for="numberOfProducts">Aantal: </label> 
-		<input type="text" name="numberOfProducts" placeholder="verplicht veld" th:field="*{numberOfProducts}" /> 
-		<span class="validationError" th:if="${#fields.hasErrors('numberOfProducts')}" th:errors="*{numberOfProducts}"></span>
-		
-		 </br> 
-		 
-		 <input class="formSubmitBtn" type="submit" value="Verzend" />
+    <label class="formDetails" for="numberOfProducts">Aantal: </label>
 
-	</form>
+    <input type="text" name="numberOfProducts" placeholder="verplicht veld" th:field="*{numberOfProducts}"/> </br>
+    <span class="validationError" th:if="${#fields.hasErrors('numberOfProducts')}"
+          th:errors="*{numberOfProducts}"></span>
+    </br>
+    <input class="button" type="submit" value="Bestel uw product"/>
 
+</form>
 
 
 </body>

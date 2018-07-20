@@ -14,7 +14,6 @@ body {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 h1 {
@@ -25,4 +24,27 @@ h1 {
 
 .validationError {
     color: white;
+}
+
+.headerForSearchOrder {
+    margin-top: 2px;
+    border-bottom: 2px solid black;
+}
+
+.button {
+    background-color: darkgrey;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;;
+}
+
+.button:hover {
+    color: black;
 }

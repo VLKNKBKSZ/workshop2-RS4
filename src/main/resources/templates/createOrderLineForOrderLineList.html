@@ -2,12 +2,12 @@
 <html>
 <head>
     <title>Profile Form</title>
-    <link rel="stylesheet" th:href="@{/css/personForm.css}"/>
+    <link rel="stylesheet" th:href="@{/css/orderLineForm.css}"/>
 </head>
 <body>
 <h1>Bestel uw product</h1>
 
-<table>
+<table class="formDetails">
     <tr>
         <th>Naam</th>
         <th>Prijs</th>
@@ -22,7 +22,7 @@
 </table>
 
 <p>
-        <span class="formDetails" th:text="${warningMessage}">Message</span>
+    <span class="formDetails" th:text="${warningMessage}">Message</span>
 </p>
 
 <form method="POST" th:action="@{/orderLine/addOrderLineToOrderLineList}"
@@ -39,8 +39,8 @@
           th:errors="*{numberOfProducts}"></span>
 
     </br>
-
-    <input class="formSubmitBtn" type="submit" value="Verzend"/>
+    <p></p></br>
+    <input class="button" type="submit" value="Bestel Product"/>
 
 </form>
 

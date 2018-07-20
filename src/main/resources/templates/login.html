@@ -1,32 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login page</title>
-<link rel="stylesheet" th:href="@{/css/login.css}" />
+    <title>Login page</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}"/>
 </head>
 <body>
 <header>Inloggen</header>
 
-	<p>
-		<span class="validationError" th:text="${message}">Message</span>
-	</p>
-	
-	<form method="POST" th:action="@{/login}" th:object="${account}">
+<p>
+    <span class="validationError" th:text="${message}">Message</span>
+</p>
 
-		<label class ="formDetails" for="username">Email: </label> <input type="text" name="email" placeholder="vul e-mail adres in" th:field="*{email}" /> </br>
-		<span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Cannot be Empty</span> 
-			
-		<label class ="formDetails" for="password">Password: </label> <input type="password" name="password" placeholder="vul wachtwoord in"  /> </br>
-		<span class="validationError" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Cannot be Empty</span>
-			<br>
-				<input type="submit" value="Log in" />
+<form method="POST" th:action="@{/login}" th:object="${account}">
 
-	</form>
-	<p>
-		Heb je nog geen account voor de geweldige website nevvo meubels !? <a class="newAccountLink"
-																			  th:href="@{/account}"> Klik dan hier</a>
-	</p>
+    <label class="formDetails" for="username">Email: </label> <input type="text" name="email"
+                                                                     placeholder="vul e-mail adres in"
+                                                                     th:field="*{email}"/>
+    <span class="validationError" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Cannot be Empty</span>
+    </br>
+    <label class="formDetails" for="password">Password: </label> <input type="password" name="password"
+                                                                        placeholder="vul wachtwoord in"/>
+    <span class="validationError" th:if="${#fields.hasErrors('password')}"
+          th:errors="*{password}">Cannot be Empty</span>
+
+    </br>
+    <p><input class="buttonLogin" type="submit" value="Inloggen"/></p>
+
+</form>
+
+<p>
+    Heb je nog geen account voor de geweldige website nevvo meubels !? <a class="newAccountLink"
+                                                                          th:href="@{/account}"> Klik dan hier</a>
+</p>
 <img th:src="@{/images/nevvoMeubel2.jpg}" alt="nevvoMeubels"
-	 class="image"/>
+     class="image"/>
 </body>
 </html>
