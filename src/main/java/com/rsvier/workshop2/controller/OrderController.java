@@ -111,7 +111,7 @@ public class OrderController {
         List<OrderLine> orderLineList = orderRepository.findOrderByOrderId(orderId).getListOfTotalOrderLines();
         model.addAttribute("orderLineList", orderLineList);
 
-        return "";
+        return "showOrderDetails";
     }
 
 }
