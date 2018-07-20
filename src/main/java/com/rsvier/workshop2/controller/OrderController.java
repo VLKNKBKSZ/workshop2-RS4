@@ -64,8 +64,8 @@ public class OrderController {
             orderLine.setOrder(order);
 
         }
-        order.setTotalPrice(getTotalPriceOfOrder(order));
     	order.setListOfTotalOrderLines(orderLineList);
+        order.setTotalPrice(getTotalPriceOfOrder(order));
     	order.setPerson(person);
     	
     	order.setOrderStatus(Order.OrderStatus.OPEN);
