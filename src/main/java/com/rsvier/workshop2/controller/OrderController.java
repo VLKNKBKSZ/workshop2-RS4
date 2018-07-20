@@ -64,19 +64,38 @@ public class OrderController {
             orderLine.setOrder(order);
 
         }
+        order.setTotalPrice(getTotalPriceOfOrder(order));
     	order.setListOfTotalOrderLines(orderLineList);
     	order.setPerson(person);
     	order.setOrderStatus(Order.OrderStatus.OPEN);
     	order.setOrderDateTime(LocalDateTime.now());
     	orderRepository.save(order);
-    	session.isComplete();
+    	session.setComplete();
     	
     	String message = "De bestelling is geplaatst.";
     	
         model.addAttribute("editMessage", message);
         redirectAttributes.addFlashAttribute("editMessage", message);
-        
+        redirectAttributes.addFlashAttribute("person", person);
+
         return "redirect:/customer";
+    }
+
+
+    public BigDecimal getTotalPriceOfOrder(Order order) {
+
+        BigDecimal totalPriceOfOrder = new BigDecimal(0);
+
+        for (OrderLine orderLine : order.getListOfTotalOrderLines()) {
+
+            BigDecimal totalPriceOfOrderLine = new BigDecimal(0);
+            BigDecimal numberOfProductsInBigDecimal = (BigDecimal.valueOf(orderLine.getNumberOfProducts()));
+            totalPriceOfOrderLine = (totalPriceOfOrderLine.add((orderLine.getProduct().getPrice()))
+                    .multiply(numberOfProductsInBigDecimal));
+            totalPriceOfOrder = totalPriceOfOrder.add(totalPriceOfOrderLine);
+        }
+
+        return totalPriceOfOrder;
     }
 
 }
