@@ -81,6 +81,15 @@ public class OrderController {
         return "redirect:/customer";
     }
 
+    @GetMapping("/order")
+    public String showOrdersOfPerson(Person person, Model model) {
+
+        List<Order> orderList = orderRepository.findOrdersByPerson(person);
+        model.addAttribute("orderList", orderList);
+
+        return "/myOrders";
+    }
+
 
     public BigDecimal getTotalPriceOfOrder(Order order) {
 
