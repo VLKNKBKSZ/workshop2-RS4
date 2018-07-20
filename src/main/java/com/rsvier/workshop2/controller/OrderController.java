@@ -88,7 +88,7 @@ public class OrderController {
         List<Order> orderList = orderRepository.findOrdersByPerson(person);
         model.addAttribute("orderList", orderList);
 
-        return "MyOrder";
+        return "myOrders";
     }
 
 
