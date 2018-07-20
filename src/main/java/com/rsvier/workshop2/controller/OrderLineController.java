@@ -34,6 +34,7 @@ public class OrderLineController {
 	private OrderLineRepository orderLineRepository;
 	private OrderRepository orderRepository;
 
+	
 	@Autowired
 	public OrderLineController(ProductRepository productRepository, OrderLineRepository orderLineRepository,
 			OrderRepository orderRepository) {
@@ -106,7 +107,12 @@ public class OrderLineController {
 
 			return "createNewOrderLine";
 		}
-
+		
+		
+		productDB.setStock(productDB.getStock() - orderLine.getNumberOfProducts());
+		productRepository.save(productDB);
+		
+		
 		orderLine.setProduct(productDB);
 		List<OrderLine> orderLineList = new ArrayList<>();
 		orderLineList.add(orderLine);
@@ -118,6 +124,9 @@ public class OrderLineController {
 		return "currentOrder";
 	}
 
+	
+	
+	
 	@PostMapping("/addOrderLineToOrderLineList")
 	public String addOrderLineToOrderLineList(List<OrderLine> orderLineList, @Valid OrderLine orderLine, Errors errors,
 			Person person, Model model) {
@@ -151,6 +160,10 @@ public class OrderLineController {
 
 			return "createOrderLineForOrderLineList";
 		}
+		
+		productDB.setStock(productDB.getStock() - orderLine.getNumberOfProducts());
+		productRepository.save(productDB);
+		
 		orderLine.setProduct(productDB);
 		orderLineList.add(orderLine);
 		model.addAttribute(orderLineList);
@@ -161,6 +174,8 @@ public class OrderLineController {
 		return "currentOrder";
 	}
 
+	
+	
 	public BigDecimal getTotalPriceOfOrder(List<OrderLine> orderLineList) {
 
 		BigDecimal totalPriceOfOrder = new BigDecimal(0);
