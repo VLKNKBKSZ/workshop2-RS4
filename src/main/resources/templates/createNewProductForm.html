@@ -7,8 +7,21 @@
 <body>
 
 
-	<h1>Voeg product toe aan winkelmandje</h1>
-	
+	<h1>Voeg een nieuw product toe aan het assortiment</h1>
+	<p>Huidige productenlijst</p>
+	<table class="databaseProductList">
+		<tr>
+			<th>Naam</th>
+			<th>Prijs</th>
+			<th>Voorraad</th>
+		</tr>
+		<tr th:each="product: ${productList}">
+			<td th:text="${product.name}"></td>
+			<td th:text="${product.price}"></td>
+			<td th:text="${product.stock}"></td>
+		</tr>
+	</table>
+	<br><br>
 
 	<!--  											Profile Form											 -->
 	<form method="POST" th:action="@{/product/createNewProduct}"

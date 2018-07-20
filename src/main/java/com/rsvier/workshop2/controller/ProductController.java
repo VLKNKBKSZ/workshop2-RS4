@@ -40,7 +40,9 @@ public class ProductController {
 	}
 
 	@GetMapping("/createNewProduct")
-	public String showCreateProductPage() {
+	public String showCreateProductPage(Model model) {
+		List<Product> productList = (List<Product>) productRepository.findAll();
+		model.addAttribute(productList);
 		return "createNewProductForm";
 	}
 
@@ -55,10 +57,14 @@ public class ProductController {
 	public String addProduct(@Valid Product product, Errors errors, Model model, SessionStatus sessionStatus, 
 			RedirectAttributes redirectAttributes) {
 		
+		
+		
 		if (errors.hasErrors()) {
 
 			return "createNewProductForm";
 		}
+		
+		
 
 		productRepository.save(product);
 
