@@ -27,18 +27,19 @@
 	<form method="POST" th:action="@{/product/createNewProduct}"
 		th:object="${product}">
 
-		<label class="formDetails" for="name">Naam: </label> <input
-			type="text" name="name" placeholder="verplicht veld"
-			th:field="*{name}" /> <span class="validationError"
-			th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> </br> <label
-			class="formDetails" for="price">Prijs: </label> <input type="text"
-			name="price" placeholder="verplicht veld" th:field="*{price}" /> <span
-			class="validationError" th:if="${#fields.hasErrors('price')}"
-			th:errors="*{price}"></span> </br> <label class="formDetails" for="stock">Aantal:
-		</label> <input type="text" name="stock" placeholder="verplicht veld"
-			th:field="*{stock}" /> <span class="validationError"
-			th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span> </br> <input
-			class="formSubmitBtn" type="submit" value="Verzend" />
+		<label class="formDetails" for="name">Naam: </label> 
+		<input type="text" name="name" placeholder="verplicht veld" th:field="*{name}" /> 
+		<span class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span> </br> 
+		
+		<label class="formDetails" for="price">Prijs: </label> 
+		<input type="text" name="price" placeholder="verplicht veld" th:field="*{price}" /> 
+		<span class="validationError" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span> </br> 
+		
+		<label class="formDetails" for="stock">Aantal: </label> 
+		<input type="text" name="stock" placeholder="verplicht veld" th:field="*{stock}" /> 
+		<span class="validationError" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span> </br> 
+		
+		<input class="formSubmitBtn" type="submit" value="Verzend" />
 
 	</form>
 
