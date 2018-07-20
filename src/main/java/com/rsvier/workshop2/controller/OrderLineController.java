@@ -27,7 +27,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("/orderLine")
-@SessionAttributes({ "person", "orderLineList" })
+@SessionAttributes({"person","orderLineList"})
 public class OrderLineController {
 
 	private ProductRepository productRepository;
