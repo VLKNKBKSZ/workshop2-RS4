@@ -9,18 +9,16 @@
 
 <table class="databaseProductList">
     <tr>
-        <th>Aantal</th>
-        <th>Naam</th>
-        <th>Prijs p.st.</th>
-        <th>Totaal per product</th>
+        <th>Bestellingnummer</th>
+        <th>Bestellingsdatum</th>
+        <th>Totale prijs</th>
     </tr>
     </br>
 
-    <tr th:each="orderLine: ${orderLineList}">
-        <td th:text="${orderLine.numberOfProducts}"></td>
-        <td th:text="${orderLine.product.name}"></td>
-        <td th:text="${orderLine.product.price}"></td>
-        <td th:text="${orderLine.numberOfProducts * orderLine.product.price}"></td>
+    <tr th:each="order: ${orderList}">
+        <td th:text="${order.orderId}"></td>
+        <td th:text="${order.orderDateTime}"></td>
+        <td th:text="${order.totalPrice}"></td>
     </tr>
 </table>
 <table class="databaseProductList">
