@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile Form</title>
+    <link rel="stylesheet" th:href="@{/css/currentOrder.css}"/>
+</head>
+<body>
+<h1>Huidige bestellingen</h1>
+
+<table class="databaseProductList">
+    <tr>
+        <th>Aantal</th>
+        <th>Naam</th>
+        <th>Prijs p.st.</th>
+        <th>Totaal per product</th>
+    </tr>
+    </br>
+
+    <tr th:each="orderLine: ${orderLineList}">
+        <td th:text="${orderLine.numberOfProducts}"></td>
+        <td th:text="${orderLine.product.name}"></td>
+        <td th:text="${orderLine.product.price}"></td>
+        <td th:text="${orderLine.numberOfProducts * orderLine.product.price}"></td>
+    </tr>
+</table>
+<table class="databaseProductList">
+    <tr>
+        <th>Totale prijs van de bestelling</th>
+    </tr>
+</br>
+    <td th:text="${totalPrice}"></td>
+</table>
+	
+
+<form method="GET" th:action="@{/order/currentOrder}"></a>
+
+    <input type="submit" value="Betalen"/>
+</form>
+    </body>
+
+</html>
