@@ -81,13 +81,13 @@ public class OrderController {
         return "redirect:/customer";
     }
 
-    @GetMapping("/order")
+    @GetMapping()
     public String showOrdersOfPerson(Person person, Model model) {
 
         List<Order> orderList = orderRepository.findOrdersByPerson(person);
         model.addAttribute("orderList", orderList);
 
-        return "/myOrders";
+        return "myOrders";
     }
 
 
