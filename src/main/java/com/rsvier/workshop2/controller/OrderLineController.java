@@ -57,7 +57,6 @@ public class OrderLineController {
 	public String showNewOrderLine(Model model) {
 
 		List<Product> productList = (List<Product>) productRepository.findAll();
-
 		model.addAttribute(productList);
 
 		return "createNewOrderLine";
@@ -67,7 +66,6 @@ public class OrderLineController {
 	public String showNewOrderLineForOrderLineList(Model model) {
 
 		List<Product> productList = (List<Product>) productRepository.findAll();
-
 		model.addAttribute(productList);
 
 		return "createOrderLineForOrderLineList";
@@ -77,16 +75,33 @@ public class OrderLineController {
 	public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors, Person person, Model model) {
 
 		if (errors.hasErrors()) {
+			
+			List<Product> productList = (List<Product>) productRepository.findAll();
+			model.addAttribute(productList);
+			
 			return "createNewOrderLine";
 		}
-
+		
+		
+		
 		Product productDB = productRepository.findByName(orderLine.getProduct().getName());
+		
+		
+		if (productDB == null) {
+			
+			List<Product> productList = (List<Product>) productRepository.findAll();
+			model.addAttribute(productList);
+			String warningMessage = "Dit product bestaat niet. Probeer het opnieuw.";
+			model.addAttribute("warningMessage", warningMessage);
+
+			return "createNewOrderLine";
+		}
 		
 		if (orderLine.getNumberOfProducts() > productDB.getStock()) {
 
 			List<Product> productList = (List<Product>) productRepository.findAll();
 			model.addAttribute(productList);
-			String warningMessage = "mongool voer niet een te hoog aantal in , kan je niet lezen?";
+			String warningMessage = "Het ingevoerde aantal is te hoog. Voer aub een nieuw aantal in.";
 			model.addAttribute("warningMessage", warningMessage);
 
 			return "createNewOrderLine";
@@ -108,18 +123,30 @@ public class OrderLineController {
 			Person person, Model model) {
 
 		if (errors.hasErrors()) {
+			List<Product> productList = (List<Product>) productRepository.findAll();
+			model.addAttribute(productList);
+			
 			return "createOrderLineForOrderLineList";
 		}
 
 		Product productDB = productRepository.findByName(orderLine.getProduct().getName());
 		
+		if (productDB == null) {
+			
+			List<Product> productList = (List<Product>) productRepository.findAll();
+			model.addAttribute(productList);
+			String warningMessage = "Dit product bestaat niet. Probeer het opnieuw.";
+			model.addAttribute("warningMessage", warningMessage);
+
+			return "createOrderLineForOrderLineList";
+		}
 
 		if (orderLine.getNumberOfProducts() > productDB.getStock()) {
 
 			List<Product> productList = (List<Product>) productRepository.findAll();
 			model.addAttribute(productList);
 			
-			String warningMessage = "mongool voer niet een te hoog aantal in , kan je niet lezen?";
+			String warningMessage = "Het ingevoerde aantal is te hoog. Voer aub een nieuw aantal in.";
 			model.addAttribute("warningMessage", warningMessage);
 
 			return "createOrderLineForOrderLineList";
