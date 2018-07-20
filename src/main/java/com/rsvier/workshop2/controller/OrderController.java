@@ -1,6 +1,7 @@
 package com.rsvier.workshop2.controller;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ import com.rsvier.workshop2.repository.ProductRepository;
 
 @Controller
 @RequestMapping("/order")
-@SessionAttributes({"person", "order", "orderLine", "orderLineList"})
+@SessionAttributes({"person", "order","orderLineList"})
 public class OrderController {
 
     private OrderRepository orderRepository;
@@ -51,16 +52,16 @@ public class OrderController {
     }
 
     @GetMapping("/currentOrder")
-    public String placeCurrentOrder(OrderLine orderLine, Person person, List<OrderLine> orderLineList, 
-    		@ModelAttribute("totalPrice")BigDecimal totalPrice, Model model, RedirectAttributes redirectAttributes,
+    public String placeCurrentOrder(Person person, List<OrderLine> orderLineList,
+    		 Model model, RedirectAttributes redirectAttributes,
     		SessionStatus session) {
     	
     	
     	Order order = new Order();
-    	
     	order.setListOfTotalOrderLines(orderLineList);
     	order.setPerson(person);
-    	order.setTotalPrice(totalPrice);
+    	order.setOrderStatus(Order.OrderStatus.OPEN);
+    	order.setOrderDateTime(LocalDateTime.now());
     	
     	orderRepository.save(order);
     	session.isComplete();
@@ -70,7 +71,7 @@ public class OrderController {
         model.addAttribute("editMessage", message);
         redirectAttributes.addFlashAttribute("editMessage", message);
         
-        return "redirect: customerMainMenu";
+        return "redirect:/customer";
     }
 
 }
