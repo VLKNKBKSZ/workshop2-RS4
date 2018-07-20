@@ -53,13 +53,14 @@ public class OrderController {
 
     @GetMapping("/currentOrder")
     public String placeCurrentOrder(Person person, List<OrderLine> orderLineList,
-    		 Model model, RedirectAttributes redirectAttributes,
+    		Model model, RedirectAttributes redirectAttributes,
     		SessionStatus session) {
     	
     	
     	Order order = new Order();
     	order.setListOfTotalOrderLines(orderLineList);
     	order.setPerson(person);
+    	
     	order.setOrderStatus(Order.OrderStatus.OPEN);
     	order.setOrderDateTime(LocalDateTime.now());
     	
