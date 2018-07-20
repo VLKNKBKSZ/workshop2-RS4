@@ -23,6 +23,15 @@
         <td th:text="${orderLine.numberOfProducts * orderLine.product.price}"></td>
     </tr>
 </table>
+</br>
+<form method="POST" th:action="@{/order/deleteOrder}" th:object="${order}">
 
+    <input class="button" type="submit" value="Bestelling verwijderen"/>
+</form>
+</br>
+<form method="POST" th:action="@{/order/editOrder}" th:object="${order}">
+
+    <input class="button" type="submit" value="Bestelling aanpassen"/>
+</form>
 </body>
 </html>

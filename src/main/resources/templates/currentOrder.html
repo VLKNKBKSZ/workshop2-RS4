@@ -27,18 +27,19 @@
     <tr>
         <th>Totale prijs van de bestelling</th>
     </tr>
-</br>
+    </br>
     <td th:text="${totalPrice}"></td>
 </table>
-	
+</br>
 <form method="GET" th:action="@{/orderLine/showNewOrderLineForOrderLineList}"></a>
 
-    <input type="submit" value="Bestel nog een product"/>
+    <input class="button" type="submit" value="Bestel nog een product"/>
 
 </form>
+</br>
 <form method="GET" th:action="@{/order/currentOrder}"></a>
 
-    <input type="submit" value="Plaats bestelling"/>
+    <input class="button" type="submit" value="Plaats bestelling"/>
 </form>
 </body>
 </html>

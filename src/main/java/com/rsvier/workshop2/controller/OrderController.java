@@ -21,7 +21,7 @@ import com.rsvier.workshop2.repository.ProductRepository;
 
 @Controller
 @RequestMapping("/order")
-@SessionAttributes({"person", "order","orderLineList"})
+@SessionAttributes({"person", "order", "orderLineList"})
 public class OrderController {
 
     private OrderRepository orderRepository;
@@ -36,47 +36,16 @@ public class OrderController {
     public Product getProduct() {
         return new Product();
     }
-    
+
     @ModelAttribute("orderLineList")
-	public List<OrderLine> orderLineList() {
-		return new ArrayList<>();
-	}
+    public List<OrderLine> orderLineList() {
+        return new ArrayList<>();
+    }
 
     @Autowired
     public OrderController(OrderRepository orderRepository, ProductRepository productRepository) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
-    }
-
-    @GetMapping("/currentOrder")
-    public String placeCurrentOrder(Person person, List<OrderLine> orderLineList,
-    		Model model, RedirectAttributes redirectAttributes,
-    		SessionStatus session) {
-    	
-    	
-    	Order order = new Order();
-    	// This loop is added so the orderlinetable can acces and save the order_id
-        for (OrderLine orderLine:orderLineList
-             ) {
-            orderLine.setOrder(order);
-
-        }
-    	order.setListOfTotalOrderLines(orderLineList);
-        order.setTotalPrice(getTotalPriceOfOrder(order));
-    	order.setPerson(person);
-    	
-    	order.setOrderStatus(Order.OrderStatus.OPEN);
-    	order.setOrderDateTime(LocalDateTime.now());
-    	orderRepository.save(order);
-    	session.setComplete();
-    	
-    	String message = "De bestelling is geplaatst.";
-    	
-        model.addAttribute("editMessage", message);
-        redirectAttributes.addFlashAttribute("editMessage", message);
-        redirectAttributes.addFlashAttribute("person", person);
-
-        return "redirect:/customer";
     }
 
     @GetMapping()
@@ -86,6 +55,40 @@ public class OrderController {
         model.addAttribute("orderList", orderList);
 
         return "myOrders";
+    }
+
+    @GetMapping("/currentOrder")
+    public String placeCurrentOrder(Person person, List<OrderLine> orderLineList,
+
+                                    Model model, RedirectAttributes redirectAttributes,
+                                    SessionStatus session) {
+
+
+        Order order = new Order();
+        // This loop is added so the orderlinetable can acces and save the order_id
+        for (OrderLine orderLine : orderLineList
+                ) {
+
+            orderLine.setOrder(order);
+
+        }
+        order.setListOfTotalOrderLines(orderLineList);
+        order.setTotalPrice(getTotalPriceOfOrder(order));
+
+        order.setPerson(person);
+        order.setOrderStatus(Order.OrderStatus.OPEN);
+        order.setOrderDateTime(LocalDateTime.now());
+        orderRepository.save(order);
+        session.setComplete();
+
+        String message = "De bestelling is geplaatst.";
+
+
+        model.addAttribute("editMessage", message);
+        redirectAttributes.addFlashAttribute("editMessage", message);
+        redirectAttributes.addFlashAttribute("person", person);
+
+        return "redirect:/customer";
     }
 
 
@@ -106,12 +109,22 @@ public class OrderController {
     }
 
     @PostMapping("/showOrderDetails")
-    public String showOrderDetails (long orderId, Model model) {
+    public String showOrderDetails(long orderId, Model model, Person person) {
+        Order order = orderRepository.findOrderByOrderId(orderId);
 
-        List<OrderLine> orderLineList = orderRepository.findOrderByOrderId(orderId).getListOfTotalOrderLines();
+        if (order == null) {
+            String message = "U heeft een bestellingsnummer ingevoerd dat niet overeenkomt met uw bestellingen, probeer het nogmaals";
+            List<Order> orderList = orderRepository.findOrdersByPerson(person);
+            model.addAttribute("orderList", orderList);
+            model.addAttribute("message", message);
+            return "myOrders";
+        }
+        List<OrderLine> orderLineList = order.getListOfTotalOrderLines();
         model.addAttribute("orderLineList", orderLineList);
 
         return "showOrderDetails";
+
+
     }
 
 }
