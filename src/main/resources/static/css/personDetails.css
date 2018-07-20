@@ -1,0 +1,14 @@
+.center-align-stuff {
+	margin: 0 auto;
+	width: 900px;
+	font-family: arial;
+}
+
+input[type="submit"] {
+	background: darkgrey;
+	color: white;
+	padding: 5px 10px;
+	border-radius: 6px;
+	font-weight: bold;
+    font-size: 14px;
+}

@@ -9,6 +9,10 @@ body {
     margin-right: auto;
 }
 
+.databaseProductList{
+	 margin: 0 auto;
+}
+
 .databaseProductList th,
 .databaseProductList td{
 	padding: 0 20px;

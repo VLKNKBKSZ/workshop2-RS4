@@ -20,7 +20,9 @@
         <td th:text="${product.stock}"></td>
     </tr>
 </table>
+
 <span class="validationError" th:text="${warningMessage}">Message</span>
+
 <form method="POST" th:action="@{/orderLine/createNewOrderLine}"
       th:object="${orderLine}">
 

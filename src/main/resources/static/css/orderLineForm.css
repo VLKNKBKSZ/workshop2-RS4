@@ -18,7 +18,10 @@ h1 {
 .validationError {
     color: red;
 }
-
+.databaseProductList{
+	 margin: 0 auto;
+}
+   
 .databaseProductList th, 
 .databaseProductList td{
 	padding: 0 20px;

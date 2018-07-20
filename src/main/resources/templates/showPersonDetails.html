@@ -3,10 +3,10 @@
 <head>
 
 <title>Persoonsgegevens</title>
-<link rel="stylesheet" th:href="@{/css/login.css}" />
+<link rel="stylesheet" th:href="@{/css/personDetails.css}" />
 </head>
 <body>
-
+<div class="center-align-stuff">
 	<h1>Persoonlijke gegevens</h1>
 	
 	<p>Naam: <span th:text="${person.name}">Data</span></p>
@@ -31,6 +31,6 @@
     
         <input type="submit" value="Account verwijderen" />
 	</form>
-
+</div>
 </body>
 </html>
