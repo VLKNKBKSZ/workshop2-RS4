@@ -9,9 +9,10 @@ body {
     margin-right: auto;
 }
 
-.databaseProductList {
-
-    text-align: center;
+.databaseProductList th,
+.databaseProductList td{
+	padding: 0 20px;
+    text-align: left;
     margin-left: auto;
     margin-right: auto;
 }

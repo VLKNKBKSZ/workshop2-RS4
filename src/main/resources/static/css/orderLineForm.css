@@ -19,8 +19,10 @@ h1 {
     color: red;
 }
 
-.databaseProductList {
-    text-align: center;
+.databaseProductList th, 
+.databaseProductList td{
+	padding: 0 20px;
+   text-align: left;
     margin-left: auto;
     margin-right: auto;
 
@@ -51,3 +53,4 @@ h1 {
 .button:hover {
     color: black;
 }
+
