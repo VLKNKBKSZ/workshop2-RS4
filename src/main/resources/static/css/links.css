@@ -29,7 +29,7 @@ ul {
 
 ul li {
     display: inline;
-    width: 150px;
+    width: 175px;
     text-align: center;
     font-size: 22px;
     margin-right: 10px;
@@ -40,8 +40,10 @@ ul li a {
     text-decoration: none;
     display: inline;
     color: white;
+    border-radius: 3px;
+    padding: 3px;
     background-color: darkgrey;
-    opacity: .9;
+    opacity: .7;
 }
 
 ul li a:hover {
@@ -50,9 +52,6 @@ ul li a:hover {
     border-bottom: 2px solid black;
 }
 
-ol li {
-    margin-bottom: 2px;
-}
 .newAccountLink {
     color: black;
     text-decoration: none;

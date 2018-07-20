@@ -18,14 +18,15 @@ h1 {
 .validationError {
     color: red;
 }
-.databaseProductList{
-	 margin: 0 auto;
+
+.databaseProductList {
+    margin: 0 auto;
 }
-   
-.databaseProductList th, 
-.databaseProductList td{
-	padding: 0 20px;
-   text-align: left;
+
+.databaseProductList th,
+.databaseProductList td {
+    padding: 0 20px;
+    text-align: left;
     margin-left: auto;
     margin-right: auto;
 

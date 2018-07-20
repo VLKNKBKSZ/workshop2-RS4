@@ -26,9 +26,9 @@
 	<span class="validationError" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span> </br> 
 		
 	<label class="formDetails" for="country">Land: </label> <input type="text" name="country" th:field="*{country}" /> </br> 
-	<span class="validationError" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></span> </br> 
-
-	<input type="submit" value="Pas gegevens aan" />
+	<span class="validationError" th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></span> </br>
+		<p></p>
+		<input class="buttonLogin" type="submit" value="Pas gegevens aan"/>
 
 
 	</form>

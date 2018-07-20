@@ -1,10 +1,10 @@
 body {
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
-		"Times New Roman", "serif";
-	font-variant-caps: small-caps;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+    "Times New Roman", "serif";
+    font-variant-caps: small-caps;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     width: 900px;
 }
 
@@ -16,25 +16,31 @@ header {
     border-right: 2px solid black;
 }
 
+h1 {
+    border-bottom: 5px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+
 .validationError {
-	color: red;
+    color: red;
 }
 
 .formDetails {
-	display: inline-block; 
-	width: 210px; 
-	text-align: right;
-	text-align: left;
-	padding: 5px;
+    display: inline-block;
+    width: 210px;
+    text-align: right;
+    text-align: left;
+    padding: 5px;
 }
 
 .newAccountLink {
     color: red;
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .newAccountLink:hover {
-	text-decoration: none;
+    text-decoration: none;
     border-bottom: 2px solid black;
 }
 

@@ -21,9 +21,9 @@
 		
 		<label class ="formDetails" for="phoneNumber">Telefoonnummer: </label> <input type="text" name="phoneNumber" th:field="*{phoneNumber}" />
 		<span class="validationError" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span> </br>
-		
-		
-		<input type="submit" value="Pas gegevens aan" />
+
+		<p></p>
+		<input class="buttonLogin" type="submit" value="Pas gegevens aan"/>
 
 	</form>
 

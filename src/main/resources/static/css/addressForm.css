@@ -1,12 +1,12 @@
 body {
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
-		"Times New Roman", "serif";
-	font-variant-caps: small-caps;
-	clear: both;
-	text-align: center;
-	width: 900px;
-	margin-left: auto;
-	margin-right: auto;
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+    "Times New Roman", "serif";
+    font-variant-caps: small-caps;
+    clear: both;
+    text-align: center;
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1 {
@@ -16,13 +16,31 @@ h1 {
 }
 
 .validationError {
-	color: white;
+    color: white;
 }
 
 .formDetails {
-	display: inline-block; 
-	width: 210px; 
-	text-align: right;
-	text-align: left;
-	padding: 5px;
+    display: inline-block;
+    width: 210px;
+    text-align: right;
+    text-align: left;
+    padding: 5px;
+}
+
+.buttonLogin {
+    background-color: darkgrey;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;;
+}
+
+.buttonLogin:hover {
+    color: black;
 }

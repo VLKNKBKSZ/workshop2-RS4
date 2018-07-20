@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Address Form</title>
-<link rel="stylesheet" th:href="@{/css/addressForm.css}" />
+    <title>Address Form</title>
+    <link rel="stylesheet" th:href="@{/css/addressForm.css}"/>
 </head>
 <body>
 <div class="header">
-		<div class="changeDetails">
-			<h1> Je bent ingelogd als  <span th:text="${person.name}">Name</span> <span th:text="${person.lastName}">Last name</span></h1>
-		</div>
+    <div class="changeDetails">
+        <h1> Je bent ingelogd als <span th:text="${person.name}">Name</span> <span th:text="${person.lastName}">Last name</span>
+        </h1>
+    </div>
 </div>
-	
-	<form method="POST" th:action="@{/customer/changePersonDetails}" th:object="${person}">
-        <input type="submit" value="Persoonlijke gegevens aanpassen" />
-	</form>
-	
-	<form method="POST" th:action="@{/customer/changeAddress}" th:object="${address}">
-        <input type="submit" value="Adres aanpassen" />
-	</form>
-	
-	<form method="POST" th:action="@{/customer/changePassword}" th:object="${account}">
-        <input type="submit" value="Wachtwoord aanpassen" />
-	</form>
-	
-	
+
+<form method="POST" th:action="@{/customer/changePersonDetails}" th:object="${person}">
+    <input class="buttonLogin" type="submit" value="Persoonlijke gegevens aanpassen"/>
+</form>
+</br>
+
+<form method="POST" th:action="@{/customer/changeAddress}" th:object="${address}">
+    <input class="buttonLogin" type="submit" value="Adres aanpassen"/>
+</form>
+</br>
+<form method="POST" th:action="@{/customer/changePassword}" th:object="${account}">
+    <input class="buttonLogin" type="submit" value="Wachtwoord aanpassen"/>
+</form>
+
+
 </body>
 </html>

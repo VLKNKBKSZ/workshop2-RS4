@@ -1,47 +1,52 @@
 @charset "ISO-8859-1";
 
 body {
-	font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
-		"Times New Roman", "serif";
-	font-variant-caps: small-caps;
-	clear: both;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
+    font-family: Cambria, "Hoefler Text", "Liberation Serif", Times,
+    "Times New Roman", "serif";
+    font-variant-caps: small-caps;
+    clear: both;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .main {
-	width: 900px;
-	margin: 0 auto;
+    width: 900px;
+    margin: 0 auto;
 }
+
 .image {
-	width: 850px;
-	/* height: 350px; */
+    width: 850px;
+    /* height: 350px; */
 }
+
 .header {
     border-bottom: 5px solid black;
-	overflow: auto;
-	height: 80px;
+    overflow: auto;
+    height: 80px;
 }
+
 .header .intro {
-	float: left;
-	padding: 0 20px;
+    float: left;
+    padding: 0 20px;
 }
 
 .header .listItem {
-	float: right;
-	line-height: 80px;
-	padding: 0 20px;
-	font-size: 20px;
+    float: right;
+    line-height: 80px;
+    padding: 0 20px;
+    font-size: 20px;
     text-decoration: none;
 }
 
 .header .hyperLinks {
     text-decoration: none;
+    display: inline;
     color: white;
+    border-radius: 3px;
+    padding: 3px;
     background-color: darkgrey;
-    opacity: .9;
-    padding: 5px;
+    opacity: .7;
 }
 
 .header .hyperLinks:hover {

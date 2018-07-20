@@ -2,35 +2,36 @@
 <html>
 <head>
 
-<title>Persoonsgegevens</title>
-<link rel="stylesheet" th:href="@{/css/personDetails.css}" />
+    <title>Persoonsgegevens</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}"/>
 </head>
 <body>
-<div class="center-align-stuff">
-	<h1>Persoonlijke gegevens</h1>
-	
-	<p>Naam: <span th:text="${person.name}">Data</span></p>
-	<p>Tussenvoegsel: <span th:text="${person.middleName}">Data</span></p>
-	<p>Achternaam: <span th:text="${person.lastName}">Data</span></p>
-	<p>Telefoonnummer: <span th:text="${person.phoneNumber}">Data</span></p>
-	</br>
-	<h1>Adresgegevens</h1>
-	<p>Straat: <span th:text="${address.streetName}">Data</span></p>
-	<p>Huisnummer: <span th:text="${address.houseNumber}">Data</span></p>
-	<p>Huisnummer toevoeging: <span th:text="${address.additionalHouseNumber}">Data</span></p>
-	<p>Postcode: <span th:text="${address.postalCode}">Data</span></p>
-	<p>Stad: <span th:text="${address.city}">Data</span></p>
-	<p>Land: <span th:text="${address.Country}">Data</span></p>
-	
-	<form method="POST" th:action="@{/customer/changeDetails}" th:object="${person}">
-    
-        <input type="submit" value="Account aanpassen" />
-	</form>
-	
-	<form method="POST" th:action="@{/customer/deleteProfile}" th:object="${person}">
-    
-        <input type="submit" value="Account verwijderen" />
-	</form>
-</div>
+
+<h1>Persoonlijke gegevens</h1>
+
+<p>Naam: <span th:text="${person.name}">Data</span></p>
+<p>Tussenvoegsel: <span th:text="${person.middleName}">Data</span></p>
+<p>Achternaam: <span th:text="${person.lastName}">Data</span></p>
+<p>Telefoonnummer: <span th:text="${person.phoneNumber}">Data</span></p>
+</br>
+<h1>Adresgegevens</h1>
+<p>Straat: <span th:text="${address.streetName}">Data</span></p>
+<p>Huisnummer: <span th:text="${address.houseNumber}">Data</span></p>
+<p>Huisnummer toevoeging: <span th:text="${address.additionalHouseNumber}">Data</span></p>
+<p>Postcode: <span th:text="${address.postalCode}">Data</span></p>
+<p>Stad: <span th:text="${address.city}">Data</span></p>
+<p>Land: <span th:text="${address.Country}">Data</span></p>
+
+<form method="POST" th:action="@{/customer/changeDetails}" th:object="${person}">
+
+    <input class="buttonLogin" type="submit" value="Account aanpassen"/>
+</form>
+</br>
+
+<form method="POST" th:action="@{/customer/deleteProfile}" th:object="${person}">
+
+    <input class="buttonLogin" type="submit" value="Account verwijderen"/>
+</form>
+
 </body>
 </html>
