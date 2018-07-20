@@ -70,12 +70,13 @@ public class OrderController {
     	order.setOrderStatus(Order.OrderStatus.OPEN);
     	order.setOrderDateTime(LocalDateTime.now());
     	orderRepository.save(order);
-    	session.isComplete();
+    	session.setComplete();
     	
     	String message = "De bestelling is geplaatst.";
     	
         model.addAttribute("editMessage", message);
         redirectAttributes.addFlashAttribute("editMessage", message);
+        redirectAttributes.addFlashAttribute("person", person);
         
         return "redirect:/customer";
     }
