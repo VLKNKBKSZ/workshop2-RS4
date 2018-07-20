@@ -7,11 +7,12 @@
 <body>
 <h1>Huidige bestellingen</h1>
 
-<table class="databaseProductList">
+: <table class="databaseProductList">
     <tr>
         <th>Bestellingnummer</th>
         <th>Bestellingsdatum</th>
         <th>Totale prijs</th>
+        <th>Status</th>
     </tr>
     </br>
 
@@ -19,6 +20,7 @@
         <td th:text="${order.orderId}"></td>
         <td th:text="${order.orderDateTime}"></td>
         <td th:text="${order.totalPrice}"></td>
+        <td th:text="${order.orderStatus}"></td>
     </tr>
 </table>
 <table class="databaseProductList">
@@ -28,12 +30,13 @@
 </br>
     <td th:text="${totalPrice}"></td>
 </table>
-	
 
-<form method="GET" th:action="@{/order/currentOrder}"></a>
+<form method="POST" th:action="@{/order/showOrderDetails}" th:object="${}">
 
-    <input type="submit" value="Betalen"/>
+    <label class ="formDetails" for="orderId">orderId: </label> <input type="text" name="orderId" placeholder="vul het bestelnummer in van de bestelling die u wilt bekijken." />
+    <input type="submit" value="Bekijk"/>
+
 </form>
-    </body>
 
+</body>
 </html>
