@@ -5,6 +5,24 @@
     <title>Title</title>
 </head>
 <body>
+<h1>Huidige Bestelling</h1>
+
+<table class="databaseProductList">
+    <tr>
+        <th>Aantal</th>
+        <th>Naam</th>
+        <th>Prijs p.st.</th>
+        <th>Totaal per product</th>
+    </tr>
+    </br>
+
+    <tr th:each="orderLine: ${orderLineList}">
+        <td th:text="${orderLine.numberOfProducts}"></td>
+        <td th:text="${orderLine.product.name}"></td>
+        <td th:text="${orderLine.product.price}"></td>
+        <td th:text="${orderLine.numberOfProducts * orderLine.product.price}"></td>
+    </tr>
+</table>
 
 </body>
 </html>
