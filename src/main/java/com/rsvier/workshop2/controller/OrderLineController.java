@@ -57,7 +57,6 @@ public class OrderLineController {
 	public String showNewOrderLine(Model model) {
 
 		List<Product> productList = (List<Product>) productRepository.findAll();
-
 		model.addAttribute(productList);
 
 		return "createNewOrderLine";
@@ -67,7 +66,6 @@ public class OrderLineController {
 	public String showNewOrderLineForOrderLineList(Model model) {
 
 		List<Product> productList = (List<Product>) productRepository.findAll();
-
 		model.addAttribute(productList);
 
 		return "createOrderLineForOrderLineList";
@@ -77,6 +75,10 @@ public class OrderLineController {
 	public String createNewOrderLine(@Valid OrderLine orderLine, Errors errors, Person person, Model model) {
 
 		if (errors.hasErrors()) {
+			
+			List<Product> productList = (List<Product>) productRepository.findAll();
+			model.addAttribute(productList);
+			
 			return "createNewOrderLine";
 		}
 		
@@ -121,6 +123,9 @@ public class OrderLineController {
 			Person person, Model model) {
 
 		if (errors.hasErrors()) {
+			List<Product> productList = (List<Product>) productRepository.findAll();
+			model.addAttribute(productList);
+			
 			return "createOrderLineForOrderLineList";
 		}
 
