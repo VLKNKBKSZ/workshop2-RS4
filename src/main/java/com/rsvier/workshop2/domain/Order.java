@@ -16,7 +16,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderId;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "order")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<OrderLine> listOfTotalOrderLines = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)

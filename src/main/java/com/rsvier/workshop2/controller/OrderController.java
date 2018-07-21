@@ -121,10 +121,39 @@ public class OrderController {
         }
         List<OrderLine> orderLineList = order.getListOfTotalOrderLines();
         model.addAttribute("orderLineList", orderLineList);
+        model.addAttribute("order", order);
 
         return "showOrderDetails";
 
 
     }
 
+    @PostMapping("/deleteOrder")
+    public String deleteOrder(Order order, Model model) {
+        if (order.getOrderStatus() == Order.OrderStatus.CLOSED) {
+            String message = "De status van deze bestelling is Gesloten, u kunt deze bestelling niet meer aanpassen. Neem contact op met Nevvo Meubels";
+            model.addAttribute("editMessage", message);
+            return "customerMainMenu";
+        }
+        for (OrderLine orderLine : order.getListOfTotalOrderLines()) {
+            Product productDB = productRepository.findByName(orderLine.getProduct().getName());
+            productDB.setStock(productDB.getStock() + orderLine.getNumberOfProducts());
+            productRepository.save(productDB);
+        }
+        orderRepository.delete(order);
+        String message = "Uw bestelling is succesvol verwijderd";
+        model.addAttribute("editMessage", message);
+        return "customerMainMenu";
+    }
+
+    @PostMapping("/editOrderStatus")
+    public String editOrderStatus(Order order, Model model) {
+        order.setOrderStatus(Order.OrderStatus.CLOSED);
+        orderRepository.save(order);
+
+        String message = "De status van de bestelling is nu gesloten, Uw bestelling word z.s.m opgestuurd";
+        model.addAttribute("editMessage", message);
+        return "customerMainMenu";
+
+    }
 }

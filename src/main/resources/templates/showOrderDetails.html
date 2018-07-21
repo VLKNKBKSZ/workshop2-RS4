@@ -33,5 +33,10 @@
 
     <input class="button" type="submit" value="Bestelling aanpassen"/>
 </form>
+</br>
+<form method="POST" th:action="@{/order/editOrderStatus}" th:object="${order}">
+
+    <input class="button" type="submit" value="Bestelling status aanpassen"/>
+</form>
 </body>
 </html>
