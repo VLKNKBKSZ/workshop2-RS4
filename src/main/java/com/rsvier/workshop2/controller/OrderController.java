@@ -130,6 +130,11 @@ public class OrderController {
 
     @PostMapping("/deleteOrder")
     public String deleteOrder(Order order, Model model) {
+        /*
+        This method is first checking if the orderstatus is closed. Closed orders can only be deleted by the employee.
+        Then its looping true the orderLineList of the order and changing the stock back to its previous amount
+        Then the order is being deleted with all the correspondending orderlines
+         */
         if (order.getOrderStatus() == Order.OrderStatus.CLOSED) {
             String message = "De status van deze bestelling is Gesloten, u kunt deze bestelling niet meer aanpassen. Neem contact op met Nevvo Meubels";
             model.addAttribute("editMessage", message);
@@ -148,6 +153,10 @@ public class OrderController {
 
     @PostMapping("/editOrderStatus")
     public String editOrderStatus(Order order, Model model) {
+        /*
+        This method is changing the order status to be closed so the order is definitve
+        In real life it means he payed for the order and its going to be send to him
+         */
         order.setOrderStatus(Order.OrderStatus.CLOSED);
         orderRepository.save(order);
 
