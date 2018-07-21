@@ -15,6 +15,7 @@ import com.rsvier.workshop2.domain.Person;
 import com.rsvier.workshop2.repository.AccountRepository;
 import com.rsvier.workshop2.repository.AddressRepository;
 import com.rsvier.workshop2.repository.PersonRepository;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("/customer")
@@ -32,6 +33,13 @@ public class CustomerController {
 		this.addressRepository = addressRepository;
 		this.accountRepository = accountRepository;
 	}
+
+    @GetMapping("/logout")
+    public String logout(Account account, Person person, Address address, SessionStatus sessionStatus) {
+        sessionStatus.setComplete();
+        return "redirect:/";
+
+    }
 	
 	@GetMapping
 	public String showCustomerMainMenu(@ModelAttribute("editMessage") String message, Model model) {
@@ -83,5 +91,6 @@ public class CustomerController {
 		
 		return "editAccount";
 	}
-	
+
+
 }
