@@ -92,21 +92,7 @@ public class OrderController {
     }
 
 
-    public BigDecimal getTotalPriceOfOrder(Order order) {
 
-        BigDecimal totalPriceOfOrder = new BigDecimal(0);
-
-        for (OrderLine orderLine : order.getListOfTotalOrderLines()) {
-
-            BigDecimal totalPriceOfOrderLine = new BigDecimal(0);
-            BigDecimal numberOfProductsInBigDecimal = (BigDecimal.valueOf(orderLine.getNumberOfProducts()));
-            totalPriceOfOrderLine = (totalPriceOfOrderLine.add((orderLine.getProduct().getPrice()))
-                    .multiply(numberOfProductsInBigDecimal));
-            totalPriceOfOrder = totalPriceOfOrder.add(totalPriceOfOrderLine);
-        }
-
-        return totalPriceOfOrder;
-    }
 
     @PostMapping("/showOrderDetails")
     public String showOrderDetails(long orderId, Model model, Person person) {
@@ -140,11 +126,8 @@ public class OrderController {
             model.addAttribute("editMessage", message);
             return "customerMainMenu";
         }
-        for (OrderLine orderLine : order.getListOfTotalOrderLines()) {
-            Product productDB = productRepository.findByName(orderLine.getProduct().getName());
-            productDB.setStock(productDB.getStock() + orderLine.getNumberOfProducts());
-            productRepository.save(productDB);
-        }
+
+        calculatingStockWhenOrderIsDeleted(order);
         orderRepository.delete(order);
         String message = "Uw bestelling is succesvol verwijderd";
         model.addAttribute("editMessage", message);
@@ -164,5 +147,29 @@ public class OrderController {
         model.addAttribute("editMessage", message);
         return "customerMainMenu";
 
+    }
+
+    public void calculatingStockWhenOrderIsDeleted(Order order) {
+        for (OrderLine orderLine : order.getListOfTotalOrderLines()) {
+            Product productDB = productRepository.findByName(orderLine.getProduct().getName());
+            productDB.setStock(productDB.getStock() + orderLine.getNumberOfProducts());
+            productRepository.save(productDB);
+        }
+    }
+
+    public BigDecimal getTotalPriceOfOrder(Order order) {
+
+        BigDecimal totalPriceOfOrder = new BigDecimal(0);
+
+        for (OrderLine orderLine : order.getListOfTotalOrderLines()) {
+
+            BigDecimal totalPriceOfOrderLine = new BigDecimal(0);
+            BigDecimal numberOfProductsInBigDecimal = (BigDecimal.valueOf(orderLine.getNumberOfProducts()));
+            totalPriceOfOrderLine = (totalPriceOfOrderLine.add((orderLine.getProduct().getPrice()))
+                    .multiply(numberOfProductsInBigDecimal));
+            totalPriceOfOrder = totalPriceOfOrder.add(totalPriceOfOrderLine);
+        }
+
+        return totalPriceOfOrder;
     }
 }
