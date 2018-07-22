@@ -131,6 +131,13 @@ public class OrderController {
         return "customerMainMenu";
     }
 
+    @PostMapping("editOrder")
+    public String editOrder(Order order, Model model) {
+        String message = "De bestelling aanpassen is op dit momement nog niet mogelijk.";
+        model.addAttribute("infoMessage", message);
+        return "customerMainMenu";
+    }
+
     @PostMapping("/editOrderStatus")
     public String editOrderStatus(Order order, Model model) {
         /*

@@ -31,6 +31,10 @@ body {
     padding: 0 20px;
 }
 
+.formDetails {
+    color: red;
+    border-bottom: 1px solid darkgrey;
+}
 .header .listItem {
     float: right;
     line-height: 80px;
