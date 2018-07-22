@@ -42,7 +42,7 @@ public class CustomerController {
     }
 	
 	@GetMapping
-	public String showCustomerMainMenu(@ModelAttribute("editMessage") String message, Model model) {
+	public String showCustomerMainMenu(@ModelAttribute("infoMessage") String message, Model model) {
 		
 		return"customerMainMenu";
 	}

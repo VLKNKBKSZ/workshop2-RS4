@@ -82,10 +82,7 @@ public class OrderController {
         session.setComplete();
 
         String message = "De bestelling is geplaatst.";
-
-
-        model.addAttribute("editMessage", message);
-        redirectAttributes.addFlashAttribute("editMessage", message);
+        redirectAttributes.addFlashAttribute("infoMessage", message);
         redirectAttributes.addFlashAttribute("person", person);
 
         return "redirect:/customer";
@@ -123,14 +120,14 @@ public class OrderController {
          */
         if (order.getOrderStatus() == Order.OrderStatus.CLOSED) {
             String message = "De status van deze bestelling is Gesloten, u kunt deze bestelling niet meer aanpassen. Neem contact op met Nevvo Meubels";
-            model.addAttribute("editMessage", message);
+            model.addAttribute("infoMessage", message);
             return "customerMainMenu";
         }
 
         calculatingStockWhenOrderIsDeleted(order);
         orderRepository.delete(order);
         String message = "Uw bestelling is succesvol verwijderd";
-        model.addAttribute("editMessage", message);
+        model.addAttribute("infoMessage", message);
         return "customerMainMenu";
     }
 
@@ -144,7 +141,7 @@ public class OrderController {
         orderRepository.save(order);
 
         String message = "De status van de bestelling is nu gesloten, Uw bestelling word z.s.m opgestuurd";
-        model.addAttribute("editMessage", message);
+        model.addAttribute("infoMessage", message);
         return "customerMainMenu";
 
     }

@@ -100,7 +100,7 @@ public class ProductController {
         productRepository.delete(product);
         
         String deletedProductMesage = "Product is verwijderd";
-        model.addAttribute("deletedProductMesage", deletedProductMesage);
+       
         redirectAttributes.addFlashAttribute("productMesage", deletedProductMesage);
         sessionstatus.setComplete();
         
@@ -114,7 +114,7 @@ public class ProductController {
         productRepository.save(product);
         
         String editProductMesage = "Product is aangepast.";
-        model.addAttribute("editProductMesage", editProductMesage);
+      
         redirectAttributes.addFlashAttribute("productMesage", editProductMesage);
         
         return "redirect:/employee";

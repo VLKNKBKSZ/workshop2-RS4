@@ -79,10 +79,10 @@ public class AddressController {
 		 */
 		
 		String message = "Uw nieuwe account is succesvol aangemaakt.";
-		model.addAttribute("editMessage", message);
+		
 		model.addAttribute("person", person);
 		model.addAttribute("account", account);
-		redirectAttributes.addFlashAttribute("editMessage", message);
+		redirectAttributes.addFlashAttribute("infoMessage", message);
 		redirectAttributes.addFlashAttribute("person", person);
 		redirectAttributes.addFlashAttribute("account", account);
 		return "redirect:/customer";
@@ -95,7 +95,7 @@ public class AddressController {
 
 		String message = "Uw adres is succesvol aangepast.";
 		
-		redirectAttributes.addFlashAttribute("editMessage", message);
+		redirectAttributes.addFlashAttribute("infoMessage", message);
 
 		return "redirect:/customer";
 	}
