@@ -68,12 +68,12 @@ public class LoginController {
 			model.addAttribute("person", person);
 			
 			if (accountDB.getAccountType() == AccountType.CUSTOMER) {
-			
+				model.addAttribute("account", accountDB);
 				return "redirect:/customer";
 				}
 			
 			else if (accountDB.getAccountType() == AccountType.EMPLOYEE) {
-				
+				model.addAttribute("account", accountDB);
 				return "redirect:/employee";
 			}
 		}
@@ -82,7 +82,7 @@ public class LoginController {
 
 		model.addAttribute("message", message);
 
-		model.addAttribute("account", account);
+		
 
 		return "login";
 
