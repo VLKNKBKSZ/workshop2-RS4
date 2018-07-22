@@ -44,7 +44,6 @@ public class CustomerController {
 	@GetMapping
 	public String showCustomerMainMenu(@ModelAttribute("editMessage") String message, Model model) {
 		
-		model.addAttribute("transferedMessage", message);
 		return"customerMainMenu";
 	}
 	

@@ -62,7 +62,7 @@ public class PersonController {
 			
 		personRepository.save(person);
 		String message = "Persoon is aangepast.";
-        model.addAttribute("editMessage", message);
+     
         redirectAttributes.addFlashAttribute("editMessage", message);
 		
 		return "redirect:/customer";

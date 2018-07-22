@@ -94,7 +94,7 @@ public class AddressController {
 		addressRepository.save(address);
 
 		String message = "Uw adres is succesvol aangepast.";
-		model.addAttribute("editMessage", message);
+		
 		redirectAttributes.addFlashAttribute("editMessage", message);
 
 		return "redirect:/customer";

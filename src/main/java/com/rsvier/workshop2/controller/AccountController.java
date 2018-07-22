@@ -82,7 +82,7 @@ public class AccountController {
 		accountRepository.save(account);
 		
 		String message = "Account is aangepast.";
-        model.addAttribute("editMessage", message);
+      
         redirectAttributes.addFlashAttribute("editMessage", message);
         
         return "redirect:/customer";
