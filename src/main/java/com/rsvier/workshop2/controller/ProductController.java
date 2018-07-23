@@ -80,7 +80,10 @@ public class ProductController {
     public String FoundProduct(Product product, Model model) {
 
         if (productRepository.findByName(product.getName()) == null) {
-
+            Iterable<Product> productList = productRepository.findAll();
+            model.addAttribute("productList", productList);
+            String message = "Er bestaat geen product met de opgegeven naam, probeer het nogmaals";
+            model.addAttribute("message", message);
             return "searchProduct";
         }
 
@@ -108,12 +111,12 @@ public class ProductController {
 
 
     @PostMapping("/editProduct")
-    public String editProduct(Product product, RedirectAttributes redirectAttributes) {
+    public String editProduct(SessionStatus sessionStatus, Product product, RedirectAttributes redirectAttributes) {
 
         productRepository.save(product);
 
         String productMessage = "Product is aangepast.";
-
+        sessionStatus.setComplete();
         redirectAttributes.addFlashAttribute("productMessage", productMessage);
 
         return "redirect:/employee";

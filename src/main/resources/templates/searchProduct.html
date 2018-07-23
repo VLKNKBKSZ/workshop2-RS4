@@ -19,6 +19,9 @@
         <td th:text="${product.stock}"></td>
     </tr>
 </table>
+<p>
+    <span class="validationError" th:text="${message}">Message</span>
+</p>
 <!--  											Profile Form											 -->
 <form method="POST" th:action="@{/product/foundProduct}"
       th:object="${product}">
