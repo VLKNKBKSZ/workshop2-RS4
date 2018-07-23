@@ -19,7 +19,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long productId;
 	
-	@Pattern(regexp = "^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
+	@Pattern(regexp = "^\\w+( +\\w+)*$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String name;
 	@Min(value = 0L, message = "The value must be positive")
 	private BigDecimal price;

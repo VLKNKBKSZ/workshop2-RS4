@@ -20,15 +20,15 @@ public class Address {
 	
 	@Enumerated(EnumType.STRING)
 	private AddressType addressType;
-	@Pattern(regexp = "^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
+	@Pattern(regexp = "^\\w+( +\\w+)*$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String streetName;
 	private int houseNumber;
 	private String additionalHouseNumber;
 	@Pattern(regexp="^[1-9][0-9]{3}\\s?[a-zA-Z]{2}$", message = "Voer a.u.b 4 cijfers en 2 letters in.")
 	private String postalCode;
-	@Pattern(regexp = "^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
+	@Pattern(regexp = "^\\w+( +\\w+)*$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String city;
-	@Pattern(regexp = "^[a-zA-Z]+$", message = "Gebruik alleen letters en laat dit veld niet leeg")
+	@Pattern(regexp = "^\\w+( +\\w+)*$", message = "Gebruik alleen letters en laat dit veld niet leeg")
 	private String country;
 	public Address() {
 
