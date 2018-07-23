@@ -80,8 +80,8 @@ public class AccountController {
 		}
 		
 		accountRepository.save(account);
-		
-		String message = "Account is aangepast.";
+
+        String message = "Wachtwoord van uw account is aangepast.";
    // If you want to send object across controllers,use RedirectAttributes instead of Medel 
    // no need to add object to Model first
         redirectAttributes.addFlashAttribute("infoMessage", message);
