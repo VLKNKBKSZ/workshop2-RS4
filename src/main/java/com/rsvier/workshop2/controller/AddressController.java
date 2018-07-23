@@ -89,7 +89,11 @@ public class AddressController {
 	}
 
 	@PostMapping("/editAddress")
-	public String editAddress(Address address, RedirectAttributes redirectAttributes, Model model) {
+    public String editAddress(@Valid Address address, Errors error, RedirectAttributes redirectAttributes, Model model) {
+        if (error.hasErrors()) {
+            return "editAddress";
+        }
+
 
 		addressRepository.save(address);
 
