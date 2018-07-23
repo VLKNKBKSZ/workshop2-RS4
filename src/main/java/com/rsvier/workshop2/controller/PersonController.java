@@ -58,9 +58,11 @@ public class PersonController {
 
 	
 	@PostMapping("/editPerson")
-	public String editPerson(Person person, RedirectAttributes redirectAttributes, Model model) {
-			
-		personRepository.save(person);
+    public String editPerson(@Valid Person person, Errors errors, RedirectAttributes redirectAttributes, Model model) {
+        if (errors.hasErrors()) {
+            return "editPersonForm";
+        }
+        personRepository.save(person);
 		String message = "Persoon is aangepast.";
      
         redirectAttributes.addFlashAttribute("infoMessage", message);

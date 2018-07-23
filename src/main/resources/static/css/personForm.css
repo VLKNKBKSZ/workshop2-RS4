@@ -17,7 +17,8 @@ h1 {
 }
 
 .validationError {
-	color: white;
+	color: red;
+
 }
 
 .formDetails {
