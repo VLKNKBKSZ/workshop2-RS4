@@ -26,6 +26,7 @@ public class CustomerController {
 	PersonRepository personRepository;
 	AddressRepository addressRepository;
 	
+	
 	@Autowired
 	public CustomerController(PersonRepository personRepository,AddressRepository addressRepository
 			,AccountRepository accountRepository) {
@@ -34,28 +35,31 @@ public class CustomerController {
 		this.accountRepository = accountRepository;
 	}
 
-    @GetMapping("/logout")
-    public String logout(Account account, Person person, Address address, SessionStatus sessionStatus) {
-        sessionStatus.setComplete();
-        return "redirect:/";
-
-    }
 	
 	@GetMapping
-	public String showCustomerMainMenu(@ModelAttribute("infoMessage") String message, Model model) {
+	public String showCustomerMainMenu() {
 		
 		return"customerMainMenu";
 	}
 	
 	
+    @GetMapping("/logout")
+    public String logout(SessionStatus sessionStatus) {
+        sessionStatus.setComplete();
+        return "redirect:/";
+
+    }
+	
+	
 	@GetMapping("/personDetails")
-	public String showPersondetails(Person person,Model model) {
+	public String showPersondetails(Person person, Model model) {
 		
 		Address addressDB = addressRepository.findByPerson(person);
 		model.addAttribute("address", addressDB);
 		
 		return "showPersonDetails";
 	}
+	
 	
 	@PostMapping("/deleteProfile")
 	public String deleteProfile(Person person) {
@@ -66,24 +70,27 @@ public class CustomerController {
 		return "home";
 	}
 	
+	
 	@PostMapping("/changeDetails")
-	public String editProfile(Person person) {
+	public String editProfile() {
 		
 		return "changeDetails";
 	}
 	
 	
 	@PostMapping("/changeAddress")
-	public String changeAddress(Address address) {
+	public String changeAddress() {
 		
 		return "editAddress";
 	}
 	
+	
 	@PostMapping("/changePersonDetails")
-	public String changePersonDetails(Person person) {
+	public String changePersonDetails() {
 		
 		return "editPersonForm";
 	}
+	
 	
 	@PostMapping("/changePassword")
 	public String changePassword(Account account) {
