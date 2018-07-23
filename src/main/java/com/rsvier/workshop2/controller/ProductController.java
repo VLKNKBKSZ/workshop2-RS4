@@ -98,9 +98,9 @@ public class ProductController {
 
         productRepository.delete(product);
 
-        String deletedProductMesage = "Product is verwijderd";
+        String productMessage = "Product is verwijderd";
 
-        redirectAttributes.addFlashAttribute("productMesage", deletedProductMesage);
+        redirectAttributes.addFlashAttribute("productMessage", productMessage);
         sessionstatus.setComplete();
 
         return "redirect:/employee";
