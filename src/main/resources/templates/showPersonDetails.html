@@ -32,6 +32,10 @@
 
     <input class="buttonLogin" type="submit" value="Account verwijderen"/>
 </form>
+</br>
+<form method="POST" th:action="@{/order/backToMainMenu}" th:object="${order}">
 
+    <input class="buttonLogin" type="submit" value="Terug naar hoofdmenu"/>
+</form>
 </body>
 </html>

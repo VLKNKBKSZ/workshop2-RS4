@@ -63,6 +63,12 @@ public class OrderLineController {
 		return "createNewOrderLine";
 	}
 
+    @PostMapping("/exitAddProduct")
+    public String editMyOrders(Order order) {
+
+        return "customerMainMenu";
+
+    }
 	@GetMapping("/showNewOrderLineForOrderLineList")
 	public String showNewOrderLineForOrderLineList(Model model) {
 

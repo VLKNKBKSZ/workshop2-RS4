@@ -39,9 +39,9 @@
     <input class="button" type="submit" value="Betalen"/>
 </form>
 </br>
-<form method="POST" th:action="@{/order/exitMyOrders}" th:object="${order}">
+<form method="POST" th:action="@{/order/backToMainMenu}" th:object="${order}">
 
-    <input class="button" type="submit" value="Verlaat huidige bestelling"/>
+    <input class="button" type="submit" value="Terug naar hoofdmenu"/>
 </form>
 </body>
 </html>

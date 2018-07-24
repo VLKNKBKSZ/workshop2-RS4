@@ -153,12 +153,9 @@ public class OrderController {
 
     }
 
-    @PostMapping("/exitMyOrders")
-    public String editMyOrders(Order order, Model model) {
+    @PostMapping("/backToMainMenu")
+    public String editMyOrders(Order order) {
 
-
-        String message = "Er zijn geen aanpassingen gemaakt aan de bestelling";
-        model.addAttribute("infoMessage", message);
         return "customerMainMenu";
 
     }

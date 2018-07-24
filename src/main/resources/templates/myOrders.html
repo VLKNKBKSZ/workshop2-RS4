@@ -35,6 +35,10 @@
     <input class="button" type="submit" value="Bekijk"/>
 
 </form>
+</br>
+<form method="POST" th:action="@{/order/backToMainMenu}" th:object="${order}">
 
+    <input class="button" type="submit" value="Terug naar hoofdmenu"/>
+</form>
 </body>
 </html>
