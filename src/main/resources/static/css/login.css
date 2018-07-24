@@ -48,7 +48,7 @@ h1 {
     width: 900px;
 }
 
-.button {
+.buttonLogin {
     background-color: darkgrey;
     border: none;
     color: white;
@@ -62,7 +62,7 @@ h1 {
     border-radius: 5px;;
 }
 
-.button:hover {
+.buttonLogin:hover {
     color: black;
 }
 
