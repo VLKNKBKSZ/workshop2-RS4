@@ -36,7 +36,12 @@
 </br>
 <form method="POST" th:action="@{/order/editOrderStatus}" th:object="${order}">
 
-    <input class="button" type="submit" value="Bestelling status aanpassen"/>
+    <input class="button" type="submit" value="Betalen"/>
+</form>
+</br>
+<form method="POST" th:action="@{/order/exitMyOrders}" th:object="${order}">
+
+    <input class="button" type="submit" value="Verlaat huidige bestelling"/>
 </form>
 </body>
 </html>

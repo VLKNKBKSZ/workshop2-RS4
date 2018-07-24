@@ -95,7 +95,7 @@ public class OrderController {
     public String showOrderDetails(long orderId, Model model, Person person) {
         Order order = orderRepository.findOrderByOrderId(orderId);
 
-        if (order == null) {
+        if (order == null || order.getPerson().getPersonId() != person.getPersonId()) {
             String message = "U heeft een bestellingsnummer ingevoerd dat niet overeenkomt met uw bestellingen, probeer het nogmaals";
             List<Order> orderList = orderRepository.findOrdersByPerson(person);
             model.addAttribute("orderList", orderList);
@@ -153,6 +153,15 @@ public class OrderController {
 
     }
 
+    @PostMapping("/exitMyOrders")
+    public String editMyOrders(Order order, Model model) {
+
+
+        String message = "Er zijn geen aanpassingen gemaakt aan de bestelling";
+        model.addAttribute("infoMessage", message);
+        return "customerMainMenu";
+
+    }
     public void calculatingStockWhenOrderIsDeleted(Order order) {
         for (OrderLine orderLine : order.getListOfTotalOrderLines()) {
             Product productDB = productRepository.findByName(orderLine.getProduct().getName());
